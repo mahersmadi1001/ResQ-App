@@ -32,7 +32,6 @@ class _AttachmentPickerButtonState extends State<AttachmentPickerButton> {
       backgroundColor: ColorsApp.withePro,
 
       builder: (context) {
-        // StatefulBuilder لتحديث حالة الدوائر داخل القائمة فور الضغط
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setModalState) {
             return Padding(
@@ -59,10 +58,9 @@ class _AttachmentPickerButtonState extends State<AttachmentPickerButton> {
                           });
                         },
                         child: SizedBox(
-                          width: 85.w, // عرض ثابت لكل عنصر لضمان التناسق
+                          width: 85.w,
                           child: Column(
                             children: [
-                              // حاوية لإظهار إطار التحديد حول الدائرة
                               Container(
                                 padding: EdgeInsets.all(3.r),
                                 decoration: BoxDecoration(
@@ -105,12 +103,12 @@ class _AttachmentPickerButtonState extends State<AttachmentPickerButton> {
                     }).toList(),
                   ),
                   SizedBox(height: 30.h),
-                  // زر التأكيد لإغلاق القائمة
+
                   MaterialButton(
                     onPressed: () {
                       Navigator.pop(context);
-                      setState(() {}); // تحديث نص الزر الرئيسي
-                      widget.onSelected(_selectedItems); // إرسال النتائج
+                      setState(() {});
+                      widget.onSelected(_selectedItems);
                     },
                     color: ColorsApp.greenPro,
                     elevation: 5,
@@ -155,7 +153,6 @@ class _AttachmentPickerButtonState extends State<AttachmentPickerButton> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(
-              // تغيير النص إذا تم اختيار عنصر واحد على الأقل
               _selectedItems.isNotEmpty ? "تم الاختيار" : widget.hint,
               style: TextStyle(color: ColorsApp.yalwoPro, fontSize: 18.sp),
             ),

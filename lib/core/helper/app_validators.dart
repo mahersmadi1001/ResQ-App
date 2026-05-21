@@ -1,4 +1,4 @@
-enum IdentityType { nationalID, passport, none }
+enum IdentityType { national_id,passport,none }
 
 class AppValidators {
   static final RegExp _nationalIdRegex = RegExp(r'^(0[1-9]|1[0-4])[0-9]{9}$');
@@ -12,7 +12,7 @@ class AppValidators {
     r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$',
   );
   static IdentityType getIdentityType(String value) {
-    if (_nationalIdRegex.hasMatch(value)) return IdentityType.nationalID;
+    if (_nationalIdRegex.hasMatch(value)) return IdentityType.national_id;
     if (_passportRegex.hasMatch(value)) return IdentityType.passport;
     return IdentityType.none;
   }

@@ -8,8 +8,8 @@ import 'package:projct/viwe/login_screen.dart';
 import 'package:projct/viwe/sign_up/signup_screen.dart';
 
 class OtpScreen extends StatefulWidget {
-  const OtpScreen({super.key});
-
+  OtpScreen({super.key, required this.email});
+  String email;
   @override
   State<OtpScreen> createState() => _OtpScreenState();
 }

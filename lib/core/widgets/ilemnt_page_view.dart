@@ -13,7 +13,9 @@ class IlemntPageView extends StatelessWidget {
   double hight_contaner;
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return 
+    
+    Center(
       child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(20.r)),
         child: BackdropFilter(

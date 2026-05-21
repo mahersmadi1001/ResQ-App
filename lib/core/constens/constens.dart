@@ -1,26 +1,22 @@
-
-
 class ConstensApp {
   static String logo = "images/logo.png";
 
   static List<String> damascusDistricts = [
-    'المزة',
-    'كفرسوسة',
-    'أبو رمانة',
-    'المالكي',
-    'الروضة',
-    'المهاجرين',
-    'ركن الدين',
-    'الصالحية',
-    'القصاع',
-    'باب توما',
-    'الشاغور',
-    'الميدان',
-    'ساروجة',
-    'دمشق القديمة',
-    'مشروع دمر',
-    'دمر البلد',
-    'برزة',
-    'القابون',
+    "Kafr Sousa",
+    "Al-Mazza",
+    "As-Salihiya",
+    "Rukn ad-Din",
+    "Al-Muhajerin",
+    "Al-Midan",
+    "Ash-Shaghour",
+    "Ancient City of Damascus",
+    "Sarouja",
+    "Al-Qaboun",
+    "Barza",
+    "Dummar",
+    "Al-Qanawat",
+    "Al-Yarmuk",
+    "Joubar",
+    "Al-Qadam",
   ];
 }

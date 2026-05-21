@@ -73,7 +73,7 @@ class OnBordingPageView extends StatelessWidget {
           imagePath: "images/onbording3.png",
           discrabtion:
               "In any case or at any time, let us know... we will be with you",
-          textButton: "Next",
+          textButton: "Go",
         ),
       ],
     );

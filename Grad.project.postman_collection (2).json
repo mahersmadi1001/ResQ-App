@@ -1,0 +1,331 @@
+{
+  "info": {
+    "_postman_id": "adcd37dd-d088-4166-b3e6-b267fb1cdcb3",
+    "name": "Grad.project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31551136",
+    "_collection_link": "https://go.postman.co/collection/31551136-adcd37dd-d088-4166-b3e6-b267fb1cdcb3?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "login",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "waellll@gmail.com",
+                  "type": "text",
+                  "uuid": "8529bf93-eab2-47c0-bd75-9ba5cac07cee"
+                },
+                {
+                  "key": "password",
+                  "value": "1234567890",
+                  "type": "text",
+                  "uuid": "52a96790-6d85-4904-8b9e-4eab44691b41"
+                },
+                {
+                  "key": "device_name",
+                  "value": "tuf f17",
+                  "type": "text",
+                  "uuid": "ea835cf1-1e9c-4cce-ac69-ce8be5d6839a",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/login",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "user@test.com",
+                  "disabled": true
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "3|LxKwSQcUEX2SYlevFSRMiXgQrHcyusAx0ZO2JlkAde2aba72",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/logout",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "send_otp",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "waellll@gmail.com",
+                  "type": "text",
+                  "uuid": "0768432e-cc7c-40a9-a3cf-dc6047b676bc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/sendotp",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "sendotp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "verify_otp",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "waellll@gmail.com",
+                  "type": "text",
+                  "uuid": "e6432698-571a-4771-a572-af92b7c3535d"
+                },
+                {
+                  "key": "otp",
+                  "value": "556389",
+                  "type": "text",
+                  "uuid": "516f74e5-0f2b-49ff-a991-1660957a159e"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/verifyotp",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "verifyotp"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "first_name",
+                  "value": "Wael",
+                  "type": "text",
+                  "uuid": "d6213879-20fd-4414-934c-a9aecd463e71"
+                },
+                {
+                  "key": "last_name",
+                  "value": "Alabdurrahim",
+                  "type": "text",
+                  "uuid": "1a1c35c9-d282-4418-8691-cad4e6af9d0d"
+                },
+                {
+                  "key": "email",
+                  "value": "waellll@gmail.com",
+                  "type": "text",
+                  "uuid": "d8c58ba9-e1c4-44c9-989a-89d077536680"
+                },
+                {
+                  "key": "official_identifier_method",
+                  "value": "national_id",
+                  "type": "text",
+                  "uuid": "f68e1272-ff3d-475b-bbe9-13b2326492b2"
+                },
+                {
+                  "key": "official_identifier",
+                  "value": "99999999991",
+                  "type": "text",
+                  "uuid": "b58efbd3-5bfc-492b-9424-9983ca6c0356"
+                },
+                {
+                  "key": "address",
+                  "value": "Mezzeh",
+                  "type": "text",
+                  "uuid": "31c72e60-86f7-413e-bb12-f124b26e19d9"
+                },
+                {
+                  "key": "password",
+                  "value": "1234567890",
+                  "type": "text",
+                  "uuid": "6d985ed7-a3d1-450f-9c13-46f18f7fc2eb"
+                },
+                {
+                  "key": "password_confirmation",
+                  "value": "1234567890",
+                  "type": "text",
+                  "uuid": "1e291dac-a1a1-4490-a9ac-dddf3dacd46b"
+                },
+                {
+                  "key": "device_name",
+                  "value": "Asus-Tuff-f17",
+                  "type": "text",
+                  "uuid": "86fd79d7-6426-4be7-9575-2e11fcb4c755",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/api/register",
+              "protocol": "http",
+              "host": [
+                "127",
+                "0",
+                "0",
+                "1"
+              ],
+              "port": "8000",
+              "path": [
+                "api",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "test",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/test",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "test"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

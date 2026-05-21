@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 200.h,
             ),
           ),
-          SizedBox(height: 150.h),
+          SizedBox(height: 150.h), 
           SizedBox(
             width: 275.w,
             child: LinearProgressIndicator(

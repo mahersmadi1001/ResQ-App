@@ -7,11 +7,24 @@ import 'package:projct/core/widgets/TFF.dart';
 import 'package:projct/core/widgets/button_auth.dart';
 import 'package:projct/core/widgets/chips_address.dart';
 import 'package:projct/core/widgets/navegator_login.dart';
-import 'package:projct/viwe/sign_up/password_componant.dart';
-import 'package:projct/viwe/sign_up/signup_screen.dart';
+import 'package:projct/viwe/sign_up/signup_screen.dart'
+    show controller_pageviwe;
 
-class SignUpComponant extends StatelessWidget {
-  SignUpComponant({super.key});
+class SignUpComponant extends StatefulWidget {
+  SignUpComponant({super.key, this.onDataSaved});
+  final Function({
+    required String firstName,
+    required String lastName,
+    required String id,
+    required String address,
+    required IdentityType identityType,
+  })?
+  onDataSaved;
+  @override
+  State<SignUpComponant> createState() => _SignUpComponantState();
+}
+
+class _SignUpComponantState extends State<SignUpComponant> {
   TextEditingController? firstNameController = TextEditingController();
   TextEditingController? lasttNameController = TextEditingController();
   TextEditingController? idController = TextEditingController();
@@ -124,13 +137,18 @@ class SignUpComponant extends StatelessWidget {
           ButtonAuth(
             onPressed: () {
               if (formKey.currentState!.validate()) {
-                PasswordComponant(
-                  address: ListAddress.selectedAddress ?? "",
-                
-                  firstName: firstNameController!.text,
-                  id: idController!.text,
-                  lasttName: lasttNameController!.text,
-                );
+                if (widget.onDataSaved != null) {
+                  widget.onDataSaved!(
+                    firstName: firstNameController!.text,
+                    lastName: lasttNameController!.text,
+                    id: idController!.text,
+                    address: ListAddress.selectedAddress ?? "",
+                    identityType: AppValidators.getIdentityType(
+                      idController!.text,
+                    ),
+                  );
+                }
+
                 controller_pageviwe.animateToPage(
                   1,
                   duration: Duration(milliseconds: 200),

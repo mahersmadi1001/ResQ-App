@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
-import 'package:projct/viwe/onbording_pages/back_button_page.dart';
+import 'package:projct/core/widgets/back_button_page.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnbordingPage extends StatelessWidget {
