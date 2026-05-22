@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projct/core/config/di.dart';
 
 import 'package:projct/viwe/splash_screen.dart';
 
-void main() {
+void main() async {
+  await setup();
   runApp(const MainPage());
 }
 

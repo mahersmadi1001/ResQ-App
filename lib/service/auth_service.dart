@@ -39,7 +39,7 @@ class AuthService {
   Future<bool> sendOtp({required String email}) async {
     try {
       Response response = await dio.post(
-        "$baseurl/sendotp",
+        "${baseurl}sendotp",
         data: {"email": email},
       );
 
@@ -49,6 +49,37 @@ class AuthService {
 
       throw Failure(
         message: "فشل في إرسال رمز التحقق",
+        statusCode: response.statusCode,
+      );
+    } on DioException catch (e) {
+      throw Failure(
+        message: Failure.fromDioException(e),
+        statusCode: e.response?.statusCode,
+      );
+    } catch (e) {
+      throw Failure(
+        message: "حدث خطأ غير متوقع: ${e.toString()}",
+        statusCode: null,
+      );
+    }
+  }
+
+  Future<bool> verifyOtp({required String email, required String otp}) async {
+    try {
+      Response response = await dio.post(
+        "${baseurl}verifyotp",
+        data: {
+          "email": email,
+          "otp": otp,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return true;
+      }
+
+      throw Failure(
+        message: "فشل في التحقق من الرمز",
         statusCode: response.statusCode,
       );
     } on DioException catch (e) {

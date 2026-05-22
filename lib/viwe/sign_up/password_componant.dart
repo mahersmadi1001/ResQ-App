@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projct/core/config/di.dart';
 import 'package:projct/core/helper/app_validators.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/model/sign_up_model.dart';
