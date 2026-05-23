@@ -2,13 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/viwe/login_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projct/core/config/di.dart';
+import 'package:projct/service/auth_service.dart';
+import 'package:projct/view_model/logout_bloc/logout_bloc.dart';
+import 'package:projct/view_model/logout_bloc/logout_event.dart';
+import 'package:projct/view_model/logout_bloc/logout_state.dart';
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
+    return BlocProvider(
+      create: (context) => LogoutBloc(authService: di<AuthService>()),
+      child: BlocConsumer<LogoutBloc, LogoutState>(
+        listener: (context, state) {
+          if (state is LogoutSuccessState) {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => LoginScreen()),
+              (route) => false,
+            );
+          } else if (state is LogoutErrorState) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.message)));
+            Navigator.pop(context);
+          }
+        },
+        builder: (context, state) {
+          return AlertDialog(
       icon: Icon(Icons.cancel, color: Colors.red.shade200, size: 50.sp),
       scrollable: true,
       backgroundColor: Colors.white,
@@ -26,31 +48,31 @@ class LogoutDialog extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white.withAlpha(200),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: Text(
                 "cancel",
                 style: TextStyle(color: ColorsApp.yalwoPro),
               ),
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: ColorsApp.greenPro,
-              ),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginScreen();
+            state is LogoutLoadingState
+                ? const CircularProgressIndicator()
+                : ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorsApp.greenPro,
+                    ),
+                    onPressed: () {
+                      context.read<LogoutBloc>().add(SendLogout());
                     },
+                    child: Text("yes", style: TextStyle(color: ColorsApp.yalwoPro)),
                   ),
-                );
-              },
-              child: Text("yes", style: TextStyle(color: ColorsApp.yalwoPro)),
-            ),
           ],
         ),
       ],
+    );
+        },
+      ),
     );
   }
 }

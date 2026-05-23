@@ -43,6 +43,8 @@ dependencies:
   equatable: ^2.0.8
   firebase_core: ^4.8.0
   git: ^2.3.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
 
 dev_dependencies:
   flutter_test:

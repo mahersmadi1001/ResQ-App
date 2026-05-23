@@ -12,6 +12,7 @@ import 'package:projct/service/auth_service.dart';
 import 'package:projct/view_model/otp_bloc/otp_bloc.dart';
 import 'package:projct/view_model/otp_bloc/otp_event.dart';
 import 'package:projct/view_model/otp_bloc/otp_state.dart';
+import 'package:projct/core/config/di.dart';
 
 class OtpScreen extends StatefulWidget {
   OtpScreen({super.key, required this.email});
@@ -66,7 +67,7 @@ class _OtpScreenState extends State<OtpScreen> {
 
     return BlocProvider(
       create: (context) =>
-          OtpBloc(authService: AuthService())
+          OtpBloc(authService: di<AuthService>())
             ..add(SendOtp(email: widget.email)),
       child: Scaffold(
         body: BlocConsumer<OtpBloc, OtpState>(

@@ -2,6 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:projct/core/erorr/erorr_handling.dart';
 
 import 'package:projct/model/sign_up_model.dart';
+import 'package:projct/model/login_model.dart';
+import 'package:projct/model/user_model.dart';
+import 'package:projct/service/cache_service.dart';
+import 'package:projct/core/config/di.dart';
 
 class AuthService {
   String baseurl = "http://127.0.0.1:8000/api/";
@@ -64,17 +68,88 @@ class AuthService {
     }
   }
 
+  Future<String> login(LoginModel loginModel) async {
+    try {
+      Response response = await dio.post(
+        "${baseurl}login",
+        data: loginModel.toMap(),
+        options: Options(headers: {'Content-Type': 'application/json'}),
+      );
+
+      if (response.statusCode == 200) {
+        String token = response.data['data'];
+        await di<CacheService>().saveToken(token);
+        return "تم تسجيل الدخول بنجاح";
+      }
+
+      throw Failure(
+        message: "فشل تسجيل الدخول، تأكد من البيانات",
+        statusCode: response.statusCode,
+      );
+    } on DioException catch (e) {
+      throw Failure(
+        message: Failure.fromDioException(e),
+        statusCode: e.response?.statusCode,
+      );
+    } catch (e) {
+      throw Failure(
+        message: "حدث خطأ غير متوقع: ${e.toString()}",
+        statusCode: null,
+      );
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      String? token = di<CacheService>().getToken();
+      if (token == null) throw Failure(message: "غير مسجل الدخول");
+
+      Response response = await dio.post(
+        "${baseurl}logout",
+        options: Options(
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer $token',
+          },
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        await di<CacheService>().deleteToken();
+        return;
+      }
+
+      throw Failure(
+        message: "فشل تسجيل الخروج",
+        statusCode: response.statusCode,
+      );
+    } on DioException catch (e) {
+      throw Failure(
+        message: Failure.fromDioException(e),
+        statusCode: e.response?.statusCode,
+      );
+    } catch (e) {
+      throw Failure(
+        message: "حدث خطأ غير متوقع: ${e.toString()}",
+        statusCode: null,
+      );
+    }
+  }
+
   Future<bool> verifyOtp({required String email, required String otp}) async {
     try {
       Response response = await dio.post(
         "${baseurl}verifyotp",
-        data: {
-          "email": email,
-          "otp": otp,
-        },
+        data: {"email": email, "otp": otp},
       );
 
       if (response.statusCode == 200) {
+        final data = response.data['data'];
+        final token = data['token'];
+        final userJson = data['user'];
+
+        await di<CacheService>().saveToken(token);
+        await di<CacheService>().saveUser(UserModel.fromJson(userJson));
         return true;
       }
 

@@ -49,7 +49,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignupBloc(authService: AuthService()),
+      create: (context) => SignupBloc(authService: di<AuthService>()),
       child: BlocListener<SignupBloc, SignupState>(
         listener: (context, state) {
           if (state is SucssfoledState) {

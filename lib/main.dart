@@ -5,6 +5,7 @@ import 'package:projct/core/config/di.dart';
 import 'package:projct/viwe/splash_screen.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await setup();
   runApp(const MainPage());
 }
