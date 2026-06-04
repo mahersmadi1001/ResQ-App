@@ -14,6 +14,8 @@ class LoginErrorState extends LoginState {
   LoginErrorState({required this.message});
 
   @override
+
+  
   List<Object?> get props => [message];
 }
 

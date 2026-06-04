@@ -3,7 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/constens/constens.dart';
 
-import 'package:projct/viwe/onbording_pages/pagesview.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,16 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(seconds: 2, milliseconds: 300), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) {
-            return OnBordingPageView();
-          },
-        ),
-      );
-    });
+   
   }
 
   @override
@@ -43,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 200.h,
             ),
           ),
-          SizedBox(height: 150.h), 
+          SizedBox(height: 150.h),
           SizedBox(
             width: 275.w,
             child: LinearProgressIndicator(

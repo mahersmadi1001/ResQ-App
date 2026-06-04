@@ -104,7 +104,7 @@ class AuthService {
       String? token = di<CacheService>().getToken();
       if (token == null) throw Failure(message: "غير مسجل الدخول");
 
-      Response response = await dio.post(
+      Response response = await dio.delete(
         "${baseurl}logout",
         options: Options(
           headers: {

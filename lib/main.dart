@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/config/di.dart';
+
+import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
+import 'package:projct/viwe/bottom_nav_bar.dart';
+import 'package:projct/viwe/login_screen.dart';
+import 'package:projct/viwe/onbording_pages/pagesview.dart';
 
 import 'package:projct/viwe/splash_screen.dart';
 
@@ -20,9 +26,31 @@ class MainPage extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          home: SplashScreen(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) {
+                return di<UserSessionBloc>()..add(UserSessionCheckStatus());
+              },
+            ),
+          ],
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: BlocBuilder<UserSessionBloc, UserSessionState>(
+              builder: (context, state) {
+                if (state is UserSessionInitial)
+                  return SplashScreen();
+                else if (state is UserFirstTimeState) {
+                  return OnBordingPageView();
+                } else if (state is UserAuthenticated) {
+                  return ButtonNavBar();
+                } else if (state is UserUnAuth) {
+                  return LoginScreen();
+                }
+                return SplashScreen();
+              },
+            ),
+          ),
         );
       },
     );

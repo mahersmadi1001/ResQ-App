@@ -4,6 +4,7 @@ import 'package:pinput/pinput.dart';
 import 'package:projct/core/config/di.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/button_auth.dart';
+import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/bottom_nav_bar.dart';
 import 'package:projct/viwe/login_screen.dart';
 import 'package:projct/viwe/sign_up/signup_screen.dart';
@@ -12,7 +13,6 @@ import 'package:projct/service/auth_service.dart';
 import 'package:projct/view_model/otp_bloc/otp_bloc.dart';
 import 'package:projct/view_model/otp_bloc/otp_event.dart';
 import 'package:projct/view_model/otp_bloc/otp_state.dart';
-import 'package:projct/core/config/di.dart';
 
 class OtpScreen extends StatefulWidget {
   OtpScreen({super.key, required this.email});
@@ -84,14 +84,7 @@ class _OtpScreenState extends State<OtpScreen> {
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(const SnackBar(content: Text("تم التحقق بنجاح")));
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return ButtonNavBar();
-                  },
-                ),
-              );
+              context.read<UserSessionBloc>().add(LogingUser());
             }
           },
           builder: (context, state) {

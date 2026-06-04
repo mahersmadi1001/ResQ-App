@@ -1,4 +1,4 @@
-enum IdentityType { national_id,passport,none }
+enum IdentityType { national_id, passport, none }
 
 class AppValidators {
   static final RegExp _nationalIdRegex = RegExp(r'^(0[1-9]|1[0-4])[0-9]{9}$');

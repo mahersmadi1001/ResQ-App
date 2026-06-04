@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/onbording_pages/onbording_custom.dart';
 import 'package:projct/viwe/sign_up/signup_screen.dart';
 
@@ -60,6 +62,8 @@ class OnBordingPageView extends StatelessWidget {
           },
           controller: controller,
           ontap: () {
+            context.read<UserSessionBloc>().add(CompleteOnboarding());
+
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(

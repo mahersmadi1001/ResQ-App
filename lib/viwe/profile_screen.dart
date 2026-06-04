@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -18,7 +18,6 @@ class ProfileScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            // color: Colors.black,
             width: 436.w,
             height: 200.h,
             child: Stack(

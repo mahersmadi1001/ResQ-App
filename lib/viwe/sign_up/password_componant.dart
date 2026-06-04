@@ -5,19 +5,14 @@ import 'package:projct/core/config/di.dart';
 import 'package:projct/core/helper/app_validators.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/model/sign_up_model.dart';
-
 import 'package:projct/core/widgets/TFF.dart';
 import 'package:projct/core/widgets/button_auth.dart';
 import 'package:projct/core/widgets/navegator_login.dart' show NavigatToLogin;
 import 'package:projct/core/widgets/signUp_title.dart';
-
 import 'package:projct/service/auth_service.dart';
 import 'package:projct/view_model/signup_bloc/signup_bloc.dart';
 import 'package:projct/view_model/signup_bloc/signup_event.dart';
 import 'package:projct/view_model/signup_bloc/signup_state.dart';
-
-import 'package:projct/viwe/otp_page.dart';
-
 import 'package:projct/viwe/sign_up/signup_screen.dart'
     show controller_pageviwe;
 
@@ -53,14 +48,9 @@ class _PasswordComponantState extends State<PasswordComponant> {
       child: BlocListener<SignupBloc, SignupState>(
         listener: (context, state) {
           if (state is SucssfoledState) {
-            Navigator.pushReplacement(
+            ScaffoldMessenger.of(
               context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return OtpScreen(email: emailsignController!.text);
-                },
-              ),
-            );
+            ).showSnackBar(const SnackBar(content: Text("تم حفظ البيانات ")));
           } else if (state is ErorrState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(

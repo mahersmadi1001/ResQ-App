@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/helper/app_validators.dart';
 import 'package:projct/core/theme/colors_app.dart';
-
 import 'package:projct/core/widgets/TFF.dart';
 import 'package:projct/core/widgets/button_auth.dart';
 import 'package:projct/view_model/signup_bloc/signup_state.dart';
-
+import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/sign_up/signup_screen.dart';
-import 'package:projct/viwe/bottom_nav_bar.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projct/core/config/di.dart';
 import 'package:projct/service/auth_service.dart';
@@ -45,17 +42,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message)));
             } else if (state is LoginSuccessState) {
+              context.read<UserSessionBloc>().add(LogingUser());
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message)));
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return ButtonNavBar();
-                  },
-                ),
-              );
             }
           },
           builder: (context, state) {
