@@ -6,7 +6,7 @@ import 'package:projct/viwe/profile_screen.dart';
 import 'package:projct/viwe/rebort_screen.dart';
 
 class ButtonNavBar extends StatefulWidget {
-  ButtonNavBar({super.key});
+  const ButtonNavBar({super.key});
 
   @override
   State<ButtonNavBar> createState() => _ButtonNavBarState();

@@ -5,7 +5,7 @@ import 'package:projct/model/item_munu_modal.dart';
 
 class AttachmentPickerButton extends StatefulWidget {
   final List<AttachmentItem> items;
-  // نمرر قائمة بالعناصر المختارة للكلاس الأب
+
   final Function(List<AttachmentItem>) onSelected;
   final String hint;
 
@@ -21,7 +21,6 @@ class AttachmentPickerButton extends StatefulWidget {
 }
 
 class _AttachmentPickerButtonState extends State<AttachmentPickerButton> {
-  // القائمة التي تخزن الاختيارات المتعددة
   final List<AttachmentItem> _selectedItems = [];
 
   void _showMenu() {
@@ -92,7 +91,7 @@ class _AttachmentPickerButtonState extends State<AttachmentPickerButton> {
                                   fontSize: 13.sp,
                                   fontWeight: isSelected
                                       ? FontWeight.bold
-                                      : FontWeight.normal,
+                                      : FontWeight.w500,
                                 ),
                                 textAlign: TextAlign.center,
                               ),

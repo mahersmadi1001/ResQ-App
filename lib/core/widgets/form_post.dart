@@ -41,19 +41,17 @@ class FormPost extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(25.r)),
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.fill,
-                  width: 415.w,
-                  height: 160.h,
-                ),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(25.r)),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.fill,
+                width: 415.w,
+                height: 160.h,
               ),
-            ],
+            ),
           ),
           Padding(
             padding: EdgeInsets.all(8.0.sp),

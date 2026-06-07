@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
-import 'package:projct/viwe/login_screen.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projct/core/config/di.dart';
 import 'package:projct/service/auth_service.dart';
@@ -30,11 +30,15 @@ class LogoutDialog extends StatelessWidget {
         },
         builder: (context, state) {
           return AlertDialog(
-            icon: Icon(Icons.cancel, color: Colors.red.shade200, size: 50.sp),
+            icon: Icon(
+              Icons.warning_amber_rounded,
+              color: Colors.red.shade200,
+              size: 50.sp,
+            ),
             scrollable: true,
             backgroundColor: Colors.white,
             content: Text(
-              " you wante is Logout ?",
+              " you wante is LogOut ?",
               style: TextStyle(color: ColorsApp.yalwoPro, fontSize: 20.sp),
             ),
             title: Text("LogOut", style: TextStyle(color: Colors.red)),

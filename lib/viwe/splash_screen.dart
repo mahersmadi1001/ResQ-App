@@ -3,21 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/constens/constens.dart';
 
-
-class SplashScreen extends StatefulWidget {
+class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
-
-  @override
-  State<SplashScreen> createState() => _SplashScreenState();
-}
-
-class _SplashScreenState extends State<SplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-   
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +20,23 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 200.h,
             ),
           ),
-          SizedBox(height: 150.h),
+          SizedBox(height: 30.h),
+          Text(
+            "ResQ",
+            style: TextStyle(
+              color: ColorsApp.yalwoPro,
+              fontSize: 35.sp,
+              fontWeight: FontWeight.bold,
+              shadows: [
+                Shadow(
+                  color: Colors.black,
+                  blurRadius: 5,
+                  offset: Offset(2, 2),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(height: 90.h),
           SizedBox(
             width: 275.w,
             child: LinearProgressIndicator(

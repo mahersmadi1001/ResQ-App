@@ -57,23 +57,7 @@ class _RebortScreenState extends State<RebortScreen> {
               ),
             ),
             SizedBox(height: 60.h),
-            AttachmentPickerButton(
-              items: [
-                AttachmentItem(
-                  name: "ali",
-                  icon: Icons.add_a_photo_sharp,
-                  color: ColorsApp.withePro,
-                  value: "kjk",
-                ),
-                AttachmentItem(
-                  name: "ahmed",
-                  icon: Icons.access_time_filled_rounded,
-                  color: ColorsApp.withePro,
-                  value: "asx",
-                ),
-              ],
-              onSelected: (p0) {},
-            ),
+            AttachmentPickerButton(items: teams, onSelected: (p0) {}),
             SizedBox(height: 40.h),
             Expanded(
               child: Row(

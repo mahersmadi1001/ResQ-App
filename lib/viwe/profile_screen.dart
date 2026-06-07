@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -35,13 +34,15 @@ class ProfileScreen extends StatelessWidget {
                   child: CircleAvatar(
                     maxRadius: 80,
                     backgroundColor: ColorsApp.greenPro,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(0.r),
+                    child: Container(
+                      width: 130.w,
+                      height: 130.h,
+                      decoration: BoxDecoration(shape: BoxShape.circle),
                       child: Image.asset(
                         ConstensApp.logo,
                         fit: BoxFit.fill,
-                        width: 140.w,
-                        height: 140.h,
+                        width: 100.w,
+                        height: 100.h,
                       ),
                     ),
                   ),

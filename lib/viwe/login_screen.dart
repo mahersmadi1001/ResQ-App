@@ -19,7 +19,7 @@ import 'package:projct/model/login_model.dart';
 bool visibility_password = true;
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+ const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();

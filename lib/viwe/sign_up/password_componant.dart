@@ -13,6 +13,7 @@ import 'package:projct/service/auth_service.dart';
 import 'package:projct/view_model/signup_bloc/signup_bloc.dart';
 import 'package:projct/view_model/signup_bloc/signup_event.dart';
 import 'package:projct/view_model/signup_bloc/signup_state.dart';
+import 'package:projct/viwe/otp_page.dart';
 import 'package:projct/viwe/sign_up/signup_screen.dart'
     show controller_pageviwe;
 
@@ -51,6 +52,13 @@ class _PasswordComponantState extends State<PasswordComponant> {
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(const SnackBar(content: Text("تم حفظ البيانات ")));
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) =>
+                    OtpScreen(email: emailsignController!.text),
+              ),
+            );
           } else if (state is ErorrState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
