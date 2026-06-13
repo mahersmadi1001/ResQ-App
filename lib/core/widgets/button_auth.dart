@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
 
-
-
 class ButtonAuth extends StatelessWidget {
   VoidCallback? onPressed;
   double minWidth = 250.w;
@@ -20,6 +18,13 @@ class ButtonAuth extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialButton(
       color: ColorsApp.yalwoPro,
+      onPressed: onPressed,
+      minWidth: minWidth,
+      height: 45.h,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(14.r)),
+      ),
+      elevation: 10,
       child: Text(
         textButton,
         style: TextStyle(
@@ -28,13 +33,6 @@ class ButtonAuth extends StatelessWidget {
           fontWeight: FontWeight.bold,
         ),
       ),
-      onPressed: onPressed,
-      minWidth: minWidth,
-      height: 45.h,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(14.r)),
-      ),
-      elevation: 10,
     );
   }
 }

@@ -28,7 +28,7 @@ class SplashScreen extends StatelessWidget {
               fontSize: 35.sp,
               fontWeight: FontWeight.bold,
               shadows: [
-                Shadow(
+                const Shadow(
                   color: Colors.black,
                   blurRadius: 5,
                   offset: Offset(2, 2),

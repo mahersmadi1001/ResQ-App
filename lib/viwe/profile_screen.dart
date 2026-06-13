@@ -88,12 +88,12 @@ class ProfileScreen extends StatelessWidget {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return LogoutDialog();
+                        return const LogoutDialog();
                       },
                     );
                   },
                   icon: Icons.logout,
-                  text: "LogOut",
+                  text: "Logout",
                   colorTextAndIcon: Colors.red.shade400,
                 ),
               ],

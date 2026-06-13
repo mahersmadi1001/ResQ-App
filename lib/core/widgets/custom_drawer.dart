@@ -16,7 +16,7 @@ class CustomDrawer extends StatelessWidget {
         child: Column(
           spacing: 20.w,
           children: [
-            SizedBox(),
+            const SizedBox(),
             InkWell(
               onTap: () {
                 Navigator.push(
@@ -31,7 +31,7 @@ class CustomDrawer extends StatelessWidget {
               child: Row(
                 spacing: 30.w,
                 children: [
-                  Icon(Icons.settings, color: ColorsApp.yalwoPro),
+                  const Icon(Icons.settings, color: ColorsApp.yalwoPro),
                   Text(
                     "Settings",
                     style: TextStyle(

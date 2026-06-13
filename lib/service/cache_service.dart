@@ -4,7 +4,7 @@ import 'package:projct/model/user_model.dart';
 class CacheService {
   static const String boxName = 'auth_box';
   static const String tokenKey = 'token';
-  static const String _userKey = 'user';
+  static const String userKey = 'user';
 
   Box get _box => Hive.box(boxName);
 
@@ -27,14 +27,14 @@ class CacheService {
   }
 
   Future<void> saveUser(UserModel user) async {
-    await _box.put(_userKey, user);
+    await _box.put(userKey, user);
   }
 
   UserModel? getUser() {
-    return _box.get(_userKey);
+    return _box.get(userKey);
   }
 
   Future<void> deleteUser() async {
-    await _box.delete(_userKey);
+    await _box.delete(userKey);
   }
 }

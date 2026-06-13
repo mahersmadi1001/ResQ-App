@@ -12,8 +12,8 @@ class SendAndMideaButton extends StatelessWidget {
     return InkWell(
       onTap: ontap,
       child: Container(
-        height: 60.h,
-        width: 60.w,
+        height: 66.h,
+        width: 66.w,
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
@@ -31,7 +31,7 @@ class SendAndMideaButton extends StatelessWidget {
           color: ColorsApp.greenPro,
           shape: BoxShape.circle,
         ),
-        child: Icon(icon, color: ColorsApp.yalwoPro, size: 25.sp),
+        child: Icon(icon, color: ColorsApp.yalwoPro, size: 27.sp),
       ),
     );
   }

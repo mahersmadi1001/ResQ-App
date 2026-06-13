@@ -5,7 +5,7 @@ import 'package:projct/core/config/di.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/bottom_nav_bar.dart';
 import 'package:projct/viwe/login_screen.dart';
-import 'package:projct/viwe/onbording_pages/pagesview.dart';
+import 'package:projct/viwe/onbording/pagesview.dart';
 import 'package:projct/viwe/splash_screen.dart';
 
 void main() async {

@@ -7,7 +7,7 @@ import 'package:projct/core/widgets/TFF.dart';
 import 'package:projct/core/widgets/button_auth.dart';
 import 'package:projct/view_model/signup_bloc/signup_state.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
-import 'package:projct/viwe/sign_up/signup_screen.dart';
+import 'package:projct/viwe/signup/signup_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projct/core/config/di.dart';
 import 'package:projct/service/auth_service.dart';
@@ -19,7 +19,7 @@ import 'package:projct/model/login_model.dart';
 bool visibility_password = true;
 
 class LoginScreen extends StatefulWidget {
- const LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();

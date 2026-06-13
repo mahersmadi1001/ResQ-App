@@ -14,7 +14,7 @@ import 'package:projct/view_model/signup_bloc/signup_bloc.dart';
 import 'package:projct/view_model/signup_bloc/signup_event.dart';
 import 'package:projct/view_model/signup_bloc/signup_state.dart';
 import 'package:projct/viwe/otp_page.dart';
-import 'package:projct/viwe/sign_up/signup_screen.dart'
+import 'package:projct/viwe/signup/signup_screen.dart'
     show controller_pageviwe;
 
 class PasswordComponant extends StatefulWidget {
@@ -75,7 +75,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
               child: Column(
                 children: [
                   SizedBox(height: 17.h),
-                  SignUpTitle(),
+                  const SignUpTitle(),
                   SizedBox(height: 27.h),
                   Tff(
                     controller: emailsignController,
@@ -139,7 +139,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
                         onPressed: () {
                           controller_pageviwe.animateToPage(
                             0,
-                            duration: Duration(milliseconds: 300),
+                            duration: const Duration(milliseconds: 300),
                             curve: Curves.linear,
                           );
                         },
@@ -181,7 +181,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
                     ],
                   ),
                   SizedBox(height: 17.h),
-                  NavigatToLogin(),
+                  const NavigatToLogin(),
                 ],
               ),
             );

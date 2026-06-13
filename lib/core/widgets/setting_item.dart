@@ -44,12 +44,12 @@ class SettingItem extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 120.w),
-                switchMode ?? SizedBox(),
+                switchMode ?? const SizedBox(),
               ],
             ),
           ),
         ),
-        Divider(color: ColorsApp.greenPro, endIndent: 75, indent: 75),
+        const Divider(color: ColorsApp.greenPro, endIndent: 75, indent: 75),
       ],
     );
   }

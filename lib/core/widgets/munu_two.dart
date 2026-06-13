@@ -13,7 +13,7 @@ class AttachmentPickerButton extends StatefulWidget {
     super.key,
     required this.items,
     required this.onSelected,
-    this.hint = "selecte Teams",
+    this.hint = "Select States",
   });
 
   @override
@@ -28,7 +28,7 @@ class _AttachmentPickerButtonState extends State<AttachmentPickerButton> {
       isDismissible: false,
       context: context,
       isScrollControlled: true,
-      backgroundColor: ColorsApp.withePro,
+      backgroundColor: Colors.white,
 
       builder: (context) {
         return StatefulBuilder(
@@ -83,7 +83,7 @@ class _AttachmentPickerButtonState extends State<AttachmentPickerButton> {
                                   ),
                                 ),
                               ),
-                              const SizedBox(height: 10),
+                              SizedBox(height: 10.h),
                               Text(
                                 item.name,
                                 style: TextStyle(
@@ -112,7 +112,7 @@ class _AttachmentPickerButtonState extends State<AttachmentPickerButton> {
                     color: ColorsApp.greenPro,
                     elevation: 5,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15.r),
+                      borderRadius: BorderRadius.circular(25.r),
                       side: BorderSide(color: ColorsApp.yalwoPro, width: 2.w),
                     ),
                     minWidth: 200.w,

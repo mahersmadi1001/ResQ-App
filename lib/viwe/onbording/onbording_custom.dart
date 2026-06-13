@@ -72,16 +72,16 @@ class OnbordingPage extends StatelessWidget {
           ),
           SizedBox(height: 10.h),
           Container(
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(25.r)),
-              child: Image.asset(imagePath, fit: BoxFit.fill),
-            ),
             height: 300.h,
             width: 400.w,
             decoration: BoxDecoration(
               boxShadow: [BoxShadow(blurRadius: 8)],
               borderRadius: BorderRadius.all(Radius.circular(29.r)),
               border: Border.all(color: ColorsApp.yalwoPro, width: 4),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(25.r)),
+              child: Image.asset(imagePath, fit: BoxFit.fill),
             ),
           ),
           SizedBox(height: 40.h),
@@ -152,10 +152,6 @@ class OnbordingPage extends StatelessWidget {
             children: [
               isFoundBack ? BackButtonPage(ontapBack: ontapBack) : SizedBox(),
               MaterialButton(
-                child: Text(
-                  textButton,
-                  style: TextStyle(color: ColorsApp.yalwoPro, fontSize: 18.sp),
-                ),
                 onPressed: ontap,
                 shape: RoundedRectangleBorder(
                   side: BorderSide(color: ColorsApp.yalwoPro, width: 3),
@@ -165,6 +161,10 @@ class OnbordingPage extends StatelessWidget {
                 color: ColorsApp.greenPro,
                 minWidth: 300.w,
                 elevation: 10,
+                child: Text(
+                  textButton,
+                  style: TextStyle(color: ColorsApp.yalwoPro, fontSize: 18.sp),
+                ),
               ),
             ],
           ),

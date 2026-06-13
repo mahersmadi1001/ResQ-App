@@ -6,7 +6,7 @@ import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/button_auth.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/login_screen.dart';
-import 'package:projct/viwe/sign_up/signup_screen.dart';
+import 'package:projct/viwe/signup/signup_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projct/service/auth_service.dart';
 import 'package:projct/view_model/otp_bloc/otp_bloc.dart';

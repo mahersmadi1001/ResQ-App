@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
-import 'package:projct/viwe/onbording_pages/onbording_custom.dart';
-import 'package:projct/viwe/sign_up/signup_screen.dart';
+import 'package:projct/viwe/onbording/onbording_custom.dart';
+import 'package:projct/viwe/signup/signup_screen.dart';
 
 class OnBordingPageView extends StatelessWidget {
   OnBordingPageView({super.key});
@@ -23,7 +23,7 @@ class OnBordingPageView extends StatelessWidget {
           ontap: () {
             controller.animateToPage(
               1,
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               curve: Curves.linear,
             );
           },
@@ -33,7 +33,7 @@ class OnBordingPageView extends StatelessWidget {
           ontapBack: () {
             controller.animateToPage(
               0,
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               curve: Curves.linear,
             );
           },
@@ -41,7 +41,7 @@ class OnBordingPageView extends StatelessWidget {
           ontap: () {
             controller.animateToPage(
               2,
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               curve: Curves.linear,
             );
           },
@@ -56,7 +56,7 @@ class OnBordingPageView extends StatelessWidget {
           ontapBack: () {
             controller.animateToPage(
               1,
-              duration: Duration(milliseconds: 200),
+              duration: const Duration(milliseconds: 200),
               curve: Curves.linear,
             );
           },

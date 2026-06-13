@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
-import 'package:projct/viwe/news_screen.dart';
+import 'package:projct/viwe/post/post_screen.dart';
 import 'package:projct/viwe/profile_screen.dart';
-import 'package:projct/viwe/rebort_screen.dart';
+import 'package:projct/viwe/report_screen.dart';
 
 class ButtonNavBar extends StatefulWidget {
   const ButtonNavBar({super.key});
@@ -13,7 +13,7 @@ class ButtonNavBar extends StatefulWidget {
 }
 
 class _ButtonNavBarState extends State<ButtonNavBar> {
-  List<Widget> pages = [RebortScreen(), NewsScreen(), ProfileScreen()];
+  List<Widget> pages = [ReportScreen(), NewsScreen(), ProfileScreen()];
 
   int selectedpage = 0;
 
@@ -47,7 +47,7 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
           },
           backgroundColor: ColorsApp.greenPro,
           destinations: [
-            NavigationDestination(
+            const NavigationDestination(
               icon: Icon(Icons.remember_me_outlined, color: ColorsApp.withePro),
               selectedIcon: Icon(
                 Icons.remember_me_outlined,
@@ -55,13 +55,13 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
               ),
               label: "Rebort",
             ),
-            NavigationDestination(
+            const NavigationDestination(
               enabled: true,
               icon: Icon(Icons.newspaper, color: ColorsApp.withePro),
-              label: "News",
+              label: "Posts",
               selectedIcon: Icon(Icons.newspaper, color: ColorsApp.yalwoPro),
             ),
-            NavigationDestination(
+            const NavigationDestination(
               enabled: true,
               icon: Icon(Icons.map, color: ColorsApp.withePro),
               label: "Map",

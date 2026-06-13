@@ -31,17 +31,17 @@ class LogoutDialog extends StatelessWidget {
         builder: (context, state) {
           return AlertDialog(
             icon: Icon(
-              Icons.warning_amber_rounded,
+              Icons.error_outline_rounded,
               color: Colors.red.shade200,
               size: 50.sp,
             ),
             scrollable: true,
             backgroundColor: Colors.white,
             content: Text(
-              " you wante is LogOut ?",
+              " you wante is Logout ?",
               style: TextStyle(color: ColorsApp.yalwoPro, fontSize: 20.sp),
             ),
-            title: Text("LogOut", style: TextStyle(color: Colors.red)),
+            title: const Text("Logout", style: TextStyle(color: Colors.red)),
             actions: [
               Row(
                 spacing: 20.w,
@@ -56,7 +56,7 @@ class LogoutDialog extends StatelessWidget {
                     },
                     child: Text(
                       "cancel",
-                      style: TextStyle(color: ColorsApp.yalwoPro),
+                      style: const TextStyle(color: ColorsApp.yalwoPro),
                     ),
                   ),
                   state is LogoutLoadingState
@@ -70,7 +70,7 @@ class LogoutDialog extends StatelessWidget {
                           },
                           child: Text(
                             "yes",
-                            style: TextStyle(color: ColorsApp.yalwoPro),
+                            style: const TextStyle(color: ColorsApp.yalwoPro),
                           ),
                         ),
                 ],

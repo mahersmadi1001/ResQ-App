@@ -4,8 +4,8 @@ import 'package:projct/core/helper/app_validators.dart';
 import 'package:projct/core/theme/colors_app.dart';
 
 import 'package:projct/core/widgets/ilemnt_page_view.dart';
-import 'package:projct/viwe/sign_up/password_componant.dart';
-import 'package:projct/viwe/sign_up/signup_componant.dart';
+import 'package:projct/viwe/signup/password_componant.dart';
+import 'package:projct/viwe/signup/signup_componant.dart';
 
 PageController controller_pageviwe = PageController();
 

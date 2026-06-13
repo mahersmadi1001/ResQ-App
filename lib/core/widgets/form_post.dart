@@ -10,6 +10,8 @@ class FormPost extends StatelessWidget {
   String date;
   String time;
   String imagePath;
+  GestureTapCallback? ontap ;
+
   FormPost({
     Key? key,
     required this.address,
@@ -17,6 +19,7 @@ class FormPost extends StatelessWidget {
     required this.date,
     required this.time,
     required this.imagePath,
+    this.ontap,
   }) : super(key: key);
 
   @override
@@ -45,11 +48,13 @@ class FormPost extends StatelessWidget {
             padding: const EdgeInsets.all(5.0),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(25.r)),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.fill,
-                width: 415.w,
-                height: 160.h,
+              child: InkWell(onTap: ontap,
+                child: Image.asset(
+                  imagePath,
+                  fit: BoxFit.fill,
+                  width: 415.w,
+                  height: 160.h,
+                ),
               ),
             ),
           ),
