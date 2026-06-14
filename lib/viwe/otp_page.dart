@@ -5,6 +5,7 @@ import 'package:projct/core/config/di.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/button_auth.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
+import 'package:projct/viwe/bottom_nav_bar.dart';
 import 'package:projct/viwe/login_screen.dart';
 import 'package:projct/viwe/signup/signup_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -84,6 +85,10 @@ class _OtpScreenState extends State<OtpScreen> {
                 context,
               ).showSnackBar(const SnackBar(content: Text("تم التحقق بنجاح")));
               context.read<UserSessionBloc>().add(LogingUser());
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ButtonNavBar()),
+              );
             }
           },
           builder: (context, state) {

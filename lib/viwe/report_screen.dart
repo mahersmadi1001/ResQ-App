@@ -75,12 +75,26 @@ class _ReportScreenState extends State<ReportScreen> {
                   ),
                   child: Padding(
                     padding: EdgeInsets.all(10.sp),
-                    child: Text(
-                      "Welcome ${user?.firstName ?? ""}",
-                      style: TextStyle(
-                        color: ColorsApp.withePro,
-                        fontSize: 22.sp,
-                      ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Welcome",
+                          style: TextStyle(
+                            color: ColorsApp.withePro,
+                            fontSize: 20.sp,
+                          ),
+                        ),
+
+                        Text(
+                          " ${user?.firstName ?? ""}",
+                          style: TextStyle(
+                            color: ColorsApp.yalwoPro,
+                            fontSize: 24.sp,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

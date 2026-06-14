@@ -21,6 +21,7 @@ class LogoutDialog extends StatelessWidget {
         listener: (context, state) {
           if (state is LogoutSuccessState) {
             context.read<UserSessionBloc>().add(Signout());
+            Navigator.pop(context);
           } else if (state is LogoutErrorState) {
             ScaffoldMessenger.of(
               context,
@@ -60,7 +61,9 @@ class LogoutDialog extends StatelessWidget {
                     ),
                   ),
                   state is LogoutLoadingState
-                      ? const CircularProgressIndicator()
+                      ? const CircularProgressIndicator(
+                          color: ColorsApp.yalwoPro,
+                        )
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: ColorsApp.greenPro,

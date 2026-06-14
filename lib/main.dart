@@ -37,15 +37,15 @@ class MainPage extends StatelessWidget {
             home: BlocBuilder<UserSessionBloc, UserSessionState>(
               builder: (context, state) {
                 if (state is UserSessionInitial) {
-                  return const SplashScreen();
+                  return  SplashScreen();
                 } else if (state is UserFirstTimeState) {
                   return OnBordingPageView();
                 } else if (state is UserAuthenticated) {
-                  return const ButtonNavBar();
+                  return  ButtonNavBar();
                 } else if (state is UserUnAuth) {
-                  return const LoginScreen();
+                  return  LoginScreen();
                 }
-                return const SplashScreen();
+                return  SplashScreen();
               },
             ),
           ),

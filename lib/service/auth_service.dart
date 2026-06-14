@@ -43,7 +43,7 @@ class AuthService {
   Future<bool> sendOtp({required String email}) async {
     try {
       Response response = await dio.post(
-        "${baseurl}sendotp",
+        "${baseurl}otp/send",
         data: {"email": email},
       );
 
@@ -77,8 +77,12 @@ class AuthService {
       );
 
       if (response.statusCode == 200) {
-        String token = response.data['data'];
+        final data = response.data['data'];
+        final token = data['token'];
+        final userJson = data['user'];
+
         await di<CacheService>().saveToken(token);
+        await di<CacheService>().saveUser(UserModel.fromJson(userJson));
         return "تم تسجيل الدخول بنجاح";
       }
 
@@ -139,7 +143,7 @@ class AuthService {
   Future<bool> verifyOtp({required String email, required String otp}) async {
     try {
       Response response = await dio.post(
-        "${baseurl}verifyotp",
+        "${baseurl}otp/verify",
         data: {"email": email, "otp": otp},
       );
 

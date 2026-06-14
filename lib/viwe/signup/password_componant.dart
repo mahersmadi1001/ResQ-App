@@ -181,7 +181,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
                     ],
                   ),
                   SizedBox(height: 17.h),
-                  const NavigatToLogin(),
+                   NavigatToLogin(),
                 ],
               ),
             );

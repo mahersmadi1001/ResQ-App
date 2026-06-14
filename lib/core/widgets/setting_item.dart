@@ -21,10 +21,10 @@ class SettingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.sp),
-          child: InkWell(
-            onTap: ontap,
+        InkWell(
+          onTap: ontap,
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 20.sp),
             child: Row(
               children: [
                 Padding(
