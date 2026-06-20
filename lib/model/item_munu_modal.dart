@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:projct/core/theme/colors_app.dart';
 
 class AttachmentItem {
   final String name;
@@ -14,4 +13,3 @@ class AttachmentItem {
     required this.value,
   });
 }
-

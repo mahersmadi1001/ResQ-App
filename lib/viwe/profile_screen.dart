@@ -116,7 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return const LogoutDialog();
+                        return  LogoutDialog();
                       },
                     );
                   },

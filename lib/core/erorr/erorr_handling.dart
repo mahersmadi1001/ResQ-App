@@ -19,7 +19,8 @@ class Failure {
         return "شهادة الأمان (Certificate) غير صالحة";
 
       case DioExceptionType.badResponse:
-        return "خطأ في التسجيل  ${dioException.response?.statusCode} ";
+        return "${dioException.response?.statusMessage
+        } ${dioException.response?.statusCode} ";
 
       case DioExceptionType.cancel:
         return "تم إلغاء الطلب المرسل إلى السيرفر";

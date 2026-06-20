@@ -33,7 +33,7 @@ class LogoutDialog extends StatelessWidget {
           return AlertDialog(
             icon: Icon(
               Icons.error_outline_rounded,
-              color: Colors.red.shade200,
+              color: Colors.red.shade600,
               size: 50.sp,
             ),
             scrollable: true,

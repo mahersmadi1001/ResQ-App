@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
 import 'package:projct/core/constens/constens.dart';
@@ -9,6 +10,8 @@ import 'package:projct/core/widgets/send_and_midea_button.dart';
 import 'package:projct/model/user_model.dart';
 import 'package:projct/service/cache_service.dart';
 
+UserModel? user;
+
 class ReportScreen extends StatefulWidget {
   ReportScreen({super.key});
   @override
@@ -16,7 +19,6 @@ class ReportScreen extends StatefulWidget {
 }
 
 class _ReportScreenState extends State<ReportScreen> {
-  UserModel? user;
   @override
   void initState() {
     // var userbox = Hive.box<UserModel>(CacheService.boxName);
@@ -67,6 +69,14 @@ class _ReportScreenState extends State<ReportScreen> {
                   height: 55.h,
                   width: 170.h,
                   decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withAlpha(90),
+                        blurRadius: 3,
+                        spreadRadius: 2,
+                        offset: const Offset(1, 1.5),
+                      ),
+                    ],
                     borderRadius: BorderRadius.only(
                       bottomRight: Radius.circular(35.r),
                       topRight: Radius.circular(35.r),

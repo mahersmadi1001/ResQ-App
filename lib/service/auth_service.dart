@@ -112,7 +112,7 @@ class AuthService {
         "${baseurl}logout",
         options: Options(
           headers: {
-            'Content-Type': 'application/json',
+            'Accept': 'application/json',
             'Authorization': 'Bearer $token',
           },
         ),
@@ -120,6 +120,7 @@ class AuthService {
 
       if (response.statusCode == 200) {
         await di<CacheService>().deleteToken();
+        await di<CacheService>().deleteUser();
         return;
       }
 

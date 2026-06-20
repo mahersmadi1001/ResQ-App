@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projct/core/config/di.dart';
 import 'package:projct/core/theme/colors_app.dart';
-import 'package:projct/core/widgets/form_post.dart';
+import 'package:projct/service/post_service.dart';
+import 'package:projct/view_model/post_bloc/post_bloc.dart';
 import 'package:projct/viwe/post/users_post_page.dart';
 
 class NewsScreen extends StatelessWidget {

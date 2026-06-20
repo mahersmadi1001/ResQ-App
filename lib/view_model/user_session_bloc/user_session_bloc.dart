@@ -41,7 +41,6 @@ class UserSessionBloc extends Bloc<UserSessionEvent, UserSessionState> {
     });
 
     on<Signout>((event, emit) {
-      cacheService.deleteToken();
       emit(UserUnAuth());
     });
   }

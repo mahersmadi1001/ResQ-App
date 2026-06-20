@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:projct/service/auth_service.dart';
 import 'package:projct/service/cache_service.dart';
+import 'package:projct/service/post_service.dart';
 import 'package:projct/service/user_session_service.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 
@@ -18,4 +19,5 @@ Future setup() async {
     ),
   );
   di.registerLazySingleton<AuthService>(() => AuthService());
+  di.registerSingleton<PostService>(PostService(cacheService: cacheService));
 }

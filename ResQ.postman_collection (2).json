@@ -1,0 +1,1145 @@
+{
+  "info": {
+    "_postman_id": "adcd37dd-d088-4166-b3e6-b267fb1cdcb3",
+    "name": "ResQ",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31551136",
+    "_collection_link": "https://go.postman.co/collection/31551136-adcd37dd-d088-4166-b3e6-b267fb1cdcb3?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "login",
+          "protocolProfileBehavior": {
+            "disabledSystemHeaders": {}
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "user@gmail.com",
+                  "type": "text",
+                  "uuid": "8529bf93-eab2-47c0-bd75-9ba5cac07cee"
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "type": "text",
+                  "uuid": "52a96790-6d85-4904-8b9e-4eab44691b41"
+                },
+                {
+                  "key": "device_name",
+                  "value": "tuf f17",
+                  "type": "text",
+                  "uuid": "ea835cf1-1e9c-4cce-ac69-ce8be5d6839a",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}login",
+              "host": [
+                "{{base_url}}login"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "user@test.com",
+                  "disabled": true
+                },
+                {
+                  "key": "password",
+                  "value": "password",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "logout",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            },
+            "url": {
+              "raw": "{{base_url}}logout",
+              "host": [
+                "{{base_url}}logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "send_otp",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "waellll@gmail.com",
+                  "type": "text",
+                  "uuid": "0768432e-cc7c-40a9-a3cf-dc6047b676bc"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}otp/send",
+              "host": [
+                "{{base_url}}otp"
+              ],
+              "path": [
+                "send"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "verify_otp",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "waellll@gmail.com",
+                  "type": "text",
+                  "uuid": "e6432698-571a-4771-a572-af92b7c3535d"
+                },
+                {
+                  "key": "otp",
+                  "value": "296951",
+                  "type": "text",
+                  "uuid": "516f74e5-0f2b-49ff-a991-1660957a159e"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}otp/verify",
+              "host": [
+                "{{base_url}}otp"
+              ],
+              "path": [
+                "verify"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "first_name",
+                  "value": "Wael",
+                  "type": "text",
+                  "uuid": "d6213879-20fd-4414-934c-a9aecd463e71"
+                },
+                {
+                  "key": "last_name",
+                  "value": "Alabdurrahim",
+                  "type": "text",
+                  "uuid": "1a1c35c9-d282-4418-8691-cad4e6af9d0d"
+                },
+                {
+                  "key": "email",
+                  "value": "waellll@gmail.com",
+                  "type": "text",
+                  "uuid": "d8c58ba9-e1c4-44c9-989a-89d077536680"
+                },
+                {
+                  "key": "official_identifier_method",
+                  "value": "national_id",
+                  "type": "text",
+                  "uuid": "f68e1272-ff3d-475b-bbe9-13b2326492b2"
+                },
+                {
+                  "key": "official_identifier",
+                  "value": "99999999991",
+                  "type": "text",
+                  "uuid": "b58efbd3-5bfc-492b-9424-9983ca6c0356"
+                },
+                {
+                  "key": "address",
+                  "value": "Al-Mazza",
+                  "type": "text",
+                  "uuid": "31c72e60-86f7-413e-bb12-f124b26e19d9"
+                },
+                {
+                  "key": "password",
+                  "value": "1234567890",
+                  "type": "text",
+                  "uuid": "6d985ed7-a3d1-450f-9c13-46f18f7fc2eb"
+                },
+                {
+                  "key": "password_confirmation",
+                  "value": "1234567890",
+                  "type": "text",
+                  "uuid": "1e291dac-a1a1-4490-a9ac-dddf3dacd46b"
+                },
+                {
+                  "key": "device_name",
+                  "value": "Asus-Tuff-f17",
+                  "type": "text",
+                  "uuid": "86fd79d7-6426-4be7-9575-2e11fcb4c755",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}register",
+              "host": [
+                "{{base_url}}register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "normal_posts",
+          "item": [
+            {
+              "name": "case1: no filters",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "en",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}posts/normal",
+                  "host": [
+                    "{{base_url}}posts"
+                  ],
+                  "path": [
+                    "normal"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "case2: empty filters",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "en",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [\"Al-Yarmuk\", \"Al-Mazza\"],\r\n    \"governorates\": [\"damascus\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/normal",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "normal"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "case3: no token",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "en",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [\"Al-Yarmuk\", \"Al-Mazza\"],\r\n    \"governorates\": [\"damascus\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/normal",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "normal"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "case4: no content-language",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "en",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [\"Al-Yarmuk\", \"Al-Mazza\"],\r\n    \"governorates\": [\"damascus\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/normal",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "normal"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "case5: only cities filters",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "en",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [\"Al-Yarmuk\", \"Al-Mazza\"],\r\n    \"governorates\": []\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/normal",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "normal"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "case6: only governorates filters",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "en",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [],\r\n    \"governorates\": [\"Damascus\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/normal",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "normal"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "case7: en + token + filters",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "en",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [\"Al-Yarmuk\", \"Al-Mazza\"],\r\n    \"governorates\": [\"damascus\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/normal",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "normal"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "case8: ar + token + filters",
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "ar",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [\"Al-Yarmuk\", \"Al-Mazza\"],\r\n    \"governorates\": [\"damascus\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/normal",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "normal"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        },
+        {
+          "name": "admin_posts",
+          "item": [
+            {
+              "name": "case1: no token",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "noauth"
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "en",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [\"Al-Yarmuk\", \"Al-Mazza\"],\r\n    \"governorates\": [\"damascus\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/admin",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "admin"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "case2: no content-language",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "en",
+                    "type": "text",
+                    "disabled": true
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [\"Al-Yarmuk\", \"Al-Mazza\"],\r\n    \"governorates\": [\"damascus\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/admin",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "admin"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "case3: ar",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "ar",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [\"Al-Yarmuk\", \"Al-Mazza\"],\r\n    \"governorates\": [\"damascus\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/admin",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "admin"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "case4: en",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "bearer",
+                  "bearer": [
+                    {
+                      "key": "token",
+                      "value": "{{token}}",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Language",
+                    "value": "en",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"cities\": [\"Al-Yarmuk\", \"Al-Mazza\"],\r\n    \"governorates\": [\"damascus\"]\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "http://127.0.0.1:8000/api/posts/admin",
+                  "protocol": "http",
+                  "host": [
+                    "127",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  "port": "8000",
+                  "path": [
+                    "api",
+                    "posts",
+                    "admin"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Create Report",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar",
+                "description": "Language preference (ar/en) — passed through SetContentLanguageMiddleware"
+              },
+              {
+                "key": "Content-Language",
+                "value": "ar",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "news_type",
+                  "value": "fire",
+                  "description": "Required. The type/category of the report (e.g. fire, flood, accident, etc.). Stored as NewsType.",
+                  "type": "text"
+                },
+                {
+                  "key": "body",
+                  "value": "There is a fire in the downtown area near the main square.",
+                  "description": "Optional. Text description of the incident (max 5000 characters).",
+                  "type": "text"
+                },
+                {
+                  "key": "latitude",
+                  "value": "33.4987264",
+                  "description": "Required. Latitude between -90 and 90.",
+                  "type": "text"
+                },
+                {
+                  "key": "longitude",
+                  "value": "36.2971136",
+                  "description": "Required. Longitude between -180 and 180.",
+                  "type": "text"
+                },
+                {
+                  "key": "media",
+                  "description": "Optional. Media file (image: jpeg/jpg/png/gif, video: mp4/mov/avi, audio: mp3/wav/m4a). Max 50MB.",
+                  "type": "file",
+                  "value": null
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reports"
+              ]
+            },
+            "description": "Create a new emergency/disaster report.\n\n**Logic flow:**\n1. Validates input via `StoreReportRequest`\n2. If `city_id`/`street` are not provided, reverse-geocodes lat/lon via Nominatim (OSM) to resolve the city and street\n3. Creates/retrieves Address → creates News → creates Report (with spatial POINT location) → attaches NewsType → uploads media if provided\n4. Gets AI-generated safety advice from GeminiService\n5. Returns formatted report resource + advice\n\n**Response (201):**\n```json\n{\n    \"data\": {\n        \"report\": {\n            \"created_at\": {\n                \"date\": \"12, June, 2026\",\n                \"time\": \"3:45 pm\"\n            },\n            \"location\": {\n                \"longitude\": 31.2357,\n                \"latitude\": 30.0444\n            },\n            \"address\": {\n                \"street\": \"Main Street\",\n                \"city\": \"القاهرة\",\n                \"governorate\": \"القاهرة\"\n            },\n            \"news_type\": \"fire\",\n            \"body\": \"There is a fire in the downtown area near the main square.\",\n            \"media\": \"http://localhost/storage/reports/2026/06/sample.jpg\"\n        },\n        \"advice\": \"AI-generated safety advice from Gemini...\"\n    },\n    \"message\": \"Report created successfully\",\n    \"status\": 201\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Report by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar"
+              },
+              {
+                "key": "Content-Language",
+                "value": "ar",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/reports/50",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reports",
+                "50"
+              ]
+            },
+            "description": "Fetch a single report by its ID.\n\n**Response (200):**\n```json\n{\n    \"data\": {\n        \"report\": {\n            \"created_at\": {\n                \"date\": \"12, June, 2026\",\n                \"time\": \"3:45 pm\"\n            },\n            \"location\": {\n                \"longitude\": 31.2357,\n                \"latitude\": 30.0444\n            },\n            \"address\": {\n                \"street\": \"Main Street\",\n                \"city\": \"القاهرة\",\n                \"governorate\": \"القاهرة\"\n            },\n            \"news_type\": \"fire\",\n            \"body\": \"Description text...\",\n            \"media\": \"http://localhost/storage/reports/2026/06/sample.jpg\"\n        }\n    },\n    \"message\": \"Report fetched successfully\",\n    \"status\": 200\n}\n```"
+          },
+          "response": []
+        },
+        {
+          "name": "List My Reports",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Accept-Language",
+                "value": "ar",
+                "disabled": true
+              },
+              {
+                "key": "Content-Language",
+                "value": "ar",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "reports"
+              ]
+            },
+            "description": "List all reports belonging to the authenticated user, paginated (10 per page).\n\n**Response (200):**\n```json\n{\n    \"data\": {\n        \"reports\": [\n            {\n                \"created_at\": { ... },\n                \"location\": { ... },\n                \"address\": { ... },\n                \"news_type\": \"fire\",\n                \"body\": \"...\",\n                \"media\": \"...\"\n            }\n        ],\n        \"pagination\": {\n            \"navigation\": {\n                \"first_page\": \"http://localhost/api/reports?page=1\",\n                \"last_page\": \"http://localhost/api/reports?page=2\",\n                \"previous_page\": null,\n                \"next_page\": \"http://localhost/api/reports?page=2\"\n            },\n            \"info\": {\n                \"current_page\": 1,\n                \"from\": 1,\n                \"to\": 10,\n                \"last_page\": 2,\n                \"per_page\": 10,\n                \"total\": 12\n            }\n        }\n    },\n    \"message\": \"reports fetched successfully\",\n    \"status\": 200\n}\n```"
+          },
+          "response": []
+        }
+      ],
+      "description": "Endpoints for creating, listing, and viewing reports. All require authentication (Bearer token)."
+    },
+    {
+      "name": "test",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Accept",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "http://127.0.0.1:8000/api/test",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "test"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": ""
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "default"
+    }
+  ]
+}

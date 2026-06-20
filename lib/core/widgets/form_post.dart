@@ -1,18 +1,19 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/model/post_model%20.dart';
 
 class FormPost extends StatelessWidget {
-  String descration;
-  String address;
-  String date;
-  String time;
-  String imagePath;
-  GestureTapCallback? ontap ;
+  final String descration;
+  final Address address;
+  final String date;
+  final String time;
+  final String? imagePath;
+  final VoidCallback? ontap;
 
-  FormPost({
+  const FormPost({
     Key? key,
     required this.address,
     required this.descration,
@@ -24,111 +25,155 @@ class FormPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(bottom: 8.h),
-      margin: EdgeInsets.all(10.sp),
-      height: 260.h,
-      width: 400.w,
-      decoration: BoxDecoration(
-        boxShadow: [
-          const BoxShadow(
-            blurRadius: 8,
-            offset: Offset(2, 2),
-            blurStyle: BlurStyle.normal,
-          ),
-        ],
+    return Card(
+      margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
+      elevation: 7,
+      shadowColor: Colors.black.withAlpha(200),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
+      color: ColorsApp.yalwoPro,
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: ontap,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildImage(),
 
-        color: ColorsApp.yalwoPro,
-        borderRadius: BorderRadius.all(Radius.circular(25.r)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(25.r)),
-              child: InkWell(onTap: ontap,
-                child: Image.asset(
-                  imagePath,
-                  fit: BoxFit.fill,
-                  width: 415.w,
-                  height: 160.h,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.0.sp),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  address,
-                  style: TextStyle(
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                // SizedBox(width: 100.w),
-                Row(
-                  children: [
-                    Text(
-                      textAlign: TextAlign.start,
-                      date,
-                      style: TextStyle(
-                        color: ColorsApp.withePro,
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                    SizedBox(width: 10.w),
-                    Text(
-                      time,
-                      style: TextStyle(
-                        color: ColorsApp.withePro,
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsetsGeometry.only(left: 9),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+            Padding(
+              padding: EdgeInsets.all(16.r),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    flex: 4,
-                    child: Text(
-                      descration,
-                      style: TextStyle(
-                        color: ColorsApp.withePro,
-                        fontSize: 16.sp,
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 1,
-                    child: InkWell(
-                      child: Icon(
-                        Icons.turned_in_not,
-                        color: ColorsApp.withePro,
-                        shadows: [
-                          const Shadow(
-                            color: Colors.black,
-                            blurRadius: 5,
-                            offset: Offset(2, 1),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          descration.replaceAll('[', '').replaceAll(']', ''),
+                          style: TextStyle(
+                            color: ColorsApp.greenPro,
+                            fontSize: 18.sp,
+                            fontWeight: FontWeight.bold,
+                            height: 1.2,
                           ),
-                        ],
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
-                    ),
+                      SizedBox(width: 8.w),
+                      Icon(
+                        Icons.bookmark_border_rounded,
+                        color: ColorsApp.withePro,
+                        size: 28.sp,
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 12.h),
+
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.location_on_rounded,
+                        size: 20.sp,
+                        color: ColorsApp.greenPro,
+                      ),
+                      SizedBox(width: 6.w),
+                      Expanded(
+                        child: Text(
+                          '${address.governorate}, ${address.city}, ${address.street}',
+                          style: TextStyle(
+                            color: ColorsApp.withePro,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  SizedBox(height: 10.h),
+
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.calendar_month_rounded,
+                        size: 18.sp,
+                        color: ColorsApp.greenPro,
+                      ),
+                      SizedBox(width: 6.w),
+                      Text(
+                        date,
+                        style: TextStyle(
+                          color: ColorsApp.withePro,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+
+                      SizedBox(width: 20.w),
+
+                      Icon(
+                        Icons.access_time_rounded,
+                        size: 18.sp,
+                        color: ColorsApp.greenPro,
+                      ),
+                      SizedBox(width: 6.w),
+                      Text(
+                        time,
+                        style: TextStyle(
+                          color: ColorsApp.withePro,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildImage() {
+    if (imagePath != null && imagePath!.isNotEmpty) {
+      return CachedNetworkImage(
+        imageUrl: imagePath!,
+        width: double.infinity,
+        height: 180.h,
+        fit: BoxFit.cover,
+        placeholder: (context, url) => SizedBox(
+          height: 180.h,
+          child: const Center(child: CircularProgressIndicator()),
+        ),
+        errorWidget: (context, url, error) => _buildErrorImage(),
+      );
+    } else {
+      return _buildErrorImage();
+    }
+  }
+
+  Widget _buildErrorImage() {
+    return Container(
+      width: double.infinity,
+      height: 180.h,
+      color: Colors.black12,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.image_not_supported_rounded,
+            size: 45.sp,
+            color: ColorsApp.withePro,
+          ),
+          SizedBox(height: 8.h),
+          Text(
+            "الصورة غير متوفرة",
+            style: TextStyle(color: ColorsApp.withePro, fontSize: 14.sp),
           ),
         ],
       ),
