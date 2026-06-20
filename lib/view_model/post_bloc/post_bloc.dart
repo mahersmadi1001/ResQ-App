@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 
 import 'package:equatable/equatable.dart';
 import 'package:projct/core/network/api_constants.dart';
+import 'package:projct/model/post_admin_model.dart';
 import 'package:projct/model/post_model .dart';
 import 'package:projct/service/post_service.dart';
 import 'package:projct/core/erorr/erorr_handling.dart';
@@ -16,15 +17,18 @@ class PostBloc extends Bloc<PostEvent, PostState> {
       bool isNewFilter = event.filterParamtr != null;
 
       if (isNewFilter || event.isRefresh) {
-        // Reset pagination when new filter is applied or refreshing
-        emit(PostState(
-          posts: const [],
-          postStatus: PostStatus.loading,
-          currentPage: 1,
-          hasReachedMax: false,
-          errorMessage: null,
-          filterParamtr: isNewFilter ? event.filterParamtr : state.filterParamtr,
-        ));
+        emit(
+          PostState(
+            posts: const [],
+            postStatus: PostStatus.loading,
+            currentPage: 1,
+            hasReachedMax: false,
+            errorMessage: null,
+            filterParamtr: isNewFilter
+                ? event.filterParamtr
+                : state.filterParamtr,
+          ),
+        );
       } else {
         if (state.hasReachedMax) return;
         emit(

@@ -41,25 +41,34 @@ class _UsersPostPageState extends State<UsersPostPage> {
                 if (state.posts.isEmpty) {
                   return Center(child: Text("No Data"));
                 } else {
-                  return ListView.builder(
-                    controller: scrollController,
-                    itemCount: state.hasReachedMax
-                        ? state.posts.length
-                        : state.posts.length + 1,
-                    itemBuilder: (context, index) {
-                      if (index >= state.posts.length) {
-                        return Center(child: CircularProgressIndicator());
-                      } else {
-                        PostModel post = state.posts[index];
-                        return FormPost(
-                          address: post.address,
-                          descration: post.types.toString(),
-                          date: post.createdAt.date.toString(),
-                          time: post.createdAt.time.toString(),
-                          imagePath: post.media,
-                        );
-                      }
+                  return RefreshIndicator(
+                    onRefresh: () async {
+                      context.read<PostBloc>().add(
+                        GetAllPost(
+                          filterParamtr: FilterAddressPost.optiosSelected,
+                        ),
+                      );
                     },
+                    child: ListView.builder(
+                      controller: scrollController,
+                      itemCount: state.hasReachedMax
+                          ? state.posts.length
+                          : state.posts.length + 1,
+                      itemBuilder: (context, index) {
+                        if (index >= state.posts.length) {
+                          return Center(child: CircularProgressIndicator());
+                        } else {
+                          PostModel post = state.posts[index];
+                          return FormPost(
+                            address: post.address,
+                            descration: post.types.toString(),
+                            date: post.createdAt.date.toString(),
+                            time: post.createdAt.time.toString(),
+                            imagePath: post.media,
+                          );
+                        }
+                      },
+                    ),
                   );
                 }
               }
@@ -70,26 +79,35 @@ class _UsersPostPageState extends State<UsersPostPage> {
                 if (state.posts.isEmpty) {
                   return Center(child: CircularProgressIndicator());
                 } else {
-                  return ListView.builder(
-                    controller: scrollController,
-
-                    itemCount: state.hasReachedMax
-                        ? state.posts.length
-                        : state.posts.length + 1,
-                    itemBuilder: (context, index) {
-                      if (index >= state.posts.length) {
-                        return Center(child: CircularProgressIndicator());
-                      } else {
-                        PostModel post = state.posts[index];
-                        return FormPost(
-                          address: post.address,
-                          descration: post.types.toString(),
-                          date: post.createdAt.date,
-                          time: post.createdAt.time,
-                          imagePath: post.media,
-                        );
-                      }
+                  return RefreshIndicator(
+                    onRefresh: () async {
+                      context.read<PostBloc>().add(
+                        GetAllPost(
+                          filterParamtr: FilterAddressPost.optiosSelected,
+                        ),
+                      );
                     },
+                    child: ListView.builder(
+                      controller: scrollController,
+
+                      itemCount: state.hasReachedMax
+                          ? state.posts.length
+                          : state.posts.length + 1,
+                      itemBuilder: (context, index) {
+                        if (index >= state.posts.length) {
+                          return Center(child: CircularProgressIndicator());
+                        } else {
+                          PostModel post = state.posts[index];
+                          return FormPost(
+                            address: post.address,
+                            descration: post.types.toString(),
+                            date: post.createdAt.date,
+                            time: post.createdAt.time,
+                            imagePath: post.media,
+                          );
+                        }
+                      },
+                    ),
                   );
                 }
               }
