@@ -47,15 +47,16 @@ class _ListAddressState extends State<ListAddress> {
   }
 }
 
-class FilterAddress extends StatefulWidget {
-  FilterAddress({super.key});
-  static String? selectedAddress;
+class FilterAddressPost extends StatefulWidget {
+  const FilterAddressPost({super.key});
+ static  List<String> optiosSelected = [];
   @override
-  State<ListAddress> createState() => _ListAddressState();
+  State<FilterAddressPost> createState() => _FilterAddressPostState();
 }
 
-class _FilterAddress extends State<ListAddress> {
+class _FilterAddressPostState extends State<FilterAddressPost> {
   @override
+ 
   Widget build(BuildContext context) {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
@@ -63,15 +64,17 @@ class _FilterAddress extends State<ListAddress> {
       spacing: 17.w,
       runSpacing: 16.h,
       children: ConstensApp.damascusDistricts.map((district) {
-        return ChoiceChip(
+        return FilterChip(
           label: Text(district),
 
-          selected: ListAddress.selectedAddress == district,
+          selected:FilterAddressPost.optiosSelected.contains(district),
 
           onSelected: (bool selected) {
             setState(() {
               if (selected) {
-                ListAddress.selectedAddress = district;
+                FilterAddressPost.optiosSelected.add(district);
+              } else {
+                FilterAddressPost.optiosSelected.remove(district);
               }
             });
             print(ListAddress.selectedAddress);
@@ -88,5 +91,6 @@ class _FilterAddress extends State<ListAddress> {
         );
       }).toList(),
     );
+    ;
   }
 }

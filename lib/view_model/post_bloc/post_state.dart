@@ -9,6 +9,7 @@ class PostState extends Equatable {
   String? errorMessage;
   bool hasReachedMax;
   int currentPage;
+  List<String>? filterParamtr;
 
   PostState({
     this.posts = const [],
@@ -16,6 +17,7 @@ class PostState extends Equatable {
     this.hasReachedMax = false,
     this.errorMessage,
     this.currentPage = 1,
+    this.filterParamtr,
   });
 
   PostState copyWith({
@@ -24,6 +26,7 @@ class PostState extends Equatable {
     String? errorMessage,
     bool? hasReachedMax,
     int? currentPage,
+    List<String>? filterParamtr,
   }) {
     return PostState(
       posts: posts ?? this.posts,
@@ -31,10 +34,11 @@ class PostState extends Equatable {
       errorMessage: errorMessage ?? this.errorMessage,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
       currentPage: currentPage ?? this.currentPage,
+      filterParamtr: filterParamtr ?? this.filterParamtr,
     );
   }
 
   @override
   List<Object?> get props =>
-      [posts, postStatus, errorMessage, hasReachedMax, currentPage];
+      [posts, postStatus, errorMessage, hasReachedMax, currentPage, filterParamtr];
 }

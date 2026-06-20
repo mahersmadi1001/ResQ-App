@@ -13,11 +13,17 @@ class PostService {
   String? newToken;
   CacheService cacheService;
   PostService({required this.cacheService});
-  Future<List<PostModel>?> getAllPost({required int page}) async {
+  Future<List<PostModel>?> getAllPost({
+    required int page,
+    List<String>? filterParamtr,
+  }) async {
     try {
       Response response = await Dio().post(
         "${ApiConstants.baseurl}$postKey/$normalKey?page=$page",
-        data: {},
+        data: {
+          "cities": filterParamtr ?? [],
+          "governorates": [],
+        },
         options: Options(
           headers: {
             'Accept': 'application/json',

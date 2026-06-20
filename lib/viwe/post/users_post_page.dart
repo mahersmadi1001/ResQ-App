@@ -104,13 +104,46 @@ class _UsersPostPageState extends State<UsersPostPage> {
         ),
         onPressed: () {
           showModalBottomSheet(
-            isDismissible: true,
+            isDismissible: false,
             backgroundColor: ColorsApp.withePro,
             context: context,
             builder: (context) {
               return SizedBox(
                 height: 375.h,
-                child: Center(child: ListAddress()),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(child: FilterAddressPost()),
+                    SizedBox(height: 15),
+                    MaterialButton(
+                      onPressed: () {
+                        context.read<PostBloc>().add(
+                          GetAllPost(
+                            filterParamtr: FilterAddressPost.optiosSelected,
+                          ),
+                        );
+
+                        Navigator.pop(context);
+                      },
+                      color: ColorsApp.greenPro,
+                      elevation: 5,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.r),
+                        side: BorderSide(color: ColorsApp.yalwoPro, width: 2.w),
+                      ),
+                      minWidth: 200.w,
+                      height: 50.h,
+                      child: Text(
+                        "تأكيد الاختيار",
+                        style: TextStyle(
+                          color: ColorsApp.yalwoPro,
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
           );
