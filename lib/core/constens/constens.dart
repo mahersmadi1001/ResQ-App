@@ -86,4 +86,10 @@ class ConstensApp {
       value: "Kidnapping",
     ),
   ];
+
+
+   static final String statment =
+      "1. Identify the incidents that happen to you or around you.\n"
+      "2. Send the information you want (text, audio, image, video).\n"
+      "3. After sending, don't close the app because you will receive a reply with the initial steps you need to take.";
 }

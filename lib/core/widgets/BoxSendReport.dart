@@ -1,0 +1,66 @@
+
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projct/core/theme/colors_app.dart';
+
+class BoxTextRepot extends StatelessWidget {
+  const BoxTextRepot({
+    super.key,
+    required this.statment,
+  });
+
+  final String statment;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      child: Container(
+        padding: EdgeInsets.all(16.sp),
+        decoration: BoxDecoration(
+          color: ColorsApp.yalwoPro.withOpacity(0.15),
+          border: Border(
+            left: BorderSide(
+              color: ColorsApp.yalwoPro,
+              width: 4.w,
+            ),
+          ),
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(
+                  Icons.info_outline_rounded,
+                  color: ColorsApp.greenPro,
+                  size: 22.sp,
+                ),
+                SizedBox(width: 8.w),
+                Text(
+                  "How to send a report",
+                  style: TextStyle(
+                    color: ColorsApp.greenPro,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 10.h),
+            Text(
+              statment,
+              style: TextStyle(
+                color: Colors.black87,
+                fontSize: 14.sp,
+                height: 1.5,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

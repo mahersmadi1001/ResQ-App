@@ -1,29 +1,56 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
+import 'package:photo_manager/photo_manager.dart';
 import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/core/widgets/BoxSendReport.dart';
 import 'package:projct/core/widgets/custom_drawer.dart';
-import 'package:projct/core/widgets/munu_two.dart';
-import 'package:projct/core/widgets/send_and_midea_button.dart';
+import 'package:projct/core/widgets/new_munu.dart';
+import 'package:projct/core/widgets/send_button.dart';
 import 'package:projct/model/user_model.dart';
 import 'package:projct/service/cache_service.dart';
 
 UserModel? user;
 
 class ReportScreen extends StatefulWidget {
-  ReportScreen({super.key});
+  const ReportScreen({super.key});
   @override
   State<ReportScreen> createState() => _ReportScreenState();
 }
 
 class _ReportScreenState extends State<ReportScreen> {
+  List<AssetEntity> _mediaList = [];
+  List<AssetEntity> _selectedMedia = [];
+  bool _isLoading = true;
   @override
   void initState() {
-    // var userbox = Hive.box<UserModel>(CacheService.boxName);
     user = Hive.box(CacheService.boxName).get(CacheService.userKey);
     super.initState();
+  }
+
+  Future<void> _requestAndLoadMedia() async {
+    final PermissionState permission =
+        await PhotoManager.requestPermissionExtend();
+    if (permission.isAuth) {
+      final List<AssetPathEntity> paths = await PhotoManager.getAssetPathList(
+        type: RequestType.image,
+      );
+      if (paths.isNotEmpty) {
+        final List<AssetEntity> media = await paths[0].getAssetListPaged(
+          page: 0,
+          size: 80,
+        );
+        setState(() {
+          _mediaList = media;
+          _isLoading = false;
+        });
+      } else {
+        setState(() => _isLoading = false);
+      }
+    } else {
+      setState(() => _isLoading = false);
+    }
   }
 
   @override
@@ -43,8 +70,8 @@ class _ReportScreenState extends State<ReportScreen> {
         title: Text(
           "Report Page",
           style: TextStyle(
-            shadows: [
-              const Shadow(
+            shadows: const [
+              Shadow(
                 color: Colors.black87,
                 blurRadius: 7,
                 offset: Offset(2, 4),
@@ -60,147 +87,161 @@ class _ReportScreenState extends State<ReportScreen> {
         width: double.infinity,
         child: Column(
           children: [
-            SizedBox(height: 35.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
-                  alignment: Alignment.center,
-                  height: 55.h,
-                  width: 170.h,
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withAlpha(90),
-                        blurRadius: 3,
-                        spreadRadius: 2,
-                        offset: const Offset(1, 1.5),
-                      ),
-                    ],
-                    borderRadius: BorderRadius.only(
-                      bottomRight: Radius.circular(35.r),
-                      topRight: Radius.circular(35.r),
-                    ),
-                    color: ColorsApp.greenPro,
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.all(10.sp),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Welcome",
-                          style: TextStyle(
-                            color: ColorsApp.withePro,
-                            fontSize: 20.sp,
-                          ),
-                        ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    SizedBox(height: 35.h),
 
-                        Text(
-                          " ${user?.firstName ?? ""}",
-                          style: TextStyle(
-                            color: ColorsApp.yalwoPro,
-                            fontSize: 24.sp,
-                            fontWeight: FontWeight.w600,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          height: 55.h,
+
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              bottomRight: Radius.circular(35.r),
+                              topRight: Radius.circular(35.r),
+                            ),
+                            color: ColorsApp.yalwoPro.withOpacity(0.25),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(10.sp),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Welcome",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w500,
+                                    color: ColorsApp.greenPro,
+                                    fontSize: 20.sp,
+                                  ),
+                                ),
+                                Text(
+                                  " ${user?.firstName ?? ""}",
+                                  style: TextStyle(
+                                    color: ColorsApp.yalwoPro,
+                                    fontSize: 24.sp,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ],
                     ),
-                  ),
+
+                    SizedBox(height: 40.h),
+
+                    BoxTextRepot(statment: ConstensApp.statment),
+
+                    SizedBox(height: 40.h),
+
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text(
+                                "Incident Types ",
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: ColorsApp.greenPro,
+                                ),
+                              ),
+                              Text(
+                                "*",
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  color: Colors.red,
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10.h),
+                          NewMunu(),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 40.h),
+                  ],
                 ),
-              ],
-            ),
-            SizedBox(height: 62.h),
-            Container(
-              height: 200.h,
-              width: 380.w,
-              decoration: BoxDecoration(
-                border: Border.all(color: ColorsApp.greenPro, width: 3),
-                borderRadius: BorderRadius.all(Radius.circular(20.r)),
               ),
             ),
-            SizedBox(height: 60.h),
-            AttachmentPickerButton(
-              items: ConstensApp.states,
-              onSelected: (p0) {},
-            ),
-            SizedBox(height: 60.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SendAndMideaButton(icon: Icons.send_rounded, ontap: () {}),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(25.r)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withAlpha(125),
-                        blurRadius: 9,
-                        spreadRadius: 1,
-                        offset: const Offset(2, 3),
-                      ),
-                      BoxShadow(
-                        color: Colors.white.withAlpha(120),
-                        blurRadius: 8,
-                        spreadRadius: 1,
-                        offset: const Offset(-2, -3),
-                      ),
-                    ],
-                  ),
-                  width: 290.w,
-                  child: TextFormField(
-                    keyboardType: TextInputType.multiline,
-                    cursorColor: ColorsApp.yalwoPro,
-                    maxLines: 3,
-                    minLines: 1,
 
-                    style: TextStyle(
-                      color: ColorsApp.withePro,
-                      fontSize: 18.sp,
+            Padding(
+              padding: EdgeInsets.only(bottom: 20.h, left: 10.w, right: 10.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade200,
+                      shape: BoxShape.circle,
                     ),
-                    decoration: InputDecoration(
-                      hintText: "Write Here ...",
-                      hintStyle: TextStyle(
-                        color: ColorsApp.yalwoPro,
-                        fontSize: 18.sp,
-                      ),
-                      filled: true,
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: const BorderSide(
-                          color: ColorsApp.yalwoPro,
-                          width: 3,
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(25.r)),
-                      ),
-                      suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.camera_alt_outlined,
-                          color: ColorsApp.yalwoPro,
-                        ),
-                      ),
-                      prefixIcon: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.image,
-                          color: ColorsApp.yalwoPro,
-                        ),
-                      ),
-                      fillColor: ColorsApp.greenPro,
-
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          width: 0,
-                          color: Colors.transparent,
-                        ),
-                        borderRadius: BorderRadius.all(Radius.circular(25.r)),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.mic,
+                        color: Colors.grey.shade700,
+                        size: 28.sp,
                       ),
                     ),
                   ),
-                ),
 
-                SendAndMideaButton(ontap: () {}, icon: Icons.mic),
-              ],
+                  Container(
+                    width: 260.w,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(25.r)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.1),
+                          blurRadius: 8,
+                          spreadRadius: 1,
+                          offset: const Offset(0, 3),
+                        ),
+                      ],
+                      border: Border.all(color: Colors.grey.shade300, width: 1),
+                    ),
+                    child: TextFormField(
+                      keyboardType: TextInputType.multiline,
+                      cursorColor: ColorsApp.greenPro,
+                      maxLines: 3,
+                      minLines: 1,
+                      style: TextStyle(color: Colors.black87, fontSize: 16.sp),
+                      decoration: InputDecoration(
+                        hintText: "Write Here ...",
+                        hintStyle: TextStyle(
+                          color: Colors.grey.shade500,
+                          fontSize: 16.sp,
+                        ),
+                        border: InputBorder.none,
+                        contentPadding: EdgeInsets.symmetric(
+                          horizontal: 16.w,
+                          vertical: 12.h,
+                        ),
+
+                        prefixIcon: IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.attach_file_outlined,
+                            color: ColorsApp.greenPro.withOpacity(0.7),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  SendButton(),
+                ],
+              ),
             ),
           ],
         ),
