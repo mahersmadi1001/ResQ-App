@@ -16,6 +16,12 @@ class PostBloc extends Bloc<PostEvent, PostState> {
     on<GetAllPost>((event, emit) async {
       bool isNewFilter = event.filterParamtr != null;
 
+      if (state.postStatus == PostStatus.loading &&
+          !isNewFilter &&
+          !event.isRefresh) {
+        return;
+      }
+
       if (isNewFilter || event.isRefresh) {
         emit(
           PostState(

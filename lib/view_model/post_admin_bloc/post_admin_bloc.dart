@@ -12,11 +12,12 @@ class PostAdminBloc extends Bloc<ProductEvent, PostAdminState> {
   PostService productService;
   PostAdminBloc({required this.productService}) : super(PostAdminState()) {
     on<GetAllPostAdmin>((event, emit) async {
+      if (state.postAdminStatus == PostAdminStatus.loading) return;
       try {
         if (!state.hasReachedMax) {
           emit(
-            state.copyWith(
-              productStatus: PostAdminStatus.loading,
+            state.copyWith(postAdminStatus: 
+              PostAdminStatus.loading,
               errorMessage: null,
             ),
           );
@@ -26,16 +27,17 @@ class PostAdminBloc extends Bloc<ProductEvent, PostAdminState> {
           if (result != null) {
             emit(
               state.copyWith(
-                products: [...state.postsAdmin, ...result],
-                productStatus: PostAdminStatus.success,
-                hasReachedMax: result.length < PostService.lastPageAdmin,
+                postsAdmin: [...state.postsAdmin, ...result],
+                postAdminStatus: PostAdminStatus.success,
+                hasReachedMax: state.currentPage >= PostService.lastPageAdmin,
+                currentPage: state.currentPage + 1,
                 errorMessage: null,
               ),
             );
           } else {
             emit(
               state.copyWith(
-                productStatus: PostAdminStatus.failure,
+                postAdminStatus: PostAdminStatus.failure,
                 errorMessage: "failed to load data",
               ),
             );
@@ -44,14 +46,14 @@ class PostAdminBloc extends Bloc<ProductEvent, PostAdminState> {
       } on Failure catch (e) {
         emit(
           state.copyWith(
-            productStatus: PostAdminStatus.failure,
+            postAdminStatus: PostAdminStatus.failure,
             errorMessage: e.toString(),
           ),
         );
       } catch (e) {
         emit(
           state.copyWith(
-            productStatus: PostAdminStatus.failure,
+            postAdminStatus: PostAdminStatus.failure,
             errorMessage: e.toString(),
           ),
         );

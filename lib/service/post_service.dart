@@ -13,7 +13,7 @@ class PostService {
   String postKey = "posts";
   String normalKey = "normal";
   String adminKey = "admin";
-  String? newToken;
+
   CacheService cacheService;
   PostService({required this.cacheService});
   Future<List<PostModel>?> getAllPost({
@@ -35,9 +35,12 @@ class PostService {
       if (response.statusCode == 200) {
         lastPage = response.data["pagination"]["info"]["last_page"] ?? 4;
 
-        newToken =
-            (response.headers.value('X-New-Token') ?? cacheService.getToken());
-        await cacheService.saveToken(newToken!);
+        String? newHeaderToken =
+            response.headers.value('x-new-token') ??
+            response.headers.value('X-New-Token');
+        if (newHeaderToken != null && newHeaderToken.isNotEmpty) {
+          await cacheService.saveToken(newHeaderToken);
+        }
 
         return List.generate(
           response.data["data"]["posts"].length,
@@ -93,3 +96,4 @@ class PostService {
     }
   }
 }
+

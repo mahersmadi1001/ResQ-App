@@ -38,7 +38,7 @@ class FormPost extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            _buildImage(),
+            buildImage(),
 
             Padding(
               padding: EdgeInsets.all(16.r),
@@ -139,7 +139,7 @@ class FormPost extends StatelessWidget {
     );
   }
 
-  Widget _buildImage() {
+  Widget buildImage() {
     if (imagePath != null && imagePath!.isNotEmpty) {
       return CachedNetworkImage(
         imageUrl: imagePath!,
@@ -158,6 +158,17 @@ class FormPost extends StatelessWidget {
   }
 
   Widget _buildErrorImage() {
+    return ErorrImage();
+  }
+}
+
+class ErorrImage extends StatelessWidget {
+  const ErorrImage({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 180.h,
@@ -168,7 +179,7 @@ class FormPost extends StatelessWidget {
           Icon(
             Icons.image_not_supported_rounded,
             size: 45.sp,
-            color: ColorsApp.greenPro,
+            color: ColorsApp.withePro,
           ),
           SizedBox(height: 8.h),
           Text(

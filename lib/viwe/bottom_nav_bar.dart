@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/viwe/map_screen.dart';
 import 'package:projct/viwe/post/post_screen.dart';
-import 'package:projct/viwe/profile_screen.dart';
+import 'package:projct/viwe/settings_screen.dart';
 import 'package:projct/viwe/report_screen.dart';
 
 class ButtonNavBar extends StatefulWidget {
@@ -13,7 +14,12 @@ class ButtonNavBar extends StatefulWidget {
 }
 
 class _ButtonNavBarState extends State<ButtonNavBar> {
-  List<Widget> pages = [ReportScreen(), NewsScreen(), ProfileScreen()];
+  List<Widget> pages = [
+    ReportScreen(),
+    NewsScreen(),
+    MapScreen(),
+    SettingsScreen(),
+  ];
 
   int selectedpage = 0;
 
@@ -66,6 +72,11 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
               icon: Icon(Icons.map, color: ColorsApp.withePro),
               label: "Map",
               selectedIcon: Icon(Icons.map, color: ColorsApp.yalwoPro),
+            ),
+            NavigationDestination(
+              icon: Icon(Icons.settings_outlined, color: ColorsApp.withePro),
+              selectedIcon: Icon(Icons.settings, color: ColorsApp.yalwoPro),
+              label: "Settings",
             ),
           ],
         ),

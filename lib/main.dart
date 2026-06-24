@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/config/di.dart';
+import 'package:projct/service/cache_service.dart';
 import 'package:projct/service/post_service.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
@@ -13,8 +14,8 @@ import 'package:projct/viwe/splash_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setup();
-  // await di<CacheService>().deleteToken();
-  // await di<CacheService>().deleteUser();
+  await di<CacheService>().deleteToken();
+  await di<CacheService>().deleteUser();
   runApp(const MainPage());
 }
 

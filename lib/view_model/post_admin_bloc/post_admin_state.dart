@@ -20,15 +20,15 @@ class PostAdminState extends Equatable {
 
   PostAdminState copyWith({
     int? currentPage,
-    List<PostAdminModel>? products,
-    PostAdminStatus? productStatus,
+    List<PostAdminModel>? postsAdmin,
+    PostAdminStatus? postAdminStatus,
     String? errorMessage,
     bool? hasReachedMax,
   }) {
     return PostAdminState(
       currentPage: currentPage ?? this.currentPage,
-      postsAdmin: products ?? this.postsAdmin,
-      postAdminStatus: productStatus ?? this.postAdminStatus,
+      postsAdmin: postsAdmin ?? this.postsAdmin,
+      postAdminStatus: postAdminStatus ?? this.postAdminStatus,
       errorMessage: errorMessage ?? this.errorMessage,
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
     );

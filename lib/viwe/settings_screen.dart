@@ -9,22 +9,17 @@ import 'package:projct/core/widgets/logout_dialog.dart';
 import 'package:projct/core/widgets/setting_item.dart';
 import 'package:projct/model/user_model.dart';
 import 'package:projct/service/cache_service.dart';
+import 'package:projct/viwe/profile_user.dart';
+import 'package:projct/viwe/report_screen.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class SettingsScreen extends StatefulWidget {
+  const SettingsScreen({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
-  UserModel? user;
-  @override
-  void initState() {
-    user = Hive.box(CacheService.boxName).get(CacheService.userKey);
-    super.initState();
-  }
-
+class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,9 +85,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Expanded(
             child: ListView(
               children: [
-                SettingItem(
-                  icon: Icons.person_outline_outlined,
-                  text: "Profile Ditals",
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ProfileScreenUser(),
+                      ),
+                    );
+                  },
+                  child: SettingItem(
+                    icon: Icons.person_outline_outlined,
+                    text: "Profile Ditals",
+                  ),
                 ),
 
                 SettingItem(
@@ -100,7 +105,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   text: "Notifications",
                 ),
                 SettingItem(icon: Icons.language_sharp, text: "Language"),
-                SettingItem(icon: Icons.history_sharp, text: "History"),
+                SettingItem(
+                  icon: Icons.bookmark_border_rounded,
+                  text: "Book Mark",
+                ),
                 SettingItem(
                   icon: Icons.dark_mode_outlined,
                   text: "Dark Mode",
@@ -116,7 +124,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     showDialog(
                       context: context,
                       builder: (context) {
-                        return  LogoutDialog();
+                        return LogoutDialog();
                       },
                     );
                   },

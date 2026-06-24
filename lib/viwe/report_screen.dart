@@ -10,6 +10,9 @@ import 'package:projct/core/widgets/new_munu.dart';
 import 'package:projct/core/widgets/send_button.dart';
 import 'package:projct/model/user_model.dart';
 import 'package:projct/service/cache_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projct/view_model/media_picker_bloc/media_picker_bloc.dart';
+import 'package:projct/viwe/widgets/media_picker_sheet.dart';
 
 UserModel? user;
 
@@ -20,38 +23,14 @@ class ReportScreen extends StatefulWidget {
 }
 
 class _ReportScreenState extends State<ReportScreen> {
-  List<AssetEntity> _mediaList = [];
-  List<AssetEntity> _selectedMedia = [];
-  bool _isLoading = true;
+
   @override
   void initState() {
     user = Hive.box(CacheService.boxName).get(CacheService.userKey);
     super.initState();
   }
 
-  Future<void> _requestAndLoadMedia() async {
-    final PermissionState permission =
-        await PhotoManager.requestPermissionExtend();
-    if (permission.isAuth) {
-      final List<AssetPathEntity> paths = await PhotoManager.getAssetPathList(
-        type: RequestType.image,
-      );
-      if (paths.isNotEmpty) {
-        final List<AssetEntity> media = await paths[0].getAssetListPaged(
-          page: 0,
-          size: 80,
-        );
-        setState(() {
-          _mediaList = media;
-          _isLoading = false;
-        });
-      } else {
-        setState(() => _isLoading = false);
-      }
-    } else {
-      setState(() => _isLoading = false);
-    }
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -229,7 +208,28 @@ class _ReportScreenState extends State<ReportScreen> {
                         ),
 
                         prefixIcon: IconButton(
-                          onPressed: () {},
+                          onPressed: () async {
+                            final selectedMedia = await showModalBottomSheet<List<AssetEntity>>(
+                              context: context,
+                              isScrollControlled: true,
+                              backgroundColor: Colors.transparent,
+                              builder: (context) {
+                                return SizedBox(
+                                  height: MediaQuery.of(context).size.height * 0.7,
+                                  child: BlocProvider(
+                                    create: (context) => MediaPickerBloc(),
+                                    child: MediaPickerSheet(),
+                                  ),
+                                );
+                              },
+                            );
+
+                            if (selectedMedia != null && selectedMedia.isNotEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text("تم اختيار ${selectedMedia.length} مرفقات")),
+                              );
+                            }
+                          },
                           icon: Icon(
                             Icons.attach_file_outlined,
                             color: ColorsApp.greenPro.withOpacity(0.7),

@@ -21,7 +21,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
   void initState() {
     scrollController.addListener(() {
       if (scrollController.position.pixels >=
-          scrollController.position.maxScrollExtent - 400) {
+          scrollController.position.maxScrollExtent - 200) {
         context.read<PostBloc>().add(GetAllPost());
       }
     });
@@ -31,6 +31,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: BlocBuilder<PostBloc, PostState>(
         builder: (context, state) {
           switch (state.postStatus) {
@@ -123,7 +124,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
         onPressed: () {
           showModalBottomSheet(
             isDismissible: false,
-            backgroundColor: ColorsApp.withePro,
+            backgroundColor: Colors.white,
             context: context,
             builder: (context) {
               return SizedBox(

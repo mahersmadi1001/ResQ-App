@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
-import 'package:projct/viwe/profile_screen.dart';
+import 'package:projct/viwe/settings_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
@@ -23,7 +23,7 @@ class CustomDrawer extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return ProfileScreen();
+                      return SettingsScreen();
                     },
                   ),
                 );

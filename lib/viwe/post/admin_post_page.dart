@@ -6,6 +6,7 @@ import 'package:projct/core/widgets/form_post.dart';
 import 'package:projct/model/post_admin_model.dart';
 import 'package:projct/view_model/post_admin_bloc/post_admin_bloc.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
+import 'package:projct/viwe/post/post_ditales.dart';
 
 class AdminPostPage extends StatefulWidget {
   const AdminPostPage({super.key});
@@ -30,6 +31,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: BlocBuilder<PostAdminBloc, PostAdminState>(
         builder: (context, state) {
           switch (state.postAdminStatus) {
@@ -54,12 +56,23 @@ class _AdminPostPageState extends State<AdminPostPage> {
                           return Center(child: CircularProgressIndicator());
                         } else {
                           PostAdminModel post = state.postsAdmin[index];
-                          return FormPost(
-                            address: post.address,
-                            descration: post.types.toString(),
-                            date: post.createdAt.date.toString(),
-                            time: post.createdAt.time.toString(),
-                            imagePath: post.media,
+                          return InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      PostDetailsScreen(post: post),
+                                ),
+                              );
+                            },
+                            child: FormPost(
+                              address: post.address,
+                              descration: post.types.toString(),
+                              date: post.createdAt.date.toString(),
+                              time: post.createdAt.time.toString(),
+                              imagePath: post.media,
+                            ),
                           );
                         }
                       },

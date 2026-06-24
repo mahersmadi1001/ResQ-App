@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:projct/core/erorr/erorr_handling.dart';
+import 'package:projct/core/network/api_constants.dart';
 
 import 'package:projct/model/sign_up_model.dart';
 import 'package:projct/model/login_model.dart';
@@ -8,7 +9,7 @@ import 'package:projct/service/cache_service.dart';
 import 'package:projct/core/config/di.dart';
 
 class AuthService {
-  String baseurl = "http://127.0.0.1:8000/api/";
+  String baseurl = ApiConstants.baseurl;
   Dio dio = Dio();
 
   Future<String> signUp(SignUpModel signUpModel) async {
