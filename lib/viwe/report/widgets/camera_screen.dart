@@ -5,6 +5,8 @@ import 'package:photo_manager/photo_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
 
+import 'package:permission_handler/permission_handler.dart';
+
 class CameraScreen extends StatefulWidget {
   @override
   _CameraScreenState createState() => _CameraScreenState();
@@ -21,15 +23,33 @@ class _CameraScreenState extends State<CameraScreen> {
   }
 
   Future<void> _initializeCamera() async {
-    final cameras = await availableCameras();
-    if (cameras.isNotEmpty) {
-      _controller = CameraController(
-        cameras.first,
-        ResolutionPreset.high,
-        enableAudio: true,
-      );
-      await _controller!.initialize();
-      if (mounted) setState(() {});
+    final cameraStatus = await Permission.camera.request();
+    final microphoneStatus = await Permission.microphone.request();
+
+    if (cameraStatus.isGranted && microphoneStatus.isGranted) {
+      try {
+        final cameras = await availableCameras();
+        if (cameras.isNotEmpty) {
+          _controller = CameraController( 
+            cameras.first,
+            ResolutionPreset.high,
+            enableAudio: true,
+          );
+          await _controller!.initialize();
+          if (mounted) setState(() {});
+        }
+      } catch (e) {
+        print("Error initializing camera: $e");
+      }
+    } else {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("يجب السماح بصلاحيات الكاميرا والميكروفون للاستخدام"),
+          ),
+        );
+        Navigator.pop(context);
+      }
     }
   }
 
@@ -44,11 +64,14 @@ class _CameraScreenState extends State<CameraScreen> {
     try {
       final XFile picture = await _controller!.takePicture();
       final File file = File(picture.path);
-      final AssetEntity? asset = await PhotoManager.editor.saveImage(
+
+      final AssetEntity? asset = await PhotoManager.editor.saveImage(filename: "",
         file.readAsBytesSync(),
-        title: "IMG_${DateTime.now().millisecondsSinceEpoch}.jpg", filename: '',
+        title: "IMG_${DateTime.now().millisecondsSinceEpoch}.jpg",
       );
-      Navigator.pop(context, asset);
+      if (mounted) {
+        Navigator.pop(context, asset);
+      }
     } catch (e) {
       print("Error taking picture: $e");
     }
@@ -73,12 +96,15 @@ class _CameraScreenState extends State<CameraScreen> {
       setState(() {
         _isRecording = false;
       });
+
       final File file = File(video.path);
       final AssetEntity? asset = await PhotoManager.editor.saveVideo(
         file,
         title: "VID_${DateTime.now().millisecondsSinceEpoch}.mp4",
       );
-      Navigator.pop(context, asset);
+      if (mounted) {
+        Navigator.pop(context, asset);
+      }
     } catch (e) {
       print("Error stopping video: $e");
     }
@@ -87,15 +113,16 @@ class _CameraScreenState extends State<CameraScreen> {
   @override
   Widget build(BuildContext context) {
     if (_controller == null || !_controller!.value.isInitialized) {
-      return const Scaffold(backgroundColor: Colors.black, body: Center(child: CircularProgressIndicator()));
+      return const Scaffold(
+        backgroundColor: Colors.black,
+        body: Center(child: CircularProgressIndicator()),
+      );
     }
     return Scaffold(
       backgroundColor: Colors.black,
       body: Stack(
         children: [
-          Positioned.fill(
-            child: CameraPreview(_controller!),
-          ),
+          Positioned.fill(child: CameraPreview(_controller!)),
           Positioned(
             bottom: 30.h,
             left: 0,
@@ -138,9 +165,12 @@ class _CameraScreenState extends State<CameraScreen> {
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(10.r),
                 ),
-                child: const Text("Recording...", style: TextStyle(color: Colors.white)),
+                child: const Text(
+                  "Recording...",
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
-            )
+            ),
         ],
       ),
     );

@@ -49,14 +49,13 @@ class _ListAddressState extends State<ListAddress> {
 
 class FilterAddressPost extends StatefulWidget {
   const FilterAddressPost({super.key});
- static  List<String> optiosSelected = [];
+  static List<String> optiosSelected = [];
   @override
   State<FilterAddressPost> createState() => _FilterAddressPostState();
 }
 
 class _FilterAddressPostState extends State<FilterAddressPost> {
   @override
- 
   Widget build(BuildContext context) {
     return Wrap(
       crossAxisAlignment: WrapCrossAlignment.center,
@@ -67,7 +66,7 @@ class _FilterAddressPostState extends State<FilterAddressPost> {
         return FilterChip(
           label: Text(district),
 
-          selected:FilterAddressPost.optiosSelected.contains(district),
+          selected: FilterAddressPost.optiosSelected.contains(district),
 
           onSelected: (bool selected) {
             setState(() {
@@ -79,8 +78,8 @@ class _FilterAddressPostState extends State<FilterAddressPost> {
             });
             print(ListAddress.selectedAddress);
           },
-          backgroundColor: ColorsApp.greenPro,
-          selectedColor: ColorsApp.yalwoPro,
+          backgroundColor: Colors.grey.shade400,
+          selectedColor: ColorsApp.greenPro,
           labelStyle: TextStyle(
             fontSize: 16.sp,
             color: ColorsApp.withePro,

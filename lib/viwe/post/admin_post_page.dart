@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projct/core/widgets/form_post.dart';
 import 'package:projct/model/post_admin_model.dart';
 import 'package:projct/view_model/post_admin_bloc/post_admin_bloc.dart';
-import 'package:projct/view_model/post_bloc/post_bloc.dart';
 import 'package:projct/viwe/post/post_ditales.dart';
 
 class AdminPostPage extends StatefulWidget {
@@ -17,22 +17,36 @@ class AdminPostPage extends StatefulWidget {
 
 class _AdminPostPageState extends State<AdminPostPage> {
   ScrollController scrollController = ScrollController();
+  Completer<void>? _refreshCompleter;
+
   @override
   void initState() {
+    super.initState();
+  
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<PostAdminBloc>().add(GetAllPostAdmin());
+    });
     scrollController.addListener(() {
       if (scrollController.position.pixels >=
           scrollController.position.maxScrollExtent - 400) {
         context.read<PostAdminBloc>().add(GetAllPostAdmin());
       }
     });
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: BlocBuilder<PostAdminBloc, PostAdminState>(
+      body: BlocConsumer<PostAdminBloc, PostAdminState>(
+        listener: (context, state) {
+   
+          if (state.postAdminStatus == PostAdminStatus.success ||
+              state.postAdminStatus == PostAdminStatus.failure) {
+            _refreshCompleter?.complete();
+            _refreshCompleter = null;
+          }
+        },
         builder: (context, state) {
           switch (state.postAdminStatus) {
             case PostAdminStatus.initial:
@@ -44,7 +58,9 @@ class _AdminPostPageState extends State<AdminPostPage> {
                 } else {
                   return RefreshIndicator(
                     onRefresh: () async {
-                      context.read<PostAdminBloc>().add(GetAllPostAdmin());
+                      _refreshCompleter = Completer<void>();
+                      context.read<PostAdminBloc>().add(GetAllPostAdmin(isRefresh: true));
+                      await _refreshCompleter!.future;
                     },
                     child: ListView.builder(
                       controller: scrollController,
@@ -72,6 +88,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
                               date: post.createdAt.date.toString(),
                               time: post.createdAt.time.toString(),
                               imagePath: post.media,
+                              index: index,
                             ),
                           );
                         }
@@ -89,11 +106,12 @@ class _AdminPostPageState extends State<AdminPostPage> {
                 } else {
                   return RefreshIndicator(
                     onRefresh: () async {
-                      context.read<PostBloc>().add(GetAllPost());
+                      _refreshCompleter = Completer<void>();
+                      context.read<PostAdminBloc>().add(GetAllPostAdmin(isRefresh: true));
+                      await _refreshCompleter!.future;
                     },
                     child: ListView.builder(
                       controller: scrollController,
-
                       itemCount: state.hasReachedMax
                           ? state.postsAdmin.length
                           : state.postsAdmin.length + 1,
@@ -103,6 +121,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
                         } else {
                           PostAdminModel post = state.postsAdmin[index];
                           return FormPost(
+                            index: index,
                             address: post.address,
                             descration: post.types.toString(),
                             date: post.createdAt.date,

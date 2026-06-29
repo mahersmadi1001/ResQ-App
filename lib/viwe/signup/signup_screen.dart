@@ -62,7 +62,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           storedIdentityType = identityType;
                         },
                   ),
-                  hight_contaner: 470.h,
+                  hight_contaner: 490.h,
                 );
               } else {
                 return IlemntPageView(
@@ -73,7 +73,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     address: storedAddress,
                     identityType: storedIdentityType?.name,
                   ),
-                  hight_contaner: 430.h,
+                  hight_contaner: 480.h,
                 );
               }
             },

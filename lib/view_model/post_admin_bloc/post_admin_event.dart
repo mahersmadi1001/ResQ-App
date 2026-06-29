@@ -7,4 +7,8 @@ sealed class ProductEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class GetAllPostAdmin extends ProductEvent {}
+final class GetAllPostAdmin extends ProductEvent {
+  final bool isRefresh;
+  GetAllPostAdmin({this.isRefresh = false});
+}
+

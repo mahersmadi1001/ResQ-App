@@ -49,7 +49,7 @@ class SettingItem extends StatelessWidget {
             ),
           ),
         ),
-        const Divider(color: ColorsApp.greenPro, endIndent: 75, indent: 75),
+        // const Divider(color: ColorsApp.greenPro, endIndent: 75, indent: 75),
       ],
     );
   }

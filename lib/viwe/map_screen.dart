@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'dart:convert';
 
 class MapScreen extends StatefulWidget {
-  const MapScreen({super.key});
+  MapScreen({super.key, required this.initLocation});
+
+  final LatLng initLocation;
 
   @override
   State<MapScreen> createState() => _MapScreenState();
@@ -12,51 +15,26 @@ class MapScreen extends StatefulWidget {
 
 class _MapScreenState extends State<MapScreen> {
   MapLibreMapController? mapController;
-  final String mapStyleUrl = "https://tiles.openfreemap.org/styles/bright";
 
-  void _changeMapLanguage(String langCode) async {
-    if (mapController == null) return;
-
-    String textFieldValue = "['get', 'name:$langCode']";
-    if (langCode == 'local') textFieldValue = "['get', 'name']";
-
-    final layers = [
-      'settlement-label',
-      'road-label',
-      'poi-label',
-      'state-label',
-    ];
-
-    for (String layer in layers) {
-      try {
-        await mapController!.setLayerProperties(
-          layer,
-          SymbolLayerProperties(textField: textFieldValue),
-        );
-      } catch (e) {
-        print(e);
-      }
-    }
-  }
-
-  void _enable3DBuildings() async {
-    if (mapController == null) return;
-
-    try {
-      await mapController!.addLayer(
-        "building-3d",
-        "openmaptiles",
-        FillExtrusionLayerProperties(
-          fillExtrusionColor: "#aaaaaa",
-          fillExtrusionHeight: ["get", "height"],
-          fillExtrusionBase: ["get", "min_height"],
-          fillExtrusionOpacity: 0.8,
-        ),
-      );
-    } catch (e) {
-      print(e);
-    }
-  }
+  static final String googleHybridStyle = jsonEncode({
+    "version": 8,
+    "sources": {
+      "google-satellite": {
+        "type": "raster",
+        "tiles": ["https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}"],
+        "tileSize": 256,
+      },
+    },
+    "layers": [
+      {
+        "id": "google-satellite-layer",
+        "type": "raster",
+        "source": "google-satellite",
+        "minzoom": 0,
+        "maxzoom": 22,
+      },
+    ],
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -88,21 +66,24 @@ class _MapScreenState extends State<MapScreen> {
       ),
       body: Stack(
         children: [
-          MapLibreMap(
-            initialCameraPosition: const CameraPosition(
-              target: LatLng(46.83033, 31.21736),
-              zoom: 15.0,
-              tilt: 45.0,
-            ),
-            styleString: mapStyleUrl,
+          Positioned.fill(
+            child: RepaintBoundary(
+              child: MapLibreMap(
+                initialCameraPosition: CameraPosition(
+                  target: widget.initLocation,
+                  zoom: 15.0,
+                  tilt: 45.0,
+                ),
+                styleString: googleHybridStyle,
 
-            onMapCreated: (controller) {
-              mapController = controller;
-            },
-            onStyleLoadedCallback: () {
-              _enable3DBuildings();
-              _changeMapLanguage('ar');
-            },
+                trackCameraPosition: false,
+                myLocationEnabled: true,
+                myLocationTrackingMode: MyLocationTrackingMode.tracking,
+                onMapCreated: (controller) {
+                  mapController = controller;
+                },
+              ),
+            ),
           ),
         ],
       ),

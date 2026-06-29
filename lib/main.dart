@@ -14,8 +14,8 @@ import 'package:projct/viwe/splash_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await setup();
-  await di<CacheService>().deleteToken();
-  await di<CacheService>().deleteUser();
+  // await di<CacheService>().deleteToken();
+  // await di<CacheService>().deleteUser();
   runApp(const MainPage());
 }
 
@@ -32,8 +32,7 @@ class MainPage extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) =>
-                  PostBloc(postService: di<PostService>())..add(GetAllPost()),
+              create: (context) => PostBloc(postService: di<PostService>()),
             ),
             BlocProvider(
               create: (context) {

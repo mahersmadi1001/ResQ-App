@@ -52,6 +52,7 @@ dependencies:
   flutter_map: ^8.3.0
   latlong2: ^0.9.1
   maplibre_gl: ^0.26.2
+  maplibre_gl_platform_interface: ^0.26.2
 
 dev_dependencies:
   flutter_test:

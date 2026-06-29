@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/helper/app_validators.dart';
@@ -29,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> formLoginKey = GlobalKey<FormState>();
   TextEditingController? emailController = TextEditingController();
   TextEditingController? passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -49,28 +49,28 @@ class _LoginScreenState extends State<LoginScreen> {
             }
           },
           builder: (context, state) {
-            return Stack(
-              children: [
-                Container(
-                  height: double.infinity,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("images/bace_login.png"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+            return Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("images/bace_login.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: SafeArea(
+                child: SingleChildScrollView(
+                  physics: const ClampingScrollPhysics(),
                   child: Form(
                     key: formLoginKey,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 210.h),
-
+                        SizedBox(height: 180.h),
                         Text(
                           "Login",
                           style: TextStyle(
-                            shadows: [
+                            shadows: const [
                               Shadow(blurRadius: 10, offset: Offset(2, 5)),
                             ],
                             color: ColorsApp.yalwoPro,
@@ -112,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 30.h),
                         state is LoadingState
-                            ? CircularProgressIndicator()
+                            ? const CircularProgressIndicator()
                             : ButtonAuth(
                                 onPressed: () {
                                   if (formLoginKey.currentState!.validate()) {
@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 "Sign up",
                                 style: TextStyle(
-                                  shadows: [
+                                  shadows: const [
                                     Shadow(
                                       blurRadius: 10,
                                       offset: Offset(2, 4),
@@ -169,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-              ],
+              ),
             );
           },
         ),

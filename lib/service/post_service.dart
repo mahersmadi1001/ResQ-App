@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dio/dio.dart';
 import 'package:projct/core/erorr/erorr_handling.dart';
-
 import 'package:projct/core/network/api_constants.dart';
 import 'package:projct/model/post_admin_model.dart';
 import 'package:projct/model/post_model%20.dart';
@@ -28,7 +26,7 @@ class PostService {
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Bearer ${cacheService.getToken()}',
-            "Content-Language": "en",
+            "Accept-Language": "en",
           },
         ),
       );
@@ -40,6 +38,7 @@ class PostService {
             response.headers.value('X-New-Token');
         if (newHeaderToken != null && newHeaderToken.isNotEmpty) {
           await cacheService.saveToken(newHeaderToken);
+          print(newHeaderToken);
         }
 
         return List.generate(
@@ -58,6 +57,7 @@ class PostService {
       throw Failure(message: e.toString());
     }
   }
+  //=====================================================================
 
   Future<List<PostAdminModel>?> getAllPostAdmin({
     required int page,
@@ -71,7 +71,7 @@ class PostService {
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Bearer ${cacheService.getToken()}',
-            "Content-Language": "en",
+            "Accept-Language": "en",
           },
         ),
       );
@@ -96,4 +96,3 @@ class PostService {
     }
   }
 }
-

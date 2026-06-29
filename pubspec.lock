@@ -465,7 +465,7 @@ packages:
     source: hosted
     version: "0.26.2"
   maplibre_gl_platform_interface:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: maplibre_gl_platform_interface
       sha256: "1f0ca8a99f03fa9434618ee21f4e42dd615830a7dd973e632b11c73ffec993a8"

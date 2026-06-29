@@ -8,8 +8,8 @@ import 'package:projct/viwe/bottom_nav_bar.dart';
 
 class PostDetailsScreen extends StatelessWidget {
   final PostAdminModel post;
-
-  const PostDetailsScreen({super.key, required this.post});
+  final int? index;
+  PostDetailsScreen({super.key, required this.post, this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class PostDetailsScreen extends StatelessWidget {
       backgroundColor: Colors.grey.shade50,
       body: CustomScrollView(
         slivers: [
-          PostDetailsAppBar(post: post),
+          PostDetailsAppBar(post: post, index: index),
           SliverToBoxAdapter(child: PostDetailsContent(post: post)),
         ],
       ),
@@ -27,8 +27,8 @@ class PostDetailsScreen extends StatelessWidget {
 
 class PostDetailsAppBar extends StatelessWidget {
   final PostAdminModel post;
-
-  const PostDetailsAppBar({super.key, required this.post});
+  final int? index;
+  const PostDetailsAppBar({super.key, required this.post, required this.index});
 
   @override
   Widget build(BuildContext context) {

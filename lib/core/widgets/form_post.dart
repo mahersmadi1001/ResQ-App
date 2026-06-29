@@ -12,10 +12,11 @@ class FormPost extends StatelessWidget {
   final String time;
   final String? imagePath;
   final VoidCallback? ontap;
-
+  final int? index;
   const FormPost({
     Key? key,
     required this.address,
+    this.index,
     required this.descration,
     required this.date,
     required this.time,
@@ -163,9 +164,7 @@ class FormPost extends StatelessWidget {
 }
 
 class ErorrImage extends StatelessWidget {
-  const ErorrImage({
-    super.key,
-  });
+  const ErorrImage({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/model/user_model.dart';
-import 'package:projct/viwe/report_screen.dart';
+import 'package:projct/viwe/report/report_screen.dart';
 
 class ProfileScreenUser extends StatelessWidget {
   @override
@@ -164,12 +164,12 @@ class ProfilePremiumAvatarPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 110.r,
-      height: 110.r,
+      width: 140.r,
+      height: 140.r,
       padding: EdgeInsets.all(4.r),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: ColorsApp.yalwoPro, width: 2.w),
+        border: Border.all(color: ColorsApp.yalwoPro, width: 3.w),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -181,7 +181,7 @@ class ProfilePremiumAvatarPlaceholder extends StatelessWidget {
           color: Colors.white,
           shape: BoxShape.circle,
         ),
-        padding: EdgeInsets.all(16.r),
+        padding: EdgeInsets.all(8.r),
         child: Image.asset(ConstensApp.logo, fit: BoxFit.contain),
       ),
     );
@@ -207,7 +207,7 @@ class ProfileUserFullName extends StatelessWidget {
           firstName,
           style: TextStyle(
             color: ColorsApp.greenPro,
-            fontSize: 22.sp,
+            fontSize: 26.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -215,7 +215,7 @@ class ProfileUserFullName extends StatelessWidget {
           " $lastName",
           style: TextStyle(
             color: ColorsApp.yalwoPro,
-            fontSize: 22.sp,
+            fontSize: 26.sp,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -370,7 +370,7 @@ class ProfileInformationCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(color: Colors.grey.shade100, width: 1.5.w),
+        border: Border.all(color: ColorsApp.withePro, width: 1.5.w),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -15,11 +15,15 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
 
   Future<void> _onRequestPermissions(
       RequestMediaPermissions event, Emitter<MediaPickerState> emit) async {
-    final PermissionState ps = await PhotoManager.requestPermissionExtend();
-    if (ps.isAuth || ps.hasAccess) {
-      add(FetchMedia(page: 0));
-    } else {
-      emit(MediaPickerPermissionDenied());
+    try {
+      final PermissionState ps = await PhotoManager.requestPermissionExtend();
+      if (ps.isAuth || ps.hasAccess) {
+        add(FetchMedia(page: 0));
+      } else {
+        emit(MediaPickerPermissionDenied());
+      }
+    } catch (e) {
+      emit(MediaPickerError(message: "Failed to request permissions: ${e.toString()}"));
     }
   }
 
@@ -41,6 +45,14 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
       final List<AssetPathEntity> albums = await PhotoManager.getAssetPathList(
         type: RequestType.common,
         onlyAll: true,
+        filterOption: FilterOptionGroup(
+          orders: [
+            const OrderOption(
+              type: OrderOptionType.createDate,
+              asc: false,
+            ),
+          ],
+        ),
       );
 
       if (albums.isEmpty) {

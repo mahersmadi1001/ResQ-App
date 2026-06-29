@@ -6,9 +6,9 @@ import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/view_model/media_picker_bloc/media_picker_bloc.dart';
 import 'package:projct/view_model/media_picker_bloc/media_picker_event.dart';
 import 'package:projct/view_model/media_picker_bloc/media_picker_state.dart';
-import 'package:projct/viwe/widgets/live_camera_tile.dart';
-import 'package:projct/viwe/widgets/media_tile.dart';
-import 'package:projct/viwe/widgets/camera_screen.dart';
+import 'package:projct/viwe/report/widgets/live_camera_tile.dart';
+import 'package:projct/viwe/report/widgets/media_tile.dart';
+import 'package:projct/viwe/report/widgets/camera_screen.dart';
 
 class MediaPickerSheet extends StatefulWidget {
   @override
@@ -99,6 +99,18 @@ class _MediaPickerSheetState extends State<MediaPickerSheet> {
                 if (state is MediaPickerPermissionDenied) {
                   return const Center(child: Text("Permission Denied"));
                 }
+                if (state is MediaPickerError) {
+                  return Center(
+                    child: Padding(
+                      padding: EdgeInsets.all(20.w),
+                      child: Text(
+                        "Error: ${state.message}",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.red, fontSize: 14.sp),
+                      ),
+                    ),
+                  );
+                }
                 if (state is MediaPickerLoaded) {
                   return GridView.builder(
                     controller: _scrollController,
@@ -112,18 +124,10 @@ class _MediaPickerSheetState extends State<MediaPickerSheet> {
                     itemBuilder: (context, index) {
                       if (index == 0) {
                         return LiveCameraTile(
-                          onTap: () async {
-                            final AssetEntity? newAsset = await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => CameraScreen(),
-                              ),
-                            );
-                            if (newAsset != null) {
-                              context
-                                  .read<MediaPickerBloc>()
-                                  .add(AddNewCapturedMedia(asset: newAsset));
-                            }
+                          onMediaCaptured: (newAsset) {
+                            context
+                                .read<MediaPickerBloc>()
+                                .add(AddNewCapturedMedia(asset: newAsset));
                           },
                         );
                       }

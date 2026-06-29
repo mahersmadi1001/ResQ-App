@@ -29,55 +29,55 @@ class ConstensApp {
       name: "Fire",
       icon: Icons.local_fire_department_outlined,
       color: ColorsApp.yalwoPro,
-      value: "fire",
+      value: "Fire",
     ),
     AttachmentItem(
       name: "Flood",
       icon: Icons.flood,
       color: ColorsApp.yalwoPro,
-      value: "flood",
+      value: "Flood",
     ),
     AttachmentItem(
       name: "Theft",
       icon: Icons.assignment_ind_sharp,
       color: ColorsApp.yalwoPro,
-      value: "theft",
+      value: "Theft",
     ),
     AttachmentItem(
       name: "Murder",
       icon: Icons.stream_outlined,
       color: ColorsApp.yalwoPro,
-      value: "murder",
+      value: "Murder",
     ),
     AttachmentItem(
       name: "Injury",
       icon: Icons.personal_injury_outlined,
       color: ColorsApp.yalwoPro,
-      value: "injury",
+      value: "Injury",
     ),
     AttachmentItem(
       name: "Traffic Accident",
       icon: Icons.traffic_outlined,
       color: ColorsApp.yalwoPro,
-      value: "traffic accident",
+      value: "Traffic Accident",
     ),
     AttachmentItem(
       name: "Earthquahke",
       icon: Icons.landslide_outlined,
       color: ColorsApp.yalwoPro,
-      value: "earthquahke",
+      value: "Earthquahke",
     ),
     AttachmentItem(
       name: "Building Collapsing",
       icon: Icons.account_balance,
       color: ColorsApp.yalwoPro,
-      value: "building collapsing",
+      value: "Building Collapsing",
     ),
     AttachmentItem(
       name: "Drowning",
       icon: Icons.kayaking_outlined,
       color: ColorsApp.yalwoPro,
-      value: "drowning",
+      value: "Drowning",
     ),
     AttachmentItem(
       name: "Kidnapping",
@@ -87,8 +87,7 @@ class ConstensApp {
     ),
   ];
 
-
-   static final String statment =
+  static final String statment =
       "1. Identify the incidents that happen to you or around you.\n"
       "2. Send the information you want (text, audio, image, video).\n"
       "3. After sending, don't close the app because you will receive a reply with the initial steps you need to take.";

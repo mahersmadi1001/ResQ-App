@@ -12,36 +12,49 @@ class PostAdminBloc extends Bloc<ProductEvent, PostAdminState> {
   PostService productService;
   PostAdminBloc({required this.productService}) : super(PostAdminState()) {
     on<GetAllPostAdmin>((event, emit) async {
-      if (state.postAdminStatus == PostAdminStatus.loading) return;
+      // تجاهل الطلب إذا كان يتحمل بالفعل ولم يكن refresh
+      if (state.postAdminStatus == PostAdminStatus.loading && !event.isRefresh) {
+        return;
+      }
+
+      if (event.isRefresh) {
+        // إعادة تعيين الحالة عند الـ refresh
+        emit(PostAdminState(
+          postsAdmin: const [],
+          postAdminStatus: PostAdminStatus.loading,
+          currentPage: 1,
+          hasReachedMax: false,
+          errorMessage: null,
+        ));
+      } else {
+        if (state.hasReachedMax) return;
+        emit(state.copyWith(
+          postAdminStatus: PostAdminStatus.loading,
+          errorMessage: null,
+        ));
+      }
+
       try {
-        if (!state.hasReachedMax) {
+        List<PostAdminModel>? result = await productService.getAllPostAdmin(
+          page: state.currentPage,
+        );
+        if (result != null) {
           emit(
-            state.copyWith(postAdminStatus: 
-              PostAdminStatus.loading,
+            state.copyWith(
+              postsAdmin: [...state.postsAdmin, ...result],
+              postAdminStatus: PostAdminStatus.success,
+              hasReachedMax: state.currentPage >= PostService.lastPageAdmin,
+              currentPage: state.currentPage + 1,
               errorMessage: null,
             ),
           );
-          List<PostAdminModel>? result = await productService.getAllPostAdmin(
-            page: state.currentPage,
+        } else {
+          emit(
+            state.copyWith(
+              postAdminStatus: PostAdminStatus.failure,
+              errorMessage: "failed to load data",
+            ),
           );
-          if (result != null) {
-            emit(
-              state.copyWith(
-                postsAdmin: [...state.postsAdmin, ...result],
-                postAdminStatus: PostAdminStatus.success,
-                hasReachedMax: state.currentPage >= PostService.lastPageAdmin,
-                currentPage: state.currentPage + 1,
-                errorMessage: null,
-              ),
-            );
-          } else {
-            emit(
-              state.copyWith(
-                postAdminStatus: PostAdminStatus.failure,
-                errorMessage: "failed to load data",
-              ),
-            );
-          }
         }
       } on Failure catch (e) {
         emit(
@@ -61,3 +74,4 @@ class PostAdminBloc extends Bloc<ProductEvent, PostAdminState> {
     });
   }
 }
+

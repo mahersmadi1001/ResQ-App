@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:maplibre_gl/maplibre_gl.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/viwe/map_screen.dart';
 import 'package:projct/viwe/post/post_screen.dart';
 import 'package:projct/viwe/settings_screen.dart';
-import 'package:projct/viwe/report_screen.dart';
+import 'package:projct/viwe/report/report_screen.dart';
 
 class ButtonNavBar extends StatefulWidget {
   const ButtonNavBar({super.key});
@@ -17,7 +18,7 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
   List<Widget> pages = [
     ReportScreen(),
     NewsScreen(),
-    MapScreen(),
+    MapScreen(initLocation: LatLng(33.5138073, 36.2765279)),
     SettingsScreen(),
   ];
 
@@ -26,7 +27,7 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[selectedpage],
+      body: IndexedStack(index: selectedpage, children: pages),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(25.r),
