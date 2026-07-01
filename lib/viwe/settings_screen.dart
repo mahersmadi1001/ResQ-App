@@ -139,10 +139,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     const SettingsDivider(),
                     SettingItem(icon: Icons.language_sharp, text: "Language"),
                     const SettingsDivider(),
-                    SettingItem(
-                      icon: Icons.bookmark_border_rounded,
-                      text: "Book Mark",
-                    ),
+
                     const SettingsDivider(),
                     SettingItem(
                       icon: Icons.dark_mode_outlined,

@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/config/di.dart';
 import 'package:projct/service/cache_service.dart';
+import 'package:projct/service/map_location_service.dart';
 import 'package:projct/service/post_service.dart';
+import 'package:projct/view_model/map_location_bloc/map_location_bloc.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
 import 'package:projct/view_model/report_input_bloc/report_input_bloc.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
@@ -32,6 +34,11 @@ class MainPage extends StatelessWidget {
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
+            BlocProvider(
+              create: (context) => MapLocationBloc(
+                service: MapLocationService(cacheService: di<CacheService>()),
+              ),
+            ),
             BlocProvider(
               create: (context) {
                 return ReportInputBloc();

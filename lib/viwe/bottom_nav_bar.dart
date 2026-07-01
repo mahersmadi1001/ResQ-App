@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
+
 import 'package:projct/core/theme/colors_app.dart';
+
 import 'package:projct/viwe/map_screen.dart';
 import 'package:projct/viwe/post/post_screen.dart';
-import 'package:projct/viwe/settings_screen.dart';
 import 'package:projct/viwe/report/report_screen.dart';
+import 'package:projct/viwe/settings_screen.dart';
 
 class ButtonNavBar extends StatefulWidget {
   const ButtonNavBar({super.key});
@@ -23,11 +26,21 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
   ];
 
   int selectedpage = 0;
+  List<int> loadedPages = [0];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(index: selectedpage, children: pages),
+      body: IndexedStack(
+        index: selectedpage,
+        children: List.generate(pages.length, (index) {
+          if (loadedPages.contains(index)) {
+            return pages[index];
+          } else {
+            return const SizedBox.shrink();
+          }
+        }),
+      ),
       bottomNavigationBar: ClipRRect(
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(25.r),
@@ -50,12 +63,18 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
           onDestinationSelected: (value) {
             setState(() {
               selectedpage = value;
+              if (!loadedPages.contains(value)) {
+                loadedPages.add(value);
+              }
             });
           },
           backgroundColor: ColorsApp.greenPro,
           destinations: [
             const NavigationDestination(
-              icon: Icon(Icons.remember_me_outlined, color: ColorsApp.withePro),
+              icon: Icon(
+                Icons.remember_me_outlined,
+                color: ColorsApp.withePro,
+              ),
               selectedIcon: Icon(
                 Icons.remember_me_outlined,
                 color: ColorsApp.yalwoPro,
