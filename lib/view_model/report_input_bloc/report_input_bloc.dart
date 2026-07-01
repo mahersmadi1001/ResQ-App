@@ -16,12 +16,21 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
     on<StopRecording>(_onStopRecording);
     on<RecordingDurationUpdated>(_onRecordingDurationUpdated);
     on<ClearInput>(_onClearInput);
+    // on<SelecteOption>(_togleOption);
   }
 
   void _onTextChanged(TextChanged event, Emitter<ReportInputState> emit) {
     final newStatus = _determineStatus(event.text, state.attachments);
     emit(state.copyWith(text: event.text, status: newStatus));
   }
+
+  // void _togleOption(SelecteOption event, Emitter<ReportInputState> emit) {
+  //   if (event.Options.isNotEmpty) {
+  //     emit(state.copyWith(status: ReportInputStatus.OptionSelect));
+  //   } else {
+  //     emit(state.copyWith());
+  //   }
+  // }
 
   void _onAttachmentsAdded(
     AttachmentsAdded event,

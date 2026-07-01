@@ -1,13 +1,18 @@
 import 'package:equatable/equatable.dart';
 import 'package:photo_manager/photo_manager.dart';
 
-enum ReportInputStatus { idle, typingOrAttachment, recording }
+enum ReportInputStatus {
+  idle,
+  typingOrAttachment,
+  recording,
+  //  OptionSelect
+}
 
 class ReportInputState extends Equatable {
   final String text;
   final List<AssetEntity> attachments;
   final ReportInputStatus status;
-  final int recordingDuration; // in seconds
+  final int recordingDuration;
 
   const ReportInputState({
     this.text = "",

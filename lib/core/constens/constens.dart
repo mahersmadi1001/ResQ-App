@@ -85,6 +85,30 @@ class ConstensApp {
       color: ColorsApp.yalwoPro,
       value: "Kidnapping",
     ),
+    AttachmentItem(
+      name: "Gang violence",
+      icon: Icons.groups,
+      color: ColorsApp.yalwoPro,
+      value: "Gang violence",
+    ),
+    AttachmentItem(
+      name: "Missing person",
+      icon: Icons.person_search_sharp,
+      color: ColorsApp.yalwoPro,
+      value: "Missing person",
+    ),
+    AttachmentItem(
+      name: "Explosion",
+      icon: Icons.warning,
+      color: ColorsApp.yalwoPro,
+      value: "Explosion",
+    ),
+    AttachmentItem(
+      name: "Medical emergency",
+      icon: Icons.medical_services,
+      color: ColorsApp.yalwoPro,
+      value: "Medical emergency",
+    ),
   ];
 
   static final String statment =

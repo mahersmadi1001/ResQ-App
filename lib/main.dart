@@ -5,6 +5,7 @@ import 'package:projct/core/config/di.dart';
 import 'package:projct/service/cache_service.dart';
 import 'package:projct/service/post_service.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
+import 'package:projct/view_model/report_input_bloc/report_input_bloc.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/bottom_nav_bar.dart';
 import 'package:projct/viwe/login_screen.dart';
@@ -31,6 +32,11 @@ class MainPage extends StatelessWidget {
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
+            BlocProvider(
+              create: (context) {
+                return ReportInputBloc();
+              },
+            ),
             BlocProvider(
               create: (context) => PostBloc(postService: di<PostService>()),
             ),

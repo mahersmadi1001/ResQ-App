@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive/hive.dart';
+import 'package:projct/core/config/di.dart';
 import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/BoxSendReport.dart';
@@ -8,7 +10,10 @@ import 'package:projct/core/widgets/custom_drawer.dart';
 import 'package:projct/core/widgets/new_munu.dart';
 import 'package:projct/model/user_model.dart';
 import 'package:projct/service/cache_service.dart';
+import 'package:projct/service/refresh_token_service.dart';
+
 import 'package:projct/viwe/report/widgets/report_input_area.dart';
+
 UserModel? user;
 
 class ReportScreen extends StatefulWidget {
@@ -20,6 +25,10 @@ class ReportScreen extends StatefulWidget {
 class _ReportScreenState extends State<ReportScreen> {
   @override
   void initState() {
+    RefreshTokenService refresh = RefreshTokenService(
+      cacheService: di<CacheService>(),
+    );
+    refresh.refreshToken();
     user = Hive.box(CacheService.boxName).get(CacheService.userKey);
     super.initState();
   }

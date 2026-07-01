@@ -33,13 +33,13 @@ class PostService {
       if (response.statusCode == 200) {
         lastPage = response.data["pagination"]["info"]["last_page"] ?? 4;
 
-        String? newHeaderToken =
-            response.headers.value('x-new-token') ??
-            response.headers.value('X-New-Token');
-        if (newHeaderToken != null && newHeaderToken.isNotEmpty) {
-          await cacheService.saveToken(newHeaderToken);
-          print(newHeaderToken);
-        }
+        // String? newHeaderToken =
+        //     response.headers.value('x-new-token') ??
+        //     response.headers.value('X-New-Token');
+        // if (newHeaderToken != null && newHeaderToken.isNotEmpty) {
+        //   await cacheService.saveToken(newHeaderToken);
+        //   print(newHeaderToken);
+        // }
 
         return List.generate(
           response.data["data"]["posts"].length,

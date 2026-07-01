@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:photo_manager/photo_manager.dart';
+import 'package:projct/model/item_munu_modal.dart';
 
 abstract class ReportInputEvent extends Equatable {
   @override
@@ -41,3 +42,10 @@ class RecordingDurationUpdated extends ReportInputEvent {
 }
 
 class ClearInput extends ReportInputEvent {}
+
+// class SelecteOption extends ReportInputEvent {
+//   List<AttachmentItem> Options = [];
+//   @override
+//   List<Object?> get props => [Options];
+//   SelecteOption({required this.Options});
+// }
