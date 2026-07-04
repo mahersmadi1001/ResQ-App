@@ -1,6 +1,4 @@
 
-
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 import 'package:projct/model/post_model%20.dart';

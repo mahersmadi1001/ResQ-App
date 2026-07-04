@@ -45,6 +45,50 @@ class _ReportInputAreaState extends State<ReportInputArea> {
           mainAxisSize: MainAxisSize.min,
           children: [
             SelectedAttachmentsList(attachments: state.attachments),
+            if (state.recordedAudioDuration != null)
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 5.h),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.w,
+                      vertical: 8.h,
+                    ),
+                    decoration: BoxDecoration(
+                      color: ColorsApp.greenPro.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(20.r),
+                      border: Border.all(color: ColorsApp.greenPro),
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.mic, color: ColorsApp.greenPro, size: 20.sp),
+                        SizedBox(width: 8.w),
+                        Text(
+                          "تسجيل صوتي (${state.recordedAudioDuration} ثانية)",
+                          style: TextStyle(
+                            color: ColorsApp.greenPro,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14.sp,
+                          ),
+                        ),
+                        SizedBox(width: 8.w),
+                        GestureDetector(
+                          onTap: () {
+                            context.read<ReportInputBloc>().add(RemoveAudio());
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.red,
+                            size: 20.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             Padding(
               padding: EdgeInsets.only(bottom: 20.h, left: 10.w, right: 10.w),
               child: Row(
@@ -55,9 +99,14 @@ class _ReportInputAreaState extends State<ReportInputArea> {
 
                   AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
-                    width: state.status == ReportInputStatus.idle
-                        ? 260.w
-                        : 310.w,
+                    width:
+                        (state.status == ReportInputStatus.idle &&
+                            NewMunu.selectedItems.isNotEmpty)
+                        ? 230.w
+                        : ((state.status == ReportInputStatus.idle ||
+                                  NewMunu.selectedItems.isNotEmpty)
+                              ? 260.w
+                              : 310.w),
                     decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.all(Radius.circular(25.r)),
@@ -92,12 +141,14 @@ class _ReportInputAreaState extends State<ReportInputArea> {
                           horizontal: 16.w,
                           vertical: 12.h,
                         ),
-                        prefixIcon: const AttachmentButton(),
+                        prefixIcon: state.recordedAudioDuration != null || state.attachments.isNotEmpty
+                            ? null
+                            : const AttachmentButton(),
                       ),
                     ),
                   ),
 
-                  if (state.status == ReportInputStatus.typingOrAttachment)
+                  if (NewMunu.selectedItems.isNotEmpty)
                     Expanded(child: const ReportSendButton())
                   else
                     const SizedBox.shrink(),

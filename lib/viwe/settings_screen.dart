@@ -4,7 +4,7 @@ import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/widgets/logout_dialog.dart';
 import 'package:projct/core/widgets/setting_item.dart';
-import 'package:projct/viwe/profile_user.dart';
+import 'package:projct/viwe/profile/profile_user.dart';
 import 'package:projct/viwe/report/report_screen.dart';
 
 class SettingsScreen extends StatefulWidget {

@@ -34,6 +34,15 @@ class CancelRecording extends ReportInputEvent {}
 
 class StopRecording extends ReportInputEvent {}
 
+class IncidentTypesChanged extends ReportInputEvent {
+  final List<AttachmentItem> selectedTypes;
+  IncidentTypesChanged(this.selectedTypes);
+  @override
+  List<Object?> get props => [selectedTypes];
+}
+
+class RemoveAudio extends ReportInputEvent {}
+
 class RecordingDurationUpdated extends ReportInputEvent {
   final int duration;
   RecordingDurationUpdated(this.duration);

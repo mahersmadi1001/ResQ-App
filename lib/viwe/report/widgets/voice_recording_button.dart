@@ -10,6 +10,7 @@ class VoiceRecordingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5.w),
       decoration: BoxDecoration(
         color: Colors.grey.shade200,
         shape: BoxShape.circle,
@@ -18,11 +19,7 @@ class VoiceRecordingButton extends StatelessWidget {
         onPressed: () {
           context.read<ReportInputBloc>().add(StartRecording());
         },
-        icon: Icon(
-          Icons.mic,
-          color: Colors.grey.shade700,
-          size: 28.sp,
-        ),
+        icon: Icon(Icons.mic, color: Colors.grey.shade700, size: 28.sp),
       ),
     );
   }

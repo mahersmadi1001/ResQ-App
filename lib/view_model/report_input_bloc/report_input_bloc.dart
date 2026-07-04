@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'report_input_event.dart';
 import 'report_input_state.dart';
+import 'package:projct/model/item_munu_modal.dart';
 
 class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
   Timer? _recordingTimer;
@@ -15,22 +16,16 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
     on<CancelRecording>(_onCancelRecording);
     on<StopRecording>(_onStopRecording);
     on<RecordingDurationUpdated>(_onRecordingDurationUpdated);
+    on<IncidentTypesChanged>(_onIncidentTypesChanged);
+    on<RemoveAudio>(_onRemoveAudio);
     on<ClearInput>(_onClearInput);
-    // on<SelecteOption>(_togleOption);
   }
 
   void _onTextChanged(TextChanged event, Emitter<ReportInputState> emit) {
-    final newStatus = _determineStatus(event.text, state.attachments);
+    final newStatus = _determineStatus(
+        event.text, state.attachments, state.selectedIncidentTypes, state.recordedAudioDuration);
     emit(state.copyWith(text: event.text, status: newStatus));
   }
-
-  // void _togleOption(SelecteOption event, Emitter<ReportInputState> emit) {
-  //   if (event.Options.isNotEmpty) {
-  //     emit(state.copyWith(status: ReportInputStatus.OptionSelect));
-  //   } else {
-  //     emit(state.copyWith());
-  //   }
-  // }
 
   void _onAttachmentsAdded(
     AttachmentsAdded event,
@@ -38,7 +33,8 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
   ) {
     final updatedAttachments = List<AssetEntity>.from(state.attachments)
       ..addAll(event.newAttachments);
-    final newStatus = _determineStatus(state.text, updatedAttachments);
+    final newStatus = _determineStatus(
+        state.text, updatedAttachments, state.selectedIncidentTypes, state.recordedAudioDuration);
     emit(state.copyWith(attachments: updatedAttachments, status: newStatus));
   }
 
@@ -48,8 +44,18 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
   ) {
     final updatedAttachments = List<AssetEntity>.from(state.attachments)
       ..remove(event.attachment);
-    final newStatus = _determineStatus(state.text, updatedAttachments);
+    final newStatus = _determineStatus(
+        state.text, updatedAttachments, state.selectedIncidentTypes, state.recordedAudioDuration);
     emit(state.copyWith(attachments: updatedAttachments, status: newStatus));
+  }
+
+  void _onIncidentTypesChanged(
+    IncidentTypesChanged event,
+    Emitter<ReportInputState> emit,
+  ) {
+    final newStatus = _determineStatus(
+        state.text, state.attachments, event.selectedTypes, state.recordedAudioDuration);
+    emit(state.copyWith(selectedIncidentTypes: event.selectedTypes, status: newStatus));
   }
 
   void _onStartRecording(StartRecording event, Emitter<ReportInputState> emit) {
@@ -69,8 +75,14 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
     _recordingTimer?.cancel();
     emit(
       state.copyWith(
-        status: _determineStatus(state.text, state.attachments),
+        status: _determineStatus(
+          state.text,
+          state.attachments,
+          state.selectedIncidentTypes,
+          null,
+        ),
         recordingDuration: 0,
+        clearAudio: true, 
       ),
     );
   }
@@ -79,8 +91,28 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
     _recordingTimer?.cancel();
     emit(
       state.copyWith(
-        status: _determineStatus(state.text, state.attachments),
+        status: _determineStatus(
+          state.text,
+          state.attachments,
+          state.selectedIncidentTypes,
+          state.recordingDuration, 
+        ),
+        recordedAudioDuration: state.recordingDuration,
         recordingDuration: 0,
+      ),
+    );
+  }
+
+  void _onRemoveAudio(RemoveAudio event, Emitter<ReportInputState> emit) {
+    emit(
+      state.copyWith(
+        status: _determineStatus(
+          state.text,
+          state.attachments,
+          state.selectedIncidentTypes,
+          null,
+        ),
+        clearAudio: true,
       ),
     );
   }
@@ -98,8 +130,13 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
     emit(const ReportInputState());
   }
 
-  ReportInputStatus _determineStatus(String text, List<dynamic> attachments) {
-    if (text.isNotEmpty || attachments.isNotEmpty) {
+  ReportInputStatus _determineStatus(
+    String text,
+    List<dynamic> attachments,
+    List<dynamic> incidentTypes,
+    int? audioDuration,
+  ) {
+    if (text.isNotEmpty || attachments.isNotEmpty || audioDuration != null) {
       return ReportInputStatus.typingOrAttachment;
     }
     return ReportInputStatus.idle;

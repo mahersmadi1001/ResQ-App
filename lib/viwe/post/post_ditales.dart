@@ -120,7 +120,7 @@ class PostDetailsContent extends StatelessWidget {
           SizedBox(height: 12.h),
           PostMetaDateTime(createdAt: post.createdAt),
           SizedBox(height: 24.h),
-          PostLocationCard(address: post.address),
+          // PostLocationCard(address: post.address),
           SizedBox(height: 24.h),
           PostSectionHeading(title: "Details"),
           SizedBox(height: 10.h),

@@ -11,8 +11,10 @@ import 'package:projct/core/widgets/new_munu.dart';
 import 'package:projct/model/user_model.dart';
 import 'package:projct/service/cache_service.dart';
 import 'package:projct/service/refresh_token_service.dart';
-
+import 'package:projct/view_model/report_input_bloc/report_input_event.dart';
 import 'package:projct/viwe/report/widgets/report_input_area.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projct/view_model/report_input_bloc/report_input_bloc.dart';
 
 UserModel? user;
 
@@ -63,100 +65,113 @@ class _ReportScreenState extends State<ReportScreen> {
           ),
         ),
       ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    SizedBox(height: 35.h),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          height: 55.h,
-
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                              bottomRight: Radius.circular(35.r),
-                              topRight: Radius.circular(35.r),
-                            ),
-                            color: ColorsApp.yalwoPro.withOpacity(0.25),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(10.sp),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Welcome",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: ColorsApp.greenPro,
-                                    fontSize: 20.sp,
-                                  ),
-                                ),
-                                Text(
-                                  " ${user?.firstName ?? ""}",
-                                  style: TextStyle(
-                                    color: ColorsApp.yalwoPro,
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(height: 40.h),
-
-                    BoxTextRepot(statment: ConstensApp.statment),
-
-                    SizedBox(height: 40.h),
-
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+      body: BlocProvider(
+        create: (context) => ReportInputBloc(),
+        child: Builder(
+          builder: (context) {
+            return SizedBox(
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
                       child: Column(
                         children: [
+                          SizedBox(height: 35.h),
+
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(
-                                "Incident Types ",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  fontWeight: FontWeight.bold,
-                                  color: ColorsApp.greenPro,
+                              Container(
+                                alignment: Alignment.center,
+                                height: 55.h,
+
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    bottomRight: Radius.circular(35.r),
+                                    topRight: Radius.circular(35.r),
+                                  ),
+                                  color: ColorsApp.yalwoPro.withOpacity(0.25),
                                 ),
-                              ),
-                              Text(
-                                "*",
-                                style: TextStyle(
-                                  fontSize: 16.sp,
-                                  color: Colors.red,
+                                child: Padding(
+                                  padding: EdgeInsets.all(10.sp),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Welcome",
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          color: ColorsApp.greenPro,
+                                          fontSize: 20.sp,
+                                        ),
+                                      ),
+                                      Text(
+                                        " ${user?.firstName ?? ""}",
+                                        style: TextStyle(
+                                          color: ColorsApp.yalwoPro,
+                                          fontSize: 24.sp,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(height: 10.h),
-                          NewMunu(),
+
+                          SizedBox(height: 40.h),
+
+                          BoxTextRepot(statment: ConstensApp.statment),
+
+                          SizedBox(height: 40.h),
+
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20.w),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Incident Types ",
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                        fontWeight: FontWeight.bold,
+                                        color: ColorsApp.greenPro,
+                                      ),
+                                    ),
+                                    Text(
+                                      "*",
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(height: 10.h),
+                                NewMunu(
+                                  onSelectionChanged: (selectedItems) {
+                                    context.read<ReportInputBloc>().add(
+                                      IncidentTypesChanged(selectedItems),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 40.h),
                         ],
                       ),
                     ),
-                    SizedBox(height: 40.h),
-                  ],
-                ),
-              ),
-            ),
+                  ),
 
-            const ReportInputArea(),
-          ],
+                  const ReportInputArea(),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

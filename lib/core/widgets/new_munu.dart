@@ -9,13 +9,25 @@ import 'package:projct/view_model/report_input_bloc/report_input_bloc.dart';
 import 'package:projct/view_model/report_input_bloc/report_input_event.dart';
 
 class NewMunu extends StatefulWidget {
-  NewMunu({super.key});
+  final ValueChanged<List<AttachmentItem>>? onSelectionChanged;
+
+  NewMunu({super.key, this.onSelectionChanged});
   static final List<AttachmentItem> selectedItems = [];
   @override
   State<NewMunu> createState() => _NewMunuState();
 }
 
 class _NewMunuState extends State<NewMunu> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (widget.onSelectionChanged != null) {
+        widget.onSelectionChanged!(List.from(NewMunu.selectedItems));
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -64,6 +76,9 @@ class _NewMunuState extends State<NewMunu> {
                                   //   ),
                                   // );
                                   NewMunu.selectedItems.add(item);
+                                }
+                                if (widget.onSelectionChanged != null) {
+                                  widget.onSelectionChanged!(List.from(NewMunu.selectedItems));
                                 }
                               });
                             },
@@ -115,6 +130,9 @@ class _NewMunuState extends State<NewMunu> {
 
                       MaterialButton(
                         onPressed: () {
+                          if (widget.onSelectionChanged != null) {
+                            widget.onSelectionChanged!(List.from(NewMunu.selectedItems));
+                          }
                           Navigator.pop(context);
 
                           setState(() {});

@@ -1,68 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/theme/colors_app.dart';
-import 'package:projct/model/user_model.dart';
-import 'package:projct/viwe/report/report_screen.dart';
-
-class ProfileScreenUser extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade50,
-      appBar: const PreferredSize(
-        preferredSize: Size.fromHeight(0),
-        child: ProfileStatusBar(),
-      ),
-      body: SizedBox(
-        width: double.infinity,
-        child: Column(
-          children: [
-            ProfileHeaderSection(
-              firstName: user!.firstName,
-              lastName: user!.lastName,
-            ),
-            Expanded(
-              child: SingleChildScrollView(
-                physics: const BouncingScrollPhysics(),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 24.w),
-                  child: Column(
-                    children: [
-                      SizedBox(height: 32.h),
-                      ProfileIdentityCard(
-                        method: user!.officialIdentifierMethod,
-                        identifier: user!.officialIdentifier,
-                      ),
-                      SizedBox(height: 20.h),
-                      ProfileInformationCard(
-                        firstName: user!.firstName,
-                        lastName: user!.lastName,
-                        email: user!.email,
-                      ),
-                      SizedBox(height: 40.h),
-                      // const ProfileFooterBranding(),
-                      // SizedBox(height: 20.h),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ProfileStatusBar extends StatelessWidget {
-  const ProfileStatusBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(backgroundColor: Colors.white, elevation: 0);
-  }
-}
 
 class ProfileHeaderSection extends StatelessWidget {
   final String firstName;
@@ -119,7 +59,7 @@ class ProfileLogoTopBar extends StatelessWidget {
           bottomRight: Radius.circular(25.r),
         ),
       ),
-      // color: ColorsApp.greenPro,
+
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -390,13 +330,11 @@ class ProfileInformationCard extends StatelessWidget {
             label: "First Name",
             value: firstName,
           ),
-          ProfileInfoDivider(),
           ProfileInfoRow(
             icon: Icons.person_outline_rounded,
             label: "Last Name",
             value: lastName,
           ),
-          ProfileInfoDivider(),
           ProfileInfoRow(
             icon: Icons.alternate_email_rounded,
             label: "Email Address",
@@ -454,6 +392,14 @@ class ProfileInfoRow extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 16.h),
+                child: Divider(
+                  color: Colors.grey.shade100,
+                  height: 1.h,
+                  thickness: 1.h,
+                ),
+              ),
             ],
           ),
         ),
@@ -461,42 +407,3 @@ class ProfileInfoRow extends StatelessWidget {
     );
   }
 }
-
-class ProfileInfoDivider extends StatelessWidget {
-  const ProfileInfoDivider({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16.h),
-      child: Divider(color: Colors.grey.shade100, height: 1.h, thickness: 1.h),
-    );
-  }
-}
-
-// class ProfileFooterBranding extends StatelessWidget {
-//   const ProfileFooterBranding({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Opacity(
-//       opacity: 0.25,
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Icon(Icons.shield_rounded, color: ColorsApp.greenPro, size: 16.sp),
-//           SizedBox(width: 6.w),
-//           Text(
-//             "Encrypted & Protected System",
-//             style: TextStyle(
-//               color: ColorsApp.greenPro,
-//               fontSize: 11.sp,
-//               fontWeight: FontWeight.w600,
-//               letterSpacing: 0.5,
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

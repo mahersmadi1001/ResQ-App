@@ -88,12 +88,12 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
       ToggleMediaSelection event, Emitter<MediaPickerState> emit) {
     if (state is MediaPickerLoaded) {
       final currentState = state as MediaPickerLoaded;
-      final List<AssetEntity> selected = List.from(currentState.selectedMedia);
+      List<AssetEntity> selected = List.from(currentState.selectedMedia);
 
       if (selected.contains(event.asset)) {
         selected.remove(event.asset);
       } else {
-        selected.add(event.asset);
+        selected = [event.asset]; // Limit to 1 item
       }
 
       emit(currentState.copyWith(selectedMedia: selected));
@@ -106,11 +106,10 @@ class MediaPickerBloc extends Bloc<MediaPickerEvent, MediaPickerState> {
       final currentState = state as MediaPickerLoaded;
       final List<AssetEntity> currentMedia =
           List.from(currentState.mediaList);
-      final List<AssetEntity> selected = List.from(currentState.selectedMedia);
-
+      
       // Add to beginning of the list
       currentMedia.insert(0, event.asset);
-      selected.add(event.asset);
+      List<AssetEntity> selected = [event.asset]; // Limit to 1 item
 
       emit(currentState.copyWith(
         mediaList: currentMedia,
