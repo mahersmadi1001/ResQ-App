@@ -16,6 +16,7 @@ class ReportInputState extends Equatable {
   final ReportInputStatus status;
   final int recordingDuration; // in seconds
   final int? recordedAudioDuration; // null means no audio
+  final String? recordedAudioPath; // actual file path
 
   const ReportInputState({
     this.text = "",
@@ -24,6 +25,7 @@ class ReportInputState extends Equatable {
     this.status = ReportInputStatus.idle,
     this.recordingDuration = 0,
     this.recordedAudioDuration,
+    this.recordedAudioPath,
   });
 
   ReportInputState copyWith({
@@ -33,6 +35,7 @@ class ReportInputState extends Equatable {
     ReportInputStatus? status,
     int? recordingDuration,
     int? recordedAudioDuration,
+    String? recordedAudioPath,
     bool clearAudio = false,
   }) {
     return ReportInputState(
@@ -42,10 +45,11 @@ class ReportInputState extends Equatable {
       status: status ?? this.status,
       recordingDuration: recordingDuration ?? this.recordingDuration,
       recordedAudioDuration: clearAudio ? null : (recordedAudioDuration ?? this.recordedAudioDuration),
+      recordedAudioPath: clearAudio ? null : (recordedAudioPath ?? this.recordedAudioPath),
     );
   }
 
   @override
   List<Object?> get props =>
-      [text, attachments, selectedIncidentTypes, status, recordingDuration, recordedAudioDuration];
+      [text, attachments, selectedIncidentTypes, status, recordingDuration, recordedAudioDuration, recordedAudioPath];
 }

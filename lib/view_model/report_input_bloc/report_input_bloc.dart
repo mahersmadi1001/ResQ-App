@@ -4,9 +4,12 @@ import 'package:photo_manager/photo_manager.dart';
 import 'report_input_event.dart';
 import 'report_input_state.dart';
 import 'package:projct/model/item_munu_modal.dart';
+import 'package:record/record.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
   Timer? _recordingTimer;
+  final _audioRecorder = AudioRecorder();
 
   ReportInputBloc() : super(const ReportInputState()) {
     on<TextChanged>(_onTextChanged);
@@ -58,21 +61,28 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
     emit(state.copyWith(selectedIncidentTypes: event.selectedTypes, status: newStatus));
   }
 
-  void _onStartRecording(StartRecording event, Emitter<ReportInputState> emit) {
-    _recordingTimer?.cancel();
-    emit(
-      state.copyWith(status: ReportInputStatus.recording, recordingDuration: 0),
-    );
-    _recordingTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      add(RecordingDurationUpdated(timer.tick));
-    });
+  Future<void> _onStartRecording(StartRecording event, Emitter<ReportInputState> emit) async {
+    if (await _audioRecorder.hasPermission()) {
+      final directory = await getApplicationDocumentsDirectory();
+      final path = '${directory.path}/report_audio_${DateTime.now().millisecondsSinceEpoch}.m4a';
+      await _audioRecorder.start(const RecordConfig(), path: path);
+      
+      _recordingTimer?.cancel();
+      emit(
+        state.copyWith(status: ReportInputStatus.recording, recordingDuration: 0),
+      );
+      _recordingTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+        add(RecordingDurationUpdated(timer.tick));
+      });
+    }
   }
 
-  void _onCancelRecording(
+  Future<void> _onCancelRecording(
     CancelRecording event,
     Emitter<ReportInputState> emit,
-  ) {
+  ) async {
     _recordingTimer?.cancel();
+    await _audioRecorder.stop();
     emit(
       state.copyWith(
         status: _determineStatus(
@@ -87,8 +97,9 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
     );
   }
 
-  void _onStopRecording(StopRecording event, Emitter<ReportInputState> emit) {
+  Future<void> _onStopRecording(StopRecording event, Emitter<ReportInputState> emit) async {
     _recordingTimer?.cancel();
+    final path = await _audioRecorder.stop();
     emit(
       state.copyWith(
         status: _determineStatus(
@@ -99,6 +110,7 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
         ),
         recordedAudioDuration: state.recordingDuration,
         recordingDuration: 0,
+        recordedAudioPath: path,
       ),
     );
   }
@@ -145,6 +157,7 @@ class ReportInputBloc extends Bloc<ReportInputEvent, ReportInputState> {
   @override
   Future<void> close() {
     _recordingTimer?.cancel();
+    _audioRecorder.dispose();
     return super.close();
   }
 }

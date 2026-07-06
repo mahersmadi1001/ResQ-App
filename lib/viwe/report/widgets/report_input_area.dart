@@ -102,7 +102,7 @@ class _ReportInputAreaState extends State<ReportInputArea> {
                     width:
                         (state.status == ReportInputStatus.idle &&
                             NewMunu.selectedItems.isNotEmpty)
-                        ? 230.w
+                        ? 250.w
                         : ((state.status == ReportInputStatus.idle ||
                                   NewMunu.selectedItems.isNotEmpty)
                               ? 260.w
@@ -141,7 +141,9 @@ class _ReportInputAreaState extends State<ReportInputArea> {
                           horizontal: 16.w,
                           vertical: 12.h,
                         ),
-                        prefixIcon: state.recordedAudioDuration != null || state.attachments.isNotEmpty
+                        prefixIcon:
+                            state.recordedAudioDuration != null ||
+                                state.attachments.isNotEmpty
                             ? null
                             : const AttachmentButton(),
                       ),
