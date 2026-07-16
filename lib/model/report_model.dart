@@ -26,27 +26,61 @@ class ReportModel {
     String? latitude,
     String? longitude,
     List<dynamic>? media,
-  }) => ReportModel(
-    newsType: newsType ?? this.newsType,
-    body: body ?? this.body,
-    latitude: latitude ?? this.latitude,
-    longitude: longitude ?? this.longitude,
-    media: media ?? this.media,
-  );
+  }) {
+    return ReportModel(
+      newsType: newsType ?? this.newsType,
+      body: body ?? this.body,
+      latitude: latitude ?? this.latitude,
+      longitude: longitude ?? this.longitude,
+      media: media ?? this.media,
+    );
+  }
 
-  factory ReportModel.fromJson(Map<String, dynamic> json) => ReportModel(
-    newsType: List<String>.from(json["news_type"].map((x) => x)),
-    body: json["body"],
-    latitude: json["latitude"],
-    longitude: json["longitude"],
-    media: List<dynamic>.from(json["media"].map((x) => x)),
-  );
+  factory ReportModel.fromJson(Map<String, dynamic> json) {
+    final location = json['location'] as Map<String, dynamic>?;
+
+    List<String> types = [];
+    if (json['news_type[]'] != null) {
+      if (json['news_type[]'] is List) {
+        types = List<String>.from(json['news_type[]'].map((x) => x.toString()));
+      } else {
+        types = [json['news_type[]'].toString()];
+      }
+    } else if (json['types'] != null) {
+      if (json['types'] is List) {
+        types = List<String>.from(json['types'].map((x) => x.toString()));
+      }
+    }
+
+    List<dynamic> mediaList = [];
+    if (json['media'] != null) {
+      if (json['media'] is List) {
+        mediaList = List<dynamic>.from(json['media']);
+      } else {
+        mediaList = [json['media']];
+      }
+    }
+
+    return ReportModel(
+      newsType: types,
+      body: json['body']?.toString() ?? '',
+      latitude:
+          location?['latitude']?.toString() ??
+          json['latitude']?.toString() ??
+          '',
+      longitude:
+          location?['longitude']?.toString() ??
+          json['longitude']?.toString() ??
+          '',
+      media: mediaList,
+    );
+  }
 
   Map<String, dynamic> toJson() => {
-    "news_type": List<dynamic>.from(newsType.map((x) => x)),
+    "news_type[]": newsType,
     "body": body,
     "latitude": latitude,
     "longitude": longitude,
-    "media": List<dynamic>.from(media.map((x) => x)),
+    "media": media,
   };
 }

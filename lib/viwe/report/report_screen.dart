@@ -127,7 +127,8 @@ class _ReportScreenState extends State<ReportScreen> {
                                   child: Padding(
                                     padding: EdgeInsets.all(10.sp),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "Welcome",
@@ -185,8 +186,8 @@ class _ReportScreenState extends State<ReportScreen> {
                                   NewMunu(
                                     onSelectionChanged: (selectedItems) {
                                       context.read<ReportInputBloc>().add(
-                                            IncidentTypesChanged(selectedItems),
-                                          );
+                                        IncidentTypesChanged(selectedItems),
+                                      );
                                     },
                                   ),
                                 ],
@@ -214,17 +215,23 @@ class _ReportScreenState extends State<ReportScreen> {
     final address = data['address'];
 
     final title = advice?['title'] ?? 'تم الإرسال بنجاح';
-    final steps = advice?['scope'] as List<dynamic>? ?? [];
+    final steps = advice?['steps'] as List<dynamic>? ?? [];
     final street = address?['street'] ?? '';
     final city = address?['city'] ?? '';
     final governorate = address?['governorate'] ?? '';
-    final addressText = [street, city, governorate].where((s) => s.isNotEmpty).join('، ');
+    final addressText = [
+      street,
+      city,
+      governorate,
+    ].where((s) => s.isNotEmpty).join('، ');
 
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (_) => Dialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.r)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24.r),
+        ),
         backgroundColor: Colors.transparent,
         child: Container(
           decoration: BoxDecoration(
@@ -274,7 +281,11 @@ class _ReportScreenState extends State<ReportScreen> {
                           ),
                         ],
                       ),
-                      child: Icon(Icons.check_rounded, color: ColorsApp.greenPro, size: 36.sp),
+                      child: Icon(
+                        Icons.check_rounded,
+                        color: ColorsApp.greenPro,
+                        size: 36.sp,
+                      ),
                     ),
                     SizedBox(height: 12.h),
                     Text(
@@ -286,24 +297,27 @@ class _ReportScreenState extends State<ReportScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    if (addressText.isNotEmpty) ...
-                      [
-                        SizedBox(height: 6.h),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.location_on, color: ColorsApp.yalwoPro, size: 16.sp),
-                            SizedBox(width: 4.w),
-                            Text(
-                              addressText,
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 13.sp,
-                              ),
+                    if (addressText.isNotEmpty) ...[
+                      SizedBox(height: 6.h),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.location_on,
+                            color: ColorsApp.yalwoPro,
+                            size: 16.sp,
+                          ),
+                          SizedBox(width: 4.w),
+                          Text(
+                            addressText,
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 13.sp,
                             ),
-                          ],
-                        ),
-                      ],
+                          ),
+                        ],
+                      ),
+                    ],
                   ],
                 ),
               ),
@@ -311,7 +325,10 @@ class _ReportScreenState extends State<ReportScreen> {
               // Steps
               if (steps.isNotEmpty)
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20.w,
+                    vertical: 16.h,
+                  ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

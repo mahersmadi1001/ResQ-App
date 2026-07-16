@@ -26,7 +26,7 @@ class _MapScreenState extends State<MapScreen> {
   @override
   void initState() {
     super.initState();
-    final String userToken = "YOUR_TOKEN_HERE";
+
     context.read<MapLocationBloc>().add(FetchLocationsEvent());
   }
 
@@ -47,7 +47,9 @@ class _MapScreenState extends State<MapScreen> {
             ),
           );
         }
-      } catch (e) {}
+      } catch (e) {
+        print(e);
+      }
     });
   }
 
@@ -145,7 +147,7 @@ class StaticMapWidget extends StatelessWidget {
         "type": "raster",
         "source": "google-satellite",
         "minzoom": 0,
-        "maxzoom": 22,
+        "maxzoom": 27,
       },
     ],
   });
@@ -160,9 +162,9 @@ class StaticMapWidget extends StatelessWidget {
           tilt: 45.0,
         ),
         styleString: googleHybridStyle,
-        trackCameraPosition: false,
+        trackCameraPosition: true,
         myLocationEnabled: true,
-        myLocationTrackingMode: MyLocationTrackingMode.tracking,
+        // myLocationTrackingMode: MyLocationTrackingMode.tracking,
         onMapCreated: onMapCreated,
         onStyleLoadedCallback: onStyleLoaded,
       ),
