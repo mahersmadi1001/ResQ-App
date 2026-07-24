@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/config/di.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/service/post_service.dart';
@@ -11,8 +12,8 @@ import 'package:projct/viwe/post/admin_post_page.dart';
 
 import 'package:projct/viwe/post/users_post_page.dart';
 
-class NewsScreen extends StatelessWidget {
-  const NewsScreen({super.key});
+class PostScreen extends StatelessWidget {
+  const PostScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +36,11 @@ class NewsScreen extends StatelessWidget {
               labelStyle: TextStyle(color: ColorsApp.yalwoPro),
               tabs: [
                 Tab(
-                  text: "User Post",
+                  text: context.tr("posts_screen.user_post"),
                   icon: Icon(Icons.web, color: ColorsApp.withePro),
                 ),
                 Tab(
-                  text: "Admin Post",
+                  text: context.tr("posts_screen.admin_post"),
                   icon: Icon(
                     Icons.admin_panel_settings,
                     color: ColorsApp.withePro,
@@ -56,7 +57,7 @@ class NewsScreen extends StatelessWidget {
               ),
             ),
             title: Text(
-              "Posts Page",
+              context.tr("posts_screen.posts_page"),
               style: TextStyle(
                 shadows: [
                   Shadow(

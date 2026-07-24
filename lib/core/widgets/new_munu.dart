@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/constens/constens.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/model/item_munu_modal.dart';
 import 'package:projct/view_model/report_input_bloc/report_input_bloc.dart';
@@ -63,22 +64,14 @@ class _NewMunuState extends State<NewMunu> {
                             onTap: () {
                               setModalState(() {
                                 if (isSelected) {
-                                  // context.read<ReportInputBloc>().add(
-                                  //   SelecteOption(
-                                  //     Options: NewMunu.selectedItems,
-                                  //   ),
-                                  // );
                                   NewMunu.selectedItems.remove(item);
                                 } else {
-                                  // context.read<ReportInputBloc>().add(
-                                  //   SelecteOption(
-                                  //     Options: NewMunu.selectedItems,
-                                  //   ),
-                                  // );
                                   NewMunu.selectedItems.add(item);
                                 }
                                 if (widget.onSelectionChanged != null) {
-                                  widget.onSelectionChanged!(List.from(NewMunu.selectedItems));
+                                  widget.onSelectionChanged!(
+                                    List.from(NewMunu.selectedItems),
+                                  );
                                 }
                               });
                             },
@@ -131,7 +124,9 @@ class _NewMunuState extends State<NewMunu> {
                       MaterialButton(
                         onPressed: () {
                           if (widget.onSelectionChanged != null) {
-                            widget.onSelectionChanged!(List.from(NewMunu.selectedItems));
+                            widget.onSelectionChanged!(
+                              List.from(NewMunu.selectedItems),
+                            );
                           }
                           Navigator.pop(context);
 
@@ -149,7 +144,7 @@ class _NewMunuState extends State<NewMunu> {
                         minWidth: 200.w,
                         height: 50.h,
                         child: Text(
-                          "تأكيد الاختيار",
+                          context.tr('general.confirm_selection'),
                           style: TextStyle(
                             color: ColorsApp.yalwoPro,
                             fontSize: 16.sp,
@@ -186,8 +181,8 @@ class _NewMunuState extends State<NewMunu> {
           children: [
             Text(
               NewMunu.selectedItems.isNotEmpty
-                  ? "States Selected Successfully"
-                  : "Select Incident Types...",
+                  ? context.tr('report_screen.states_selected_successfully')
+                  : context.tr('report_screen.select_incident_types'),
               style: TextStyle(
                 color: NewMunu.selectedItems.isNotEmpty
                     ? ColorsApp.greenPro

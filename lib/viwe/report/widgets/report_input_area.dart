@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/new_munu.dart';
 import 'package:projct/view_model/report_input_bloc/report_input_bloc.dart';
@@ -66,7 +67,7 @@ class _ReportInputAreaState extends State<ReportInputArea> {
                         Icon(Icons.mic, color: ColorsApp.greenPro, size: 20.sp),
                         SizedBox(width: 8.w),
                         Text(
-                          "تسجيل صوتي (${state.recordedAudioDuration} ثانية)",
+                          " ${context.tr("report_screen.voice_recording")} (${state.recordedAudioDuration} ${context.tr("report_screen.second")})",
                           style: TextStyle(
                             color: ColorsApp.greenPro,
                             fontWeight: FontWeight.bold,
@@ -131,7 +132,7 @@ class _ReportInputAreaState extends State<ReportInputArea> {
                       minLines: 1,
                       style: TextStyle(color: Colors.black87, fontSize: 16.sp),
                       decoration: InputDecoration(
-                        hintText: "Write Here ...",
+                        hintText: context.tr('report_screen.write_here'),
                         hintStyle: TextStyle(
                           color: Colors.grey.shade500,
                           fontSize: 16.sp,

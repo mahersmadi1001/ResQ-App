@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:photo_manager/photo_manager.dart';
+
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/view_model/media_picker_bloc/media_picker_bloc.dart';
 import 'package:projct/view_model/media_picker_bloc/media_picker_event.dart';
 import 'package:projct/view_model/media_picker_bloc/media_picker_state.dart';
 import 'package:projct/viwe/report/widgets/live_camera_tile.dart';
 import 'package:projct/viwe/report/widgets/media_tile.dart';
-import 'package:projct/viwe/report/widgets/camera_screen.dart';
 
 class MediaPickerSheet extends StatefulWidget {
   @override
@@ -30,7 +30,9 @@ class _MediaPickerSheetState extends State<MediaPickerSheet> {
     if (state is MediaPickerLoaded && state.hasMore) {
       if (_scrollController.position.pixels >=
           _scrollController.position.maxScrollExtent - 200) {
-        context.read<MediaPickerBloc>().add(FetchMedia(page: state.currentPage + 1));
+        context.read<MediaPickerBloc>().add(
+          FetchMedia(page: state.currentPage + 1),
+        );
       }
     }
   }
@@ -63,14 +65,19 @@ class _MediaPickerSheetState extends State<MediaPickerSheet> {
             builder: (context, state) {
               if (state is MediaPickerLoaded) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 5.h),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 15.w,
+                    vertical: 5.h,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Tap to select (${state.selectedMedia.length})",
+                        "${context.tr("report_screen.tap_to_select")} (${state.selectedMedia.length})",
                         style: TextStyle(
-                            fontSize: 16.sp, fontWeight: FontWeight.bold),
+                          fontSize: 16.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       if (state.selectedMedia.isNotEmpty)
                         TextButton(
@@ -78,14 +85,14 @@ class _MediaPickerSheetState extends State<MediaPickerSheet> {
                             Navigator.pop(context, state.selectedMedia);
                           },
                           child: Text(
-                            "Done",
+                            context.tr("general.done"),
                             style: TextStyle(
                               color: ColorsApp.greenPro,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                        )
+                        ),
                     ],
                   ),
                 );
@@ -97,14 +104,16 @@ class _MediaPickerSheetState extends State<MediaPickerSheet> {
             child: BlocBuilder<MediaPickerBloc, MediaPickerState>(
               builder: (context, state) {
                 if (state is MediaPickerPermissionDenied) {
-                  return const Center(child: Text("Permission Denied"));
+                  return Center(
+                    child: Text(context.tr("general.permission_denied")),
+                  );
                 }
                 if (state is MediaPickerError) {
                   return Center(
                     child: Padding(
                       padding: EdgeInsets.all(20.w),
                       child: Text(
-                        "Error: ${state.message}",
+                        "${context.tr("general.there_is_something_wrong")} ${state.message}",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.red, fontSize: 14.sp),
                       ),
@@ -125,9 +134,9 @@ class _MediaPickerSheetState extends State<MediaPickerSheet> {
                       if (index == 0) {
                         return LiveCameraTile(
                           onMediaCaptured: (newAsset) {
-                            context
-                                .read<MediaPickerBloc>()
-                                .add(AddNewCapturedMedia(asset: newAsset));
+                            context.read<MediaPickerBloc>().add(
+                              AddNewCapturedMedia(asset: newAsset),
+                            );
                           },
                         );
                       }
@@ -138,9 +147,9 @@ class _MediaPickerSheetState extends State<MediaPickerSheet> {
                         asset: asset,
                         isSelected: isSelected,
                         onTap: () {
-                          context
-                              .read<MediaPickerBloc>()
-                              .add(ToggleMediaSelection(asset: asset));
+                          context.read<MediaPickerBloc>().add(
+                            ToggleMediaSelection(asset: asset),
+                          );
                         },
                       );
                     },

@@ -1,0 +1,118 @@
+{
+  "general": {
+    "confirm_selection": "Confirm Selection",
+    "settings": "Settings",
+    "language": "Language",
+    "arabic": "Arabic",
+    "english": "English",
+    "map": "Map",
+    "posts": "Posts",
+    "report": "Report",
+    "ok": "OK",
+    "sent_successfully": "Sent successfully",
+    "no_data": "No data",
+    "there_is_no_information": "There is no information",
+    "there_is_something_wrong": "Something went wrong",
+    "cancel": "Cancel",
+    "yes": "Yes",
+    "permission_denied": "Permission denied",
+    "done": "Done"
+  },
+
+  "incident_types": {
+    "fire": "Fire",
+    "flood": "Flood",
+    "theft": "Theft",
+    "murder": "Murder",
+    "injury": "Injury",
+    "traffic_accident": "Traffic Accident",
+    "earthquake": "Earthquake",
+    "building_collapsing": "Building Collapse",
+    "kidnapping": "Kidnapping",
+    "gang_violence": "Gang Violence",
+    "missing_person": "Missing Person",
+    "explosion": "Explosion",
+    "medical_emergency": "Medical Emergency"
+  },
+
+  "report_screen": {
+    "report_page": "Report Page",
+    "welcome": "Welcome",
+    "incident_types": "Incident Types",
+    "states_selected_successfully": "States Selected Successfully",
+    "select_incident_types": "Select incident types...",
+    "write_here": "Write here...",
+    "send": "Send",
+    "recording": "Recording...",
+    "camera": "Camera",
+    "tap_to_select": "Tap to select",
+    "how_to_send_report": "How to send a report",
+    "statement1": "1. Identify the incidents that happen to you or around you.",
+    "statement2": "2. Send the information you want (text, audio, image, video).",
+    "statement3": "3. After sending, don't close the app because you will receive a reply with the initial steps you need to take.",
+    "safety_instructions": "Safety Instructions:",
+    "you_need_to_allow_camera": "You need to allow camera and microphone permissions to use",
+    "details": "Details",
+    "drag_to_cancel": "Slide to cancel",
+    "voice_recording": "Voice recording",
+    "second": "seconds"
+  },
+
+  "posts_screen": {
+    "posts_page": "Posts Page",
+    "user_post": "User Posts",
+    "admin_post": "Admin Posts",
+    "there_is_no_information": "There is no information"
+  },
+
+  "map_screen": {
+    "map_page": "Map Page"
+  },
+
+  "settings_screen": {
+    "profile_details": "Profile Details",
+    "notifications": "Notifications",
+    "dark_mode": "Dark Mode",
+    "change_language": "Change Language",
+    "logout": "Log Out",
+    "logout_confirm_title": "Log Out",
+    "logout_confirm_body": "Are you sure you want to log out?"
+  },
+
+  "profile_screen": {
+    "account_profile": "Account Profile",
+    "official_identification": "Official Identification",
+    "secured": "Secured",
+    "personal_details": "Personal Details",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email_address": "Email Address"
+  },
+  "api_errors": {
+    "connection_timeout": "Connection timeout with API server",
+    "send_timeout": "Send timeout in connection with server",
+    "receive_timeout": "Receive timeout in connection with server",
+    "bad_certificate": "Security certificate is invalid",
+    "request_cancelled": "Request to server was cancelled",
+    "no_internet_connection": "No internet connection, please check your network",
+    "unexpected_error": "An unexpected error occurred, please try again later"
+  },
+  "damascus_districts": {
+    "kfar_souseh": "Kafr Sousa",
+    "mezzeh": "Al-Mazza",
+    "al_salihiyah": "As-Salihiya",
+    "rukn_al_din": "Rukn ad-Din",
+    "mouhajirin": "Al-Muhajerin",
+    "midan": "Al-Midan",
+    "shaghour": "Ash-Shaghour",
+    "old_damascus": "Ancient City of Damascus",
+    "sarouja": "Sarouja",
+    "qaboun": "Al-Qaboun",
+    "barzeh": "Barza",
+    "dummar": "Dummar",
+    "qanawat": "Al-Qanawat",
+    "yarmouk": "Al-Yarmuk",
+    "jober": "Joubar",
+    "qadam": "Al-Qadam"
+  }
+}

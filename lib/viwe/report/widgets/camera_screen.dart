@@ -3,9 +3,8 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:projct/core/theme/colors_app.dart';
-
 import 'package:permission_handler/permission_handler.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 
 class CameraScreen extends StatefulWidget {
   @override
@@ -30,7 +29,7 @@ class _CameraScreenState extends State<CameraScreen> {
       try {
         final cameras = await availableCameras();
         if (cameras.isNotEmpty) {
-          _controller = CameraController( 
+          _controller = CameraController(
             cameras.first,
             ResolutionPreset.high,
             enableAudio: true,
@@ -44,8 +43,12 @@ class _CameraScreenState extends State<CameraScreen> {
     } else {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("يجب السماح بصلاحيات الكاميرا والميكروفون للاستخدام"),
+          SnackBar(
+            content: Text(
+              AppLocalizations.trNoContext(
+                "report_screen.You need to allow camera",
+              ),
+            ),
           ),
         );
         Navigator.pop(context);
@@ -65,7 +68,8 @@ class _CameraScreenState extends State<CameraScreen> {
       final XFile picture = await _controller!.takePicture();
       final File file = File(picture.path);
 
-      final AssetEntity? asset = await PhotoManager.editor.saveImage(filename: "",
+      final AssetEntity? asset = await PhotoManager.editor.saveImage(
+        filename: "",
         file.readAsBytesSync(),
         title: "IMG_${DateTime.now().millisecondsSinceEpoch}.jpg",
       );
@@ -165,8 +169,8 @@ class _CameraScreenState extends State<CameraScreen> {
                   color: Colors.red,
                   borderRadius: BorderRadius.circular(10.r),
                 ),
-                child: const Text(
-                  "Recording...",
+                child: Text(
+                  context.tr("report_screen.details"),
                   style: TextStyle(color: Colors.white),
                 ),
               ),

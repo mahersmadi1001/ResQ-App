@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
-
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
-
 import 'package:projct/viwe/map_screen.dart';
 import 'package:projct/viwe/post/post_screen.dart';
 import 'package:projct/viwe/report/report_screen.dart';
@@ -20,7 +18,7 @@ class ButtonNavBar extends StatefulWidget {
 class _ButtonNavBarState extends State<ButtonNavBar> {
   List<Widget> pages = [
     ReportScreen(),
-    NewsScreen(),
+    PostScreen(),
     MapScreen(initLocation: LatLng(33.5138073, 36.2765279)),
     SettingsScreen(),
   ];
@@ -70,33 +68,42 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
           },
           backgroundColor: ColorsApp.greenPro,
           destinations: [
-            const NavigationDestination(
-              icon: Icon(
+            NavigationDestination(
+              icon: const Icon(
                 Icons.remember_me_outlined,
                 color: ColorsApp.withePro,
               ),
-              selectedIcon: Icon(
+              selectedIcon: const Icon(
                 Icons.remember_me_outlined,
                 color: ColorsApp.yalwoPro,
               ),
-              label: "Rebort",
-            ),
-            const NavigationDestination(
-              enabled: true,
-              icon: Icon(Icons.newspaper, color: ColorsApp.withePro),
-              label: "Posts",
-              selectedIcon: Icon(Icons.newspaper, color: ColorsApp.yalwoPro),
-            ),
-            const NavigationDestination(
-              enabled: true,
-              icon: Icon(Icons.map, color: ColorsApp.withePro),
-              label: "Map",
-              selectedIcon: Icon(Icons.map, color: ColorsApp.yalwoPro),
+              label: context.tr('general.report'),
             ),
             NavigationDestination(
-              icon: Icon(Icons.settings_outlined, color: ColorsApp.withePro),
-              selectedIcon: Icon(Icons.settings, color: ColorsApp.yalwoPro),
-              label: "Settings",
+              enabled: true,
+              icon: const Icon(Icons.newspaper, color: ColorsApp.withePro),
+              label: context.tr('general.posts'),
+              selectedIcon: const Icon(
+                Icons.newspaper,
+                color: ColorsApp.yalwoPro,
+              ),
+            ),
+            NavigationDestination(
+              enabled: true,
+              icon: const Icon(Icons.map, color: ColorsApp.withePro),
+              label: context.tr('general.map'),
+              selectedIcon: const Icon(Icons.map, color: ColorsApp.yalwoPro),
+            ),
+            NavigationDestination(
+              icon: const Icon(
+                Icons.settings_outlined,
+                color: ColorsApp.withePro,
+              ),
+              selectedIcon: const Icon(
+                Icons.settings,
+                color: ColorsApp.yalwoPro,
+              ),
+              label: context.tr('general.settings'),
             ),
           ],
         ),

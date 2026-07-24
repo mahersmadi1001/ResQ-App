@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 
 class Failure {
   final String message;
@@ -9,30 +10,33 @@ class Failure {
   static String fromDioException(DioException dioException) {
     switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
-        return "انتهت مهلة الاتصال بخادم الـ API";
+        return AppLocalizations.trNoContext("api_errors.connection_timeout");
 
       case DioExceptionType.sendTimeout:
-        return "انتهت مهلة إرسال البيانات إلى السيرفر";
+        return AppLocalizations.trNoContext("api_errors.send_timeout");
 
       case DioExceptionType.receiveTimeout:
       case DioExceptionType.badCertificate:
-        return "شهادة الأمان (Certificate) غير صالحة";
+        return AppLocalizations.trNoContext("api_errors.bad_certificate");
 
       case DioExceptionType.badResponse:
-        return "${dioException.response?.statusMessage
-        } ${dioException.response?.statusCode} ";
+        return "${dioException.response?.statusMessage} ${dioException.response?.statusCode} ";
 
       case DioExceptionType.cancel:
-        return "تم إلغاء الطلب المرسل إلى السيرفر";
+        return AppLocalizations.trNoContext("api_errors.request_cancelled");
 
       case DioExceptionType.connectionError:
-        return "لا يوجد اتصال بالإنترنت، يرجى التحقق من الشبكة";
+        return AppLocalizations.trNoContext(
+          "api_errors.no_internet_connection",
+        );
 
       case DioExceptionType.unknown:
         if (dioException.message?.contains('SocketException') ?? false) {
-          return "لا يوجد اتصال بالإنترنت";
+          return AppLocalizations.trNoContext(
+            "api_errors.no_internet_connection",
+          );
         }
-        return "حدث خطأ غير متوقع، يرجى المحاولة لاحقاً";
+        return AppLocalizations.trNoContext("api_errors.unexpected_error");
     }
   }
 

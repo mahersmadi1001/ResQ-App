@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:projct/core/config/di.dart';
 import 'package:projct/core/erorr/erorr_handling.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/network/api_constants.dart';
 import 'package:projct/model/report_model.dart';
 import 'package:projct/service/cache_service.dart';
@@ -60,8 +61,8 @@ class ReportService {
           headers: {
             'Authorization': 'Bearer $token',
             'Accept': 'application/json',
-            'Accept-Language': 'ar',
-            'Content-Language': 'ar',
+            'Accept-Language': '${AppLocalizations.currentLanguage}',
+            'Content-Language': '${AppLocalizations.currentLanguage}',
           },
         ),
       );
@@ -86,11 +87,7 @@ class ReportService {
           }
         } catch (_) {}
       }
-      throw Failure(
-        message: errorMessage,
-        statusCode: e.response?.statusCode,
-      );
+      throw Failure(message: errorMessage, statusCode: e.response?.statusCode);
     }
   }
 }
-

@@ -1,14 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 
 class BoxTextRepot extends StatelessWidget {
-  const BoxTextRepot({
-    super.key,
-    required this.statment,
-  });
+  const BoxTextRepot({super.key, required this.statment});
 
   final String statment;
 
@@ -21,10 +18,7 @@ class BoxTextRepot extends StatelessWidget {
         decoration: BoxDecoration(
           color: ColorsApp.yalwoPro.withOpacity(0.15),
           border: Border(
-            left: BorderSide(
-              color: ColorsApp.yalwoPro,
-              width: 4.w,
-            ),
+            left: BorderSide(color: ColorsApp.yalwoPro, width: 4.w),
           ),
           borderRadius: BorderRadius.circular(12.r),
         ),
@@ -40,7 +34,7 @@ class BoxTextRepot extends StatelessWidget {
                 ),
                 SizedBox(width: 8.w),
                 Text(
-                  "How to send a report",
+                  context.tr("report_screen.how_to_send_report"),
                   style: TextStyle(
                     color: ColorsApp.greenPro,
                     fontSize: 16.sp,
@@ -51,7 +45,9 @@ class BoxTextRepot extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Text(
-              statment,
+              "${AppLocalizations.trNoContext("report_screen.statement1")}\n"
+              "${AppLocalizations.trNoContext("report_screen.statement2")}\n"
+              "${AppLocalizations.trNoContext("report_screen.statement3")}",
               style: TextStyle(
                 color: Colors.black87,
                 fontSize: 14.sp,

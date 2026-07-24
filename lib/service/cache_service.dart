@@ -5,6 +5,7 @@ class CacheService {
   static const String boxName = 'auth_box';
   static const String tokenKey = 'token';
   static const String userKey = 'user';
+  static const String languageKey = 'language';
 
   Box get _box => Hive.box(boxName);
 
@@ -12,6 +13,14 @@ class CacheService {
     await Hive.initFlutter();
     Hive.registerAdapter(UserModelAdapter());
     await Hive.openBox(boxName);
+  }
+
+  Future<void> saveLanguage(String languageCode) async {
+    await _box.put(languageKey, languageCode);
+  }
+
+  String getLanguage() {
+    return _box.get(languageKey, defaultValue: 'en');
   }
 
   Future<void> saveToken(String token) async {

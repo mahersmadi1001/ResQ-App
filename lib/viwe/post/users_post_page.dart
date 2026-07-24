@@ -1,8 +1,10 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/chips_address.dart';
 import 'package:projct/core/widgets/form_post.dart';
@@ -55,7 +57,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
             case PostStatus.success:
               {
                 if (state.posts.isEmpty) {
-                  return Center(child: Text("No Data"));
+                  return Center(child: Text(context.tr("posts_screen.there_is_no_information")));
                 } else {
                   return RefreshIndicator(
                     onRefresh: () async {
@@ -107,7 +109,9 @@ class _UsersPostPageState extends State<UsersPostPage> {
                 }
               }
             case PostStatus.failure:
-              return Center(child: Text(state.errorMessage ?? "Error Message"));
+              return Center(
+                child: Text(state.errorMessage ?? context.tr("posts_screen.user_post")),
+              );
             case PostStatus.loading:
               {
                 if (state.posts.isEmpty) {
@@ -204,7 +208,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
                       minWidth: 200.w,
                       height: 50.h,
                       child: Text(
-                        "تأكيد الاختيار",
+                        context.tr("general.confirm_selection"),
                         style: TextStyle(
                           color: ColorsApp.greenPro,
                           fontSize: 16.sp,

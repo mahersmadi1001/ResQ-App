@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/model/location_point_model.dart';
 import 'package:projct/view_model/map_location_bloc/map_location_bloc.dart';
@@ -80,7 +81,7 @@ class _MapScreenState extends State<MapScreen> {
           centerTitle: true,
           backgroundColor: ColorsApp.greenPro,
           title: Text(
-            "Map Page",
+            context.tr("map_screen.map_page"),
             style: TextStyle(
               shadows: const [
                 Shadow(
@@ -164,7 +165,7 @@ class StaticMapWidget extends StatelessWidget {
         styleString: googleHybridStyle,
         trackCameraPosition: true,
         myLocationEnabled: true,
-        // myLocationTrackingMode: MyLocationTrackingMode.tracking,
+
         onMapCreated: onMapCreated,
         onStyleLoadedCallback: onStyleLoaded,
       ),

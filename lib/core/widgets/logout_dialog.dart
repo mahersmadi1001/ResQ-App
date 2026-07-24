@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 
@@ -39,10 +40,13 @@ class LogoutDialog extends StatelessWidget {
             scrollable: true,
             backgroundColor: Colors.white,
             content: Text(
-              " you wante is Logout ?",
+              context.tr("settings_screen.logout_confirm_body"),
               style: TextStyle(color: ColorsApp.yalwoPro, fontSize: 20.sp),
             ),
-            title: const Text("Logout", style: TextStyle(color: Colors.red)),
+            title: Text(
+              context.tr("settings_screen.logout"),
+              style: TextStyle(color: Colors.red),
+            ),
             actions: [
               Row(
                 spacing: 20.w,
@@ -56,7 +60,7 @@ class LogoutDialog extends StatelessWidget {
                       Navigator.pop(context);
                     },
                     child: Text(
-                      "cancel",
+                      context.tr("general.cancel"),
                       style: const TextStyle(color: ColorsApp.yalwoPro),
                     ),
                   ),
@@ -72,7 +76,7 @@ class LogoutDialog extends StatelessWidget {
                             context.read<LogoutBloc>().add(SendLogout());
                           },
                           child: Text(
-                            "yes",
+                            context.tr("general.yes"),
                             style: const TextStyle(color: ColorsApp.yalwoPro),
                           ),
                         ),

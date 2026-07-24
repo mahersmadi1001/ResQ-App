@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/config/di.dart';
+import 'package:projct/core/localization/app_localizations.dart';
+import 'package:projct/core/localization/localization_bloc/localization_bloc.dart';
+import 'package:projct/core/localization/localization_bloc/localization_event.dart';
+import 'package:projct/core/localization/localization_bloc/localization_state.dart';
 import 'package:projct/service/cache_service.dart';
 import 'package:projct/service/map_location_service.dart';
 import 'package:projct/service/post_service.dart';
@@ -28,12 +33,16 @@ class MainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(436, 732),
+      designSize: const Size(436, 732),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
+            BlocProvider(
+              create: (context) =>
+                  LocalizationBloc()..add(const GetSavedLanguageEvent()),
+            ),
             BlocProvider(
               create: (context) => MapLocationBloc(
                 service: MapLocationService(cacheService: di<CacheService>()),
@@ -53,22 +62,37 @@ class MainPage extends StatelessWidget {
               },
             ),
           ],
-          child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            home: BlocBuilder<UserSessionBloc, UserSessionState>(
-              builder: (context, state) {
-                if (state is UserSessionInitial) {
-                  return SplashScreen();
-                } else if (state is UserFirstTimeState) {
-                  return OnBordingPageView();
-                } else if (state is UserAuthenticated) {
-                  return ButtonNavBar();
-                } else if (state is UserUnAuth) {
-                  return LoginScreen();
-                }
-                return SplashScreen();
-              },
-            ),
+          child: BlocBuilder<LocalizationBloc, LocalizationState>(
+            builder: (context, state) {
+              return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                locale: state.locale,
+                supportedLocales: const [
+                  Locale('ar'),
+                  Locale('en'),
+                ],
+                localizationsDelegates: const [
+                  AppLocalizations.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                home: BlocBuilder<UserSessionBloc, UserSessionState>(
+                  builder: (context, state) {
+                    if (state is UserSessionInitial) {
+                      return SplashScreen();
+                    } else if (state is UserFirstTimeState) {
+                      return OnBordingPageView();
+                    } else if (state is UserAuthenticated) {
+                      return ButtonNavBar();
+                    } else if (state is UserUnAuth) {
+                      return LoginScreen();
+                    }
+                    return SplashScreen();
+                  },
+                ),
+              );
+            },
           ),
         );
       },

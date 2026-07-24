@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/constens/constens.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 
 class ProfileHeaderSection extends StatelessWidget {
@@ -79,7 +79,7 @@ class ProfileLogoTopBar extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Account Profile",
+                  context.tr("profile_screen.account_profile"),
                   style: TextStyle(
                     color: ColorsApp.yalwoPro,
                     fontSize: 23.sp,
@@ -140,26 +140,29 @@ class ProfileUserFullName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          firstName,
-          style: TextStyle(
-            color: ColorsApp.greenPro,
-            fontSize: 26.sp,
-            fontWeight: FontWeight.bold,
+    return Directionality(
+      textDirection: TextDirection.ltr,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            firstName,
+            style: TextStyle(
+              color: ColorsApp.greenPro,
+              fontSize: 26.sp,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        Text(
-          " $lastName",
-          style: TextStyle(
-            color: ColorsApp.yalwoPro,
-            fontSize: 26.sp,
-            fontWeight: FontWeight.bold,
+          Text(
+            " $lastName",
+            style: TextStyle(
+              color: ColorsApp.yalwoPro,
+              fontSize: 26.sp,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -218,7 +221,7 @@ class ProfileIdentityCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "OFFICIAL IDENTIFICATION",
+                      context.tr("profile_screen.official_identification"),
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.6),
                         fontSize: 11.sp,
@@ -248,7 +251,7 @@ class ProfileIdentityCard extends StatelessWidget {
                           ),
                           SizedBox(width: 4.w),
                           Text(
-                            "SECURED",
+                            context.tr("profile_screen.secured"),
                             style: TextStyle(
                               color: ColorsApp.yalwoPro,
                               fontSize: 9.sp,
@@ -316,7 +319,7 @@ class ProfileInformationCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "PERSONAL DETAILS",
+            context.tr("profile_screen.personal_details"),
             style: TextStyle(
               color: ColorsApp.greenPro.withOpacity(0.4),
               fontSize: 11.sp,
@@ -327,17 +330,17 @@ class ProfileInformationCard extends StatelessWidget {
           SizedBox(height: 16.h),
           ProfileInfoRow(
             icon: Icons.person_outline_rounded,
-            label: "First Name",
+            label: context.tr("profile_screen.first_name"),
             value: firstName,
           ),
           ProfileInfoRow(
             icon: Icons.person_outline_rounded,
-            label: "Last Name",
+            label: context.tr("profile_screen.last_name"),
             value: lastName,
           ),
           ProfileInfoRow(
             icon: Icons.alternate_email_rounded,
-            label: "Email Address",
+            label: context.tr("profile_screen.email_address"),
             value: email,
           ),
         ],

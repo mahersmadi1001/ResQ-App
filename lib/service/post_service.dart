@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:projct/core/erorr/erorr_handling.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/network/api_constants.dart';
 import 'package:projct/model/post_admin_model.dart';
 import 'package:projct/model/post_model%20.dart';
@@ -26,7 +27,7 @@ class PostService {
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Bearer ${cacheService.getToken()}',
-            "Accept-Language": "en",
+            "Accept-Language": "${AppLocalizations.currentLanguage}",
           },
         ),
       );
@@ -71,7 +72,7 @@ class PostService {
           headers: {
             'Accept': 'application/json',
             'Authorization': 'Bearer ${cacheService.getToken()}',
-            "Accept-Language": "en",
+            "Accept-Language": "${AppLocalizations.currentLanguage}",
           },
         ),
       );

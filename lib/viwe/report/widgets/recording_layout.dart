@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/view_model/report_input_bloc/report_input_bloc.dart';
 import 'package:projct/view_model/report_input_bloc/report_input_event.dart';
 
@@ -77,7 +78,7 @@ class _RecordingLayoutState extends State<RecordingLayout>
               ),
             ],
           ),
-          
+
           Expanded(
             child: Container(
               alignment: Alignment.centerRight,
@@ -96,7 +97,7 @@ class _RecordingLayoutState extends State<RecordingLayout>
                       size: 20.sp,
                     ),
                     Text(
-                      "اسحب للإلغاء ",
+                      context.tr("report_screen.drag_to_cancel"),
                       style: TextStyle(
                         color: Colors.grey.shade500,
                         fontSize: 14.sp,
@@ -118,11 +119,7 @@ class _RecordingLayoutState extends State<RecordingLayout>
                 color: Colors.red,
                 shape: BoxShape.circle,
               ),
-              child: Icon(
-                Icons.stop,
-                color: Colors.white,
-                size: 20.sp,
-              ),
+              child: Icon(Icons.stop, color: Colors.white, size: 20.sp),
             ),
           ),
         ],

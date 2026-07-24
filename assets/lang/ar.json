@@ -1,0 +1,118 @@
+{
+  "general": {
+    "confirm_selection": "تأكيد الاختيار",
+    "settings": "الإعدادات",
+    "language": "اللغة",
+    "arabic": "العربية",
+    "english": "الإنجليزية",
+    "map": "الخريطة",
+    "posts": "المنشورات",
+    "report": "بلاغ",
+    "ok": "حسناً",
+    "sent_successfully": "تم الإرسال بنجاح",
+    "no_data": "لا توجد بيانات",
+    "there_is_no_information": "لا يوجد معلومات",
+    "there_is_something_wrong": "حدث خطأ ",
+    "cancel": "إلغاء",
+    "yes": "نعم",
+    "permission_denied":"تم رفض الإذن",
+    "done":"تم"
+  },
+
+  "incident_types": {
+    "fire": "حريق",
+    "flood": "فيضان",
+    "theft": "سرقة",
+    "murder": "جريمة قتل",
+    "injury": "إصابة",
+    "traffic_accident": "حادث سير",
+    "earthquake": "زلزال",
+    "building_collapsing": "انهيار مبنى",
+    "kidnapping": "اختطاف",
+    "gang_violence": "عنف عصابات",
+    "missing_person": "شخص مفقود",
+    "explosion": "انفجار",
+    "medical_emergency": "حالة طبية طارئة"
+  },
+
+  "report_screen": {
+    "report_page": "صفحة البلاغات",
+    "welcome": "مرحباً",
+    "incident_types": "أنواع الحالات",
+    "states_selected_successfully": "تم تحديد الحالات بنجاح",
+    "select_incident_types": "اختر أنواع الحالات...",
+    "write_here": "اكتب هنا...",
+    "send": "إرسال",
+    "recording": "تسجيل...",
+    "camera": "الكاميرا",
+    "tap_to_select":"انقر للاختيار",
+    "how_to_send_report": "كيفية إرسال التقرير",
+    "statement1": "1. حدّد الحوادث التي تحدث لك أو حولك.",
+    "statement2": "2. أرسل المعلومات التي تريدها (نص، صوت، صورة، فيديو).",
+    "statement3": "3. بعد الإرسال، لا تغلق التطبيق لأنك ستتلقى ردًا بالخطوات الأولية التي تحتاج لاتخاذها.",
+    "safety_instructions": "إرشادات السلامة:",
+    "you_need_to_allow_camera": "يجب السماح بصلاحيات الكاميرا والميكروفون للاستخدام",
+    "details": "التفاصيل",
+    "drag_to_cancel":"اسحب للإلغاء ",
+    "voice_recording":"تسجيل صوتي ",
+    "second":"ثانية"
+  },
+
+  "posts_screen": {
+    "posts_page": "صفحة المنشورات",
+    "user_post": "منشورات من  المستخدمين",
+    "admin_post": "منشورات إدارية",
+    "there_is_no_information": "لا يوجد معلومات"
+  },
+
+  "map_screen": {
+    "map_page": "صفحة الخريطة"
+  },
+
+  "settings_screen": {
+    "profile_details": "تفاصيل الملف الشخصي",
+    "notifications": "الإشعارات",
+    "dark_mode": "الوضع الداكن",
+    "change_language": "تغيير اللغة",
+    "logout": "تسجيل الخروج",
+    "logout_confirm_title": "تسجيل الخروج",
+    "logout_confirm_body": "هل تريد تسجيل الخروج؟"
+  },
+
+  "profile_screen": {
+    "account_profile": "الملف الشخصي",
+    "official_identification": "التعريف الرسمي",
+    "secured": "مؤمّن",
+    "personal_details": "البيانات الشخصية",
+    "first_name": "الاسم الأول",
+    "last_name": "الاسم الأخير",
+    "email_address": "البريد الإلكتروني"
+  },
+  "api_errors": {
+    "connection_timeout": "انتهت مهلة الاتصال بخادم الـ API",
+    "send_timeout": "انتهت مهلة إرسال البيانات إلى السيرفر",
+    "receive_timeout": "انتهت مهلة استقبال البيانات من السيرفر",
+    "bad_certificate": "شهادة الأمان (Certificate) غير صالحة",
+    "request_cancelled": "تم إلغاء الطلب المرسل إلى السيرفر",
+    "no_internet_connection": "لا يوجد اتصال بالإنترنت، يرجى التحقق من الشبكة",
+    "unexpected_error": "حدث خطأ غير متوقع، يرجى المحاولة لاحقاً"
+  },
+  "damascus_districts": {
+    "kfar_souseh": "كفرسوسة",
+    "mezzeh": "المزة",
+    "al_salihiyah": "الصالحية",
+    "rukn_al_din": "ركن الدين",
+    "mouhajirin": "المهاجرين",
+    "midan": "الميدان",
+    "shaghour": "الشاغور",
+    "old_damascus": "دمشق القديمة",
+    "sarouja": "ساروجة",
+    "qaboun": "القابون",
+    "barzeh": "برزة",
+    "dummar": "دمر",
+    "qanawat": "القنوات",
+    "yarmouk": "اليرموك",
+    "jober": "جوبر",
+    "qadam": "القدم"
+  }
+}

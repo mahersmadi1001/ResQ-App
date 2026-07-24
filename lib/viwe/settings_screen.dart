@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projct/core/localization/app_localizations.dart';
+import 'package:projct/core/localization/localization_bloc/localization_bloc.dart';
+import 'package:projct/core/localization/localization_bloc/localization_event.dart';
+import 'package:projct/core/localization/localization_bloc/localization_state.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/widgets/logout_dialog.dart';
@@ -15,6 +20,62 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  void _showLanguageBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
+      ),
+      builder: (bottomSheetContext) {
+        return BlocBuilder<LocalizationBloc, LocalizationState>(
+          builder: (context, state) {
+            return Padding(
+              padding: EdgeInsets.all(20.r),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    context.tr('settings_screen.change_language'),
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: ColorsApp.greenPro,
+                    ),
+                  ),
+                  SizedBox(height: 15.h),
+                  ListTile(
+                    title: const Text("العربية"),
+                    trailing: state.locale.languageCode == 'ar'
+                        ? Icon(Icons.check_circle, color: ColorsApp.greenPro)
+                        : null,
+                    onTap: () {
+                      context.read<LocalizationBloc>().add(
+                        const ChangeLanguageEvent('ar'),
+                      );
+                      Navigator.pop(bottomSheetContext);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("English"),
+                    trailing: state.locale.languageCode == 'en'
+                        ? Icon(Icons.check_circle, color: ColorsApp.greenPro)
+                        : null,
+                    onTap: () {
+                      context.read<LocalizationBloc>().add(
+                        const ChangeLanguageEvent('en'),
+                      );
+                      Navigator.pop(bottomSheetContext);
+                    },
+                  ),
+                ],
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,27 +136,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
             SizedBox(height: 16.h),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "${user?.firstName ?? ""}",
-                  style: TextStyle(
-                    color: ColorsApp.greenPro,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
+            Directionality(
+              textDirection: TextDirection.ltr,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "${user?.firstName ?? ""}",
+                    style: TextStyle(
+                      color: ColorsApp.greenPro,
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                SizedBox(width: 8.w),
-                Text(
-                  "${user?.lastName ?? ""}",
-                  style: TextStyle(
-                    color: ColorsApp.greenPro,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
+                  SizedBox(width: 8.w),
+                  Text(
+                    "${user?.lastName ?? ""}",
+                    style: TextStyle(
+                      color: ColorsApp.greenPro,
+                      fontSize: 24.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             SizedBox(height: 24.h),
             Padding(
@@ -128,22 +192,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       child: SettingItem(
                         icon: Icons.person_outline_outlined,
-                        text: "Profile Details",
+                        text: context.tr("settings_screen.profile_details"),
                       ),
                     ),
                     const SettingsDivider(),
                     SettingItem(
                       icon: Icons.notifications_none_outlined,
-                      text: "Notifications",
+                      text: context.tr("settings_screen.notifications"),
                     ),
                     const SettingsDivider(),
-                    SettingItem(icon: Icons.language_sharp, text: "Language"),
-                    const SettingsDivider(),
-
+                    SettingItem(
+                      icon: Icons.language_sharp,
+                      text: context.tr('general.language'),
+                      ontap: () => _showLanguageBottomSheet(context),
+                    ),
                     const SettingsDivider(),
                     SettingItem(
                       icon: Icons.dark_mode_outlined,
-                      text: "Dark Mode",
+                      text: context.tr("settings_screen.dark_mode"),
                       switchMode: Switch(
                         value: true,
                         onChanged: (value) {},
@@ -180,7 +246,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     );
                   },
                   icon: Icons.logout,
-                  text: "Logout",
+                  text: context.tr("settings_screen.logout"),
                   colorTextAndIcon: Colors.red.shade400,
                 ),
               ),

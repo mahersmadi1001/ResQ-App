@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/form_post.dart';
 import 'package:projct/model/post_admin_model.dart';
 import 'package:projct/model/post_model%20.dart';
-import 'package:projct/viwe/bottom_nav_bar.dart';
 
 class PostDetailsScreen extends StatelessWidget {
   final PostAdminModel post;
@@ -122,7 +122,7 @@ class PostDetailsContent extends StatelessWidget {
           SizedBox(height: 24.h),
           // PostLocationCard(address: post.address),
           SizedBox(height: 24.h),
-          PostSectionHeading(title: "Details"),
+          PostSectionHeading(title: context.tr("posts_screen.details")),
           SizedBox(height: 10.h),
           PostBodyText(body: post.body),
           SizedBox(height: 40.h),
