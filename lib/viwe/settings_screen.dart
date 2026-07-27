@@ -27,8 +27,16 @@ class _SettingsScreenState extends State<SettingsScreen> {
         borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
       ),
       builder: (bottomSheetContext) {
-        return BlocBuilder<LocalizationBloc, LocalizationState>(
+        return BlocConsumer<LocalizationBloc, LocalizationState>(
+          listener: (context, state) {
+            if (state is LocalizationErrorState) {
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(SnackBar(content: Text(state.errorMassege)));
+            }
+          },
           builder: (context, state) {
+            bool statesecss = state is LocalizationSuccessState;
             return Padding(
               padding: EdgeInsets.all(20.r),
               child: Column(
@@ -45,8 +53,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   SizedBox(height: 15.h),
                   ListTile(
                     title: const Text("العربية"),
-                    trailing: state.locale.languageCode == 'ar'
-                        ? Icon(Icons.check_circle, color: ColorsApp.greenPro)
+                    trailing: statesecss
+                        ? state.langCode == Locale("ar")
+                              ? Icon(
+                                  Icons.check_circle,
+                                  color: ColorsApp.greenPro,
+                                )
+                              : null
                         : null,
                     onTap: () {
                       context.read<LocalizationBloc>().add(
@@ -57,8 +70,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   ListTile(
                     title: const Text("English"),
-                    trailing: state.locale.languageCode == 'en'
-                        ? Icon(Icons.check_circle, color: ColorsApp.greenPro)
+                    trailing: statesecss
+                        ? state.langCode == Locale("en")
+                              ? Icon(
+                                  Icons.check_circle,
+                                  color: ColorsApp.greenPro,
+                                )
+                              : null
                         : null,
                     onTap: () {
                       context.read<LocalizationBloc>().add(

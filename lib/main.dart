@@ -8,6 +8,7 @@ import 'package:projct/core/localization/localization_bloc/localization_bloc.dar
 import 'package:projct/core/localization/localization_bloc/localization_event.dart';
 import 'package:projct/core/localization/localization_bloc/localization_state.dart';
 import 'package:projct/service/cache_service.dart';
+import 'package:projct/service/langauge_service.dart';
 import 'package:projct/service/map_location_service.dart';
 import 'package:projct/service/post_service.dart';
 import 'package:projct/view_model/map_location_bloc/map_location_bloc.dart';
@@ -40,8 +41,12 @@ class MainPage extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) =>
-                  LocalizationBloc()..add(const GetSavedLanguageEvent()),
+              create: (context) => LocalizationBloc(
+                cacheService: di<CacheService>(),
+                langaugeService: LangaugeService(
+                  cacheService: di<CacheService>(),
+                ),
+              )..add(const GetSavedLanguageEvent()),
             ),
             BlocProvider(
               create: (context) => MapLocationBloc(
@@ -66,11 +71,10 @@ class MainPage extends StatelessWidget {
             builder: (context, state) {
               return MaterialApp(
                 debugShowCheckedModeBanner: false,
-                locale: state.locale,
-                supportedLocales: const [
-                  Locale('ar'),
-                  Locale('en'),
-                ],
+                locale: state is LocalizationSuccessState
+                    ? state.langCode
+                    : Locale("en"),
+                supportedLocales: const [Locale('ar'), Locale('en')],
                 localizationsDelegates: const [
                   AppLocalizations.delegate,
                   GlobalMaterialLocalizations.delegate,

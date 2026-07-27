@@ -42,11 +42,13 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message)));
             } else if (state is LoginSuccessState) {
+              
               context.read<UserSessionBloc>().add(LogingUser());
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message)));
             }
+
           },
           builder: (context, state) {
             return Container(
