@@ -4,7 +4,7 @@ import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/model/item_munu_modal.dart';
 
 class ConstensApp {
-  static String logo = "images/logo.png";
+  static String logo = "images/logo_icon_1.svg";
 
   static List<String> damascusDistricts = [
     AppLocalizations.trNoContext("damascus_districts.kfar_souseh"),
@@ -23,6 +23,24 @@ class ConstensApp {
     AppLocalizations.trNoContext("damascus_districts.yarmouk"),
     AppLocalizations.trNoContext("damascus_districts.jober"),
     AppLocalizations.trNoContext("damascus_districts.qadam"),
+  ];
+  static const List<String> damascusDistrictsfilter = [
+    "damascus_districts.kfar_souseh",
+    "damascus_districts.mezzeh",
+    "damascus_districts.al_salihiyah",
+    "damascus_districts.rukn_al_din",
+    "damascus_districts.mouhajirin",
+    "damascus_districts.midan",
+    "damascus_districts.shaghour",
+    "damascus_districts.old_damascus",
+    "damascus_districts.sarouja",
+    "damascus_districts.qaboun",
+    "damascus_districts.barzeh",
+    "damascus_districts.dummar",
+    "damascus_districts.qanawat",
+    "damascus_districts.yarmouk",
+    "damascus_districts.jober",
+    "damascus_districts.qadam",
   ];
 
   static List<AttachmentItem> states = [

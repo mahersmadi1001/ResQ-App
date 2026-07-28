@@ -7,8 +7,7 @@ import 'package:projct/core/widgets/TFF.dart';
 import 'package:projct/core/widgets/button_auth.dart';
 import 'package:projct/core/widgets/chips_address.dart';
 import 'package:projct/core/widgets/navegator_login.dart';
-import 'package:projct/viwe/signup/signup_screen.dart'
-    show controller_pageviwe;
+import 'package:projct/viwe/signup/signup_screen.dart' show controller_pageviwe;
 
 class SignUpComponant extends StatefulWidget {
   SignUpComponant({super.key, this.onDataSaved});
@@ -59,6 +58,7 @@ class _SignUpComponantState extends State<SignUpComponant> {
           SizedBox(height: 10.h),
           Expanded(
             child: Tff(
+              textInputAction: TextInputAction.next,
               controller: lasttNameController,
               validator: (p0) {
                 return AppValidators.validateName(p0);
@@ -70,6 +70,7 @@ class _SignUpComponantState extends State<SignUpComponant> {
 
           Expanded(
             child: Tff(
+              textInputAction: TextInputAction.done,
               controller: idController,
               validator: (p0) {
                 return AppValidators.validateIDOrPassport(p0);

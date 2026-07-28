@@ -1,0 +1,11 @@
+<svg viewBox="0 0 100 122" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+    <path d="M15 7 L85 7 Q93 7 93 15 L93 65 Q93 97 50 116 Q7 97 7 65 L7 15 Q7 7 15 7 Z"
+          fill="#1B4343"/>
+    <path d="M15 7 L85 7 Q93 7 93 15 L93 65 Q93 97 50 116 Q7 97 7 65 L7 15 Q7 7 15 7 Z"
+          stroke="#B9A77A" stroke-width="4"/>
+    <path fill-rule="evenodd"
+          d="M50 80 C43 71 32 62 32 45 A18 18 0 0 1 68 45 C68 62 57 71 50 80 Z
+          M43 45 A7 7 0 0 0 57 45 A7 7 0 0 0 43 45 Z"
+          fill="#B9A77A"/>
+</svg>

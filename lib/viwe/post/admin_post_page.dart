@@ -88,7 +88,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
                                 ),
                               );
                             },
-                            child: FormPost(
+                            child: FormPostAdmin(
                               address: post.address,
                               descration: post.types.toString(),
                               date: post.createdAt.date.toString(),
@@ -133,7 +133,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
                           return Center(child: CircularProgressIndicator());
                         } else {
                           PostAdminModel post = state.postsAdmin[index];
-                          return FormPost(
+                          return FormPostAdmin(
                             index: index,
                             address: post.address,
                             descration: post.types.toString(),

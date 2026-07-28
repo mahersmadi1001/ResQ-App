@@ -78,6 +78,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
                     const SignUpTitle(),
                     SizedBox(height: 27.h),
                     Tff(
+                      textInputAction: TextInputAction.next,
                       controller: emailsignController,
                       validator: (p0) {
                         return AppValidators.validateEmail(p0);
@@ -86,6 +87,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
                     ),
                     SizedBox(height: 27.h),
                     Tff(
+                      textInputAction: TextInputAction.next,
                       controller: newPasswordController,
                       validator: (p0) {
                         return AppValidators.validatePassword(p0);
@@ -108,6 +110,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
                     ),
                     SizedBox(height: 27.h),
                     Tff(
+                      textInputAction: TextInputAction.done,
                       controller: validPasswordController,
                       validator: (p0) {
                         if (p0 != newPasswordController!.text) {

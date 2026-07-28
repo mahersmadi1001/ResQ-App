@@ -37,6 +37,10 @@ class Failure {
           );
         }
         return AppLocalizations.trNoContext("api_errors.unexpected_error");
+      case DioExceptionType.transformTimeout:
+        return AppLocalizations.trNoContext(
+          "api_errors.no_internet_connection",
+        );
     }
   }
 

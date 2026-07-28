@@ -35,7 +35,7 @@ class LiveCameraTile extends StatelessWidget {
             ),
             SizedBox(height: 8.h),
             Text(
-              context.tr("Posts_screen.camera"),
+              context.tr("report_screen.camera"),
               style: TextStyle(
                 color: Colors.white.withOpacity(0.9),
                 fontSize: 14.sp,

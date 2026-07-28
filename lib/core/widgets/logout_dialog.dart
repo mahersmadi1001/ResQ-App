@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/service/cache_service.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,6 +23,7 @@ class LogoutDialog extends StatelessWidget {
         listener: (context, state) {
           if (state is LogoutSuccessState) {
             context.read<UserSessionBloc>().add(Signout());
+            di<CacheService>().deleteLanguage();
             Navigator.pop(context);
           } else if (state is LogoutErrorState) {
             ScaffoldMessenger.of(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/viwe/profile/widget/profile_Information_card.dart';
-import 'package:projct/viwe/profile/widget/profileI_dentity_card.dart';
+
+import 'package:projct/viwe/profile/widget/profile_Identity_card.dart';
 
 import 'package:projct/viwe/report/report_screen.dart';
 import 'package:projct/viwe/profile/widget.dart';

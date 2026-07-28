@@ -4,6 +4,8 @@ import 'package:projct/core/helper/app_validators.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/TFF.dart';
 import 'package:projct/core/widgets/button_auth.dart';
+import 'package:projct/service/cache_service.dart';
+import 'package:projct/service/langauge_service.dart';
 import 'package:projct/view_model/signup_bloc/signup_state.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/signup/signup_screen.dart';
@@ -28,7 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
   GlobalKey<FormState> formLoginKey = GlobalKey<FormState>();
   TextEditingController? emailController = TextEditingController();
   TextEditingController? passwordController = TextEditingController();
-
+  LangaugeService langaugeService = LangaugeService(
+    cacheService: di<CacheService>(),
+  );
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -42,13 +46,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message)));
             } else if (state is LoginSuccessState) {
-              
               context.read<UserSessionBloc>().add(LogingUser());
               ScaffoldMessenger.of(
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message)));
+              langaugeService.sendLanguage(languagelanCode: "en");
             }
-
           },
           builder: (context, state) {
             return Container(
@@ -82,6 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 45.h),
                         Tff(
+                          textInputAction: TextInputAction.next,
                           controller: emailController,
                           validator: (p1) {
                             return AppValidators.validateEmail(p1);
@@ -92,6 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         SizedBox(height: 30.h),
                         Tff(
+                          textInputAction: TextInputAction.done,
                           controller: passwordController,
                           obscureText: visibility_password,
                           validator: (p0) {

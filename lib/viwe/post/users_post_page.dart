@@ -57,7 +57,11 @@ class _UsersPostPageState extends State<UsersPostPage> {
             case PostStatus.success:
               {
                 if (state.posts.isEmpty) {
-                  return Center(child: Text(context.tr("posts_screen.there_is_no_information")));
+                  return Center(
+                    child: Text(
+                      context.tr("posts_screen.there_is_no_information"),
+                    ),
+                  );
                 } else {
                   return RefreshIndicator(
                     onRefresh: () async {
@@ -110,7 +114,9 @@ class _UsersPostPageState extends State<UsersPostPage> {
               }
             case PostStatus.failure:
               return Center(
-                child: Text(state.errorMessage ?? context.tr("posts_screen.user_post")),
+                child: Text(
+                  state.errorMessage ?? context.tr("posts_screen.user_post"),
+                ),
               );
             case PostStatus.loading:
               {
@@ -179,43 +185,98 @@ class _UsersPostPageState extends State<UsersPostPage> {
         onPressed: () {
           showModalBottomSheet(
             isScrollControlled: true,
-            isDismissible: false,
-            backgroundColor: Colors.white,
+            isDismissible: true,
+            backgroundColor:
+                Colors.transparent,
             context: context,
             builder: (context) {
-              return SizedBox(
-                height: 450.h,
-                child: ListView(
+              return Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(28.r),
+                  ),
+                ),
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Center(child: FilterAddressPost()),
-                    SizedBox(height: 15.h),
-                    MaterialButton(
-                      onPressed: () {
-                        context.read<PostBloc>().add(
-                          GetAllPost(
-                            filterParamtr: FilterAddressPost.optiosSelected,
-                          ),
-                        );
-
-                        Navigator.pop(context);
-                      },
-                      color: ColorsApp.yalwoPro,
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.r),
-                        side: BorderSide(color: ColorsApp.yalwoPro, width: 2.w),
+                    Container(
+                      width: 40.w,
+                      height: 4.h,
+                      decoration: BoxDecoration(
+                        color: Colors.grey.shade300,
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
-                      minWidth: 200.w,
+                    ),
+                    SizedBox(height: 16.h),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // Text(
+                        //   context.tr(
+                        //     "settings_screen.profile_details",
+                        //   ),
+                        //   style: TextStyle(
+                        //     fontSize: 18.sp,
+                        //     fontWeight: FontWeight.bold,
+                        //     color: ColorsApp.greenPro,
+                        //   ),
+                        // ),
+                        IconButton(
+                          onPressed: () => Navigator.pop(context),
+                          icon: Icon(
+                            Icons.close,
+                            color: Colors.grey.shade600,
+                            size: 20.sp,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Divider(color: Colors.grey.shade200),
+                    SizedBox(height: 12.h),
+
+                    ConstrainedBox(
+                      constraints: BoxConstraints(maxHeight: 350.h),
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: const FilterAddressPost(),
+                      ),
+                    ),
+
+                    SizedBox(height: 20.h),
+
+                    SizedBox(
+                      width: double.infinity,
                       height: 50.h,
-                      child: Text(
-                        context.tr("general.confirm_selection"),
-                        style: TextStyle(
-                          color: ColorsApp.greenPro,
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          context.read<PostBloc>().add(
+                            GetAllPost(
+                              filterParamtr: FilterAddressPost.optiosSelected,
+                            ),
+                          );
+                          Navigator.pop(context);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: ColorsApp.yalwoPro,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16.r),
+                          ),
+                        ),
+                        child: Text(
+                          context.tr("general.confirm_selection"),
+                          style: TextStyle(
+                            color: ColorsApp.greenPro,
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
+                    SizedBox(height: 10.h),
                   ],
                 ),
               );

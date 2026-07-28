@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/localization/localization_bloc/localization_bloc.dart';
 import 'package:projct/core/localization/localization_bloc/localization_event.dart';
@@ -141,11 +142,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       child: CircleAvatar(
                         radius: 75.r,
                         backgroundColor: ColorsApp.greenPro,
-                        child: Image.asset(
-                          ConstensApp.logo,
-                          fit: BoxFit.fill,
-                          width: 110.w,
-                          height: 110.h,
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 10.h),
+                          child: SvgPicture.asset(
+                            ConstensApp.logo,
+                            fit: BoxFit.fill,
+                            width: 90.w,
+                            height: 90.h,
+                          ),
                         ),
                       ),
                     ),
@@ -229,9 +233,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       icon: Icons.dark_mode_outlined,
                       text: context.tr("settings_screen.dark_mode"),
                       switchMode: Switch(
-                        value: true,
+                        inactiveThumbColor: ColorsApp.yalwoPro,
+                        inactiveTrackColor: ColorsApp.greenPro,
+                        hoverColor: ColorsApp.greenPro,
+                        value: false,
                         onChanged: (value) {},
-                        activeThumbColor: ColorsApp.blackPro,
+                        activeThumbColor: ColorsApp.greenPro,
                         activeTrackColor: ColorsApp.yalwoPro,
                       ),
                     ),

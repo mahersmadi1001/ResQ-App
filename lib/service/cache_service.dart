@@ -46,4 +46,8 @@ class CacheService {
   Future<void> deleteUser() async {
     await _box.delete(userKey);
   }
+
+  Future<void> deleteLanguage() async {
+    await _box.delete(languageKey);
+  }
 }

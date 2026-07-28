@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:glaze_nav_bar/glaze_nav_bar.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
@@ -16,7 +17,7 @@ class ButtonNavBar extends StatefulWidget {
 }
 
 class _ButtonNavBarState extends State<ButtonNavBar> {
-  List<Widget> pages = [
+  final List<Widget> pages = const [
     ReportScreen(),
     PostScreen(),
     MapScreen(initLocation: LatLng(33.5138073, 36.2765279)),
@@ -24,7 +25,7 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
   ];
 
   int selectedpage = 0;
-  List<int> loadedPages = [0];
+  final List<int> loadedPages = [0];
 
   @override
   Widget build(BuildContext context) {
@@ -39,74 +40,63 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
           }
         }),
       ),
-      bottomNavigationBar: ClipRRect(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(25.r),
-          topRight: Radius.circular(25.r),
-        ),
-        child: NavigationBar(
-          height: 70.h,
-          labelTextStyle: WidgetStateProperty.resolveWith((states) {
-            if (states.contains(WidgetState.selected)) {
-              return TextStyle(
-                fontSize: 16.sp,
-                fontWeight: FontWeight.bold,
-                color: ColorsApp.yalwoPro,
-              );
+      bottomNavigationBar: GlazeNavBar(
+        index: selectedpage,
+        key: ValueKey(Localizations.localeOf(context).languageCode),
+
+        onTap: (value) {
+          setState(() {
+            selectedpage = value;
+            if (!loadedPages.contains(value)) {
+              loadedPages.add(value);
             }
-            return TextStyle(color: ColorsApp.withePro, fontSize: 14.sp);
-          }),
-          selectedIndex: selectedpage,
-          indicatorColor: Colors.transparent,
-          onDestinationSelected: (value) {
-            setState(() {
-              selectedpage = value;
-              if (!loadedPages.contains(value)) {
-                loadedPages.add(value);
-              }
-            });
-          },
-          backgroundColor: ColorsApp.greenPro,
-          destinations: [
-            NavigationDestination(
-              icon: const Icon(
-                Icons.remember_me_outlined,
-                color: ColorsApp.withePro,
-              ),
-              selectedIcon: const Icon(
-                Icons.remember_me_outlined,
-                color: ColorsApp.yalwoPro,
-              ),
-              label: context.tr('general.report'),
+          });
+        },
+        buttonBackgroundColor: ColorsApp.greenPro,
+        buttonBorderColor: ColorsApp.yalwoPro,
+        color: ColorsApp.greenPro,
+        height: 70.h,
+        backgroundColor: ColorsApp.greenPro,
+        items: [
+          GlazeNavBarItem(
+            labelStyle: TextStyle(
+              color: ColorsApp.yalwoPro,
+              fontWeight: FontWeight.w600,
             ),
-            NavigationDestination(
-              enabled: true,
-              icon: const Icon(Icons.newspaper, color: ColorsApp.withePro),
-              label: context.tr('general.posts'),
-              selectedIcon: const Icon(
-                Icons.newspaper,
-                color: ColorsApp.yalwoPro,
-              ),
+            child: const Icon(
+              Icons.remember_me_outlined,
+              color: ColorsApp.withePro,
             ),
-            NavigationDestination(
-              enabled: true,
-              icon: const Icon(Icons.map, color: ColorsApp.withePro),
-              label: context.tr('general.map'),
-              selectedIcon: const Icon(Icons.map, color: ColorsApp.yalwoPro),
+            label: context.tr('general.report'),
+          ),
+          GlazeNavBarItem(
+            labelStyle: TextStyle(
+              color: ColorsApp.yalwoPro,
+              fontWeight: FontWeight.w600,
             ),
-            NavigationDestination(
-              icon: const Icon(
-                Icons.settings_outlined,
-                color: ColorsApp.withePro,
-              ),
-              selectedIcon: const Icon(
-                Icons.settings,
-                color: ColorsApp.yalwoPro,
-              ),
-              label: context.tr('general.settings'),
+            child: const Icon(Icons.newspaper, color: ColorsApp.withePro),
+            label: context.tr('general.posts'),
+          ),
+          GlazeNavBarItem(
+            labelStyle: TextStyle(
+              color: ColorsApp.yalwoPro,
+              fontWeight: FontWeight.w600,
             ),
-          ],
-        ),
+            child: const Icon(Icons.map, color: ColorsApp.withePro),
+            label: context.tr('general.map'),
+          ),
+          GlazeNavBarItem(
+            labelStyle: TextStyle(
+              color: ColorsApp.yalwoPro,
+              fontWeight: FontWeight.w600,
+            ),
+            child: const Icon(
+              Icons.settings_outlined,
+              color: ColorsApp.withePro,
+            ),
+            label: context.tr('general.settings'),
+          ),
+        ],
       ),
     );
   }

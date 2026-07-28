@@ -120,9 +120,9 @@ class PostDetailsContent extends StatelessWidget {
           SizedBox(height: 12.h),
           PostMetaDateTime(createdAt: post.createdAt),
           SizedBox(height: 24.h),
-          // PostLocationCard(address: post.address),
+          PostLocationCard(address: post.address),
           SizedBox(height: 24.h),
-          PostSectionHeading(title: context.tr("posts_screen.details")),
+          PostSectionHeading(title: context.tr("report_screen.details")),
           SizedBox(height: 10.h),
           PostBodyText(body: post.body),
           SizedBox(height: 40.h),
@@ -254,7 +254,7 @@ class PostLocationCard extends StatelessWidget {
             ),
             child: Icon(
               Icons.location_on_rounded,
-              color: ColorsApp.greenPro,
+              color: ColorsApp.yalwoPro,
               size: 22.sp,
             ),
           ),
@@ -298,7 +298,7 @@ class PostSectionHeading extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        color: ColorsApp.greenPro,
+        color: ColorsApp.yalwoPro,
         fontSize: 18.sp,
         fontWeight: FontWeight.bold,
         letterSpacing: 0.5,

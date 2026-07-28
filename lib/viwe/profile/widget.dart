@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/viwe/profile/widget/profile_logo.dart';
@@ -65,12 +66,16 @@ class ProfilePremiumAvatarPlaceholder extends StatelessWidget {
         ),
       ),
       child: Container(
+        alignment: Alignment.center,
         decoration: const BoxDecoration(
           color: Colors.white,
           shape: BoxShape.circle,
         ),
-        padding: EdgeInsets.all(8.r),
-        child: Image.asset(ConstensApp.logo, fit: BoxFit.contain),
+        padding: EdgeInsets.all(10.r),
+        child: Padding(
+          padding: EdgeInsets.only(top: 5.h),
+          child: SvgPicture.asset(ConstensApp.logo, fit: BoxFit.fill),
+        ),
       ),
     );
   }

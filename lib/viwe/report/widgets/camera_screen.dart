@@ -170,7 +170,7 @@ class _CameraScreenState extends State<CameraScreen> {
                   borderRadius: BorderRadius.circular(10.r),
                 ),
                 child: Text(
-                  context.tr("report_screen.details"),
+                  context.tr("report_screen.recording"),
                   style: TextStyle(color: Colors.white),
                 ),
               ),
