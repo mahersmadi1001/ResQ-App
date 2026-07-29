@@ -7,7 +7,7 @@ import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/viwe/map_screen.dart';
 import 'package:projct/viwe/post/post_screen.dart';
 import 'package:projct/viwe/report/report_screen.dart';
-import 'package:projct/viwe/settings_screen.dart';
+import 'package:projct/viwe/setting/settings_screen.dart';
 
 class ButtonNavBar extends StatefulWidget {
   const ButtonNavBar({super.key});

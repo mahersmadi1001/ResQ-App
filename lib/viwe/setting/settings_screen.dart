@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:projct/core/localization/app_localizations.dart';
-import 'package:projct/core/localization/localization_bloc/localization_bloc.dart';
-import 'package:projct/core/localization/localization_bloc/localization_event.dart';
-import 'package:projct/core/localization/localization_bloc/localization_state.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/widgets/logout_dialog.dart';
 import 'package:projct/core/widgets/setting_item.dart';
 import 'package:projct/viwe/profile/profile_user.dart';
 import 'package:projct/viwe/report/report_screen.dart';
+import 'package:projct/viwe/setting/language_dialog.dart';
+import 'package:projct/viwe/setting/settings_divider.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -21,80 +19,6 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  void _showLanguageBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(20.r)),
-      ),
-      builder: (bottomSheetContext) {
-        return BlocConsumer<LocalizationBloc, LocalizationState>(
-          listener: (context, state) {
-            if (state is LocalizationErrorState) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(SnackBar(content: Text(state.errorMassege)));
-            }
-          },
-          builder: (context, state) {
-            bool statesecss = state is LocalizationSuccessState;
-            return Padding(
-              padding: EdgeInsets.all(20.r),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    context.tr('settings_screen.change_language'),
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: ColorsApp.greenPro,
-                    ),
-                  ),
-                  SizedBox(height: 15.h),
-                  ListTile(
-                    title: const Text("العربية"),
-                    trailing: statesecss
-                        ? state.langCode == Locale("ar")
-                              ? Icon(
-                                  Icons.check_circle,
-                                  color: ColorsApp.greenPro,
-                                )
-                              : null
-                        : null,
-                    onTap: () {
-                      context.read<LocalizationBloc>().add(
-                        const ChangeLanguageEvent('ar'),
-                      );
-                      Navigator.pop(bottomSheetContext);
-                    },
-                  ),
-                  ListTile(
-                    title: const Text("English"),
-                    trailing: statesecss
-                        ? state.langCode == Locale("en")
-                              ? Icon(
-                                  Icons.check_circle,
-                                  color: ColorsApp.greenPro,
-                                )
-                              : null
-                        : null,
-                    onTap: () {
-                      context.read<LocalizationBloc>().add(
-                        const ChangeLanguageEvent('en'),
-                      );
-                      Navigator.pop(bottomSheetContext);
-                    },
-                  ),
-                ],
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -226,7 +150,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     SettingItem(
                       icon: Icons.language_sharp,
                       text: context.tr('general.language'),
-                      ontap: () => _showLanguageBottomSheet(context),
+                      ontap: () => showLanguageBottomSheet(context),
                     ),
                     const SettingsDivider(),
                     SettingItem(
@@ -279,22 +203,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
             SizedBox(height: 30.h),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class SettingsDivider extends StatelessWidget {
-  const SettingsDivider({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w),
-      child: Divider(
-        color: const Color(0xfff1f3f5),
-        height: 1.h,
-        thickness: 1.h,
       ),
     );
   }

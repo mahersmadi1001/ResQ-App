@@ -5,7 +5,7 @@ import 'package:projct/viwe/profile/widget/profile_Information_card.dart';
 import 'package:projct/viwe/profile/widget/profile_Identity_card.dart';
 
 import 'package:projct/viwe/report/report_screen.dart';
-import 'package:projct/viwe/profile/widget.dart';
+import 'package:projct/viwe/profile/hader_fullname_avatar_profile.dart';
 
 class ProfileScreenUser extends StatelessWidget {
   @override

@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,6 +8,7 @@ import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/localization/localization_bloc/localization_bloc.dart';
 import 'package:projct/core/localization/localization_bloc/localization_event.dart';
 import 'package:projct/core/localization/localization_bloc/localization_state.dart';
+import 'package:projct/firebase_options.dart';
 import 'package:projct/service/cache_service.dart';
 import 'package:projct/service/langauge_service.dart';
 import 'package:projct/service/map_location_service.dart';
@@ -22,6 +24,7 @@ import 'package:projct/viwe/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setup();
   // await di<CacheService>().deleteToken();
   // await di<CacheService>().deleteUser();
