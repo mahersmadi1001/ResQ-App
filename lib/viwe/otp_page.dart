@@ -4,6 +4,8 @@ import 'package:pinput/pinput.dart';
 import 'package:projct/core/config/di.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/button_auth.dart';
+import 'package:projct/service/cache_service.dart';
+import 'package:projct/service/notfications_service.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/bottom_nav_bar.dart';
 import 'package:projct/viwe/login_screen.dart';
@@ -71,7 +73,7 @@ class _OtpScreenState extends State<OtpScreen> {
             ..add(SendOtp(email: widget.email)),
       child: Scaffold(
         body: BlocConsumer<OtpBloc, OtpState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state is OtpError) {
               ScaffoldMessenger.of(
                 context,
@@ -89,6 +91,12 @@ class _OtpScreenState extends State<OtpScreen> {
                 context,
                 MaterialPageRoute(builder: (context) => ButtonNavBar()),
               );
+              String fcmToken = await NotificationsService(
+                cacheService: di<CacheService>(),
+              ).getFcm();
+              NotificationsService(
+                cacheService: di<CacheService>(),
+              ).sendFcm(fcmToken: fcmToken);
             }
           },
           builder: (context, state) {

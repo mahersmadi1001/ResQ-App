@@ -6,6 +6,7 @@ import 'package:projct/core/widgets/TFF.dart';
 import 'package:projct/core/widgets/button_auth.dart';
 import 'package:projct/service/cache_service.dart';
 import 'package:projct/service/langauge_service.dart';
+import 'package:projct/service/notfications_service.dart';
 import 'package:projct/view_model/signup_bloc/signup_state.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/signup/signup_screen.dart';
@@ -40,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         backgroundColor: ColorsApp.greenPro,
         body: BlocConsumer<LoginBloc, LoginState>(
-          listener: (context, state) {
+          listener: (context, state) async {
             if (state is LoginErrorState) {
               ScaffoldMessenger.of(
                 context,
@@ -51,6 +52,12 @@ class _LoginScreenState extends State<LoginScreen> {
                 context,
               ).showSnackBar(SnackBar(content: Text(state.message)));
               langaugeService.sendLanguage(languagelanCode: "en");
+              String fcmToken = await NotificationsService(
+                cacheService: di<CacheService>(),
+              ).getFcm();
+              NotificationsService(
+                cacheService: di<CacheService>(),
+              ).sendFcm(fcmToken: fcmToken);
             }
           },
           builder: (context, state) {

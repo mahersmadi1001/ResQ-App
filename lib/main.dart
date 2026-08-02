@@ -12,6 +12,7 @@ import 'package:projct/firebase_options.dart';
 import 'package:projct/service/cache_service.dart';
 import 'package:projct/service/langauge_service.dart';
 import 'package:projct/service/map_location_service.dart';
+import 'package:projct/service/notfications_service.dart';
 import 'package:projct/service/post_service.dart';
 import 'package:projct/view_model/map_location_bloc/map_location_bloc.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
@@ -26,8 +27,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setup();
+  await NotificationsService(cacheService: di<CacheService>()).getFcm();
   // await di<CacheService>().deleteToken();
   // await di<CacheService>().deleteUser();
+
   runApp(const MainPage());
 }
 
