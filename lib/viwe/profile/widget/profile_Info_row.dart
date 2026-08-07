@@ -22,10 +22,10 @@ class ProfileInfoRow extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(10.r),
           decoration: BoxDecoration(
-            color: AppColors.greenPro.withOpacity(0.06),
+            color: AppColors.greenProLight.withOpacity(0.06),
             shape: BoxShape.circle,
           ),
-          child: Icon(icon, color: AppColors.greenPro, size: 20.sp),
+          child: Icon(icon, color: AppColors.greenProLight, size: 20.sp),
         ),
         SizedBox(width: 16.w),
         Expanded(

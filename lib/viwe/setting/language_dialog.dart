@@ -34,7 +34,7 @@ void showLanguageBottomSheet(BuildContext context) {
                   style: TextStyle(
                     fontSize: 18.sp,
                     fontWeight: FontWeight.bold,
-                    color: AppColors.greenPro,
+                    color: AppColors.yellowPro,
                   ),
                 ),
                 SizedBox(height: 15.h),

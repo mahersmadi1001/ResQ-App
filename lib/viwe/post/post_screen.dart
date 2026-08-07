@@ -24,7 +24,6 @@ class PostScreen extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
-          backgroundColor: Colors.white,
           appBar: AppBar(
             animateColor: true,
             bottom: TabBar(

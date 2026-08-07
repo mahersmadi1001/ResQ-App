@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projct/core/localization/app_localizations.dart';
+import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/circular_progress.dart';
 
 import 'package:projct/core/widgets/form_post.dart';
@@ -39,7 +40,6 @@ class _AdminPostPageState extends State<AdminPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: BlocConsumer<PostAdminBloc, PostAdminState>(
         listener: (context, state) {
           if (state.postAdminStatus == PostAdminStatus.success ||
@@ -62,6 +62,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
                   );
                 } else {
                   return RefreshIndicator(
+                    color: AppColors.yellowPro,
                     onRefresh: () async {
                       _refreshCompleter = Completer<void>();
                       context.read<PostAdminBloc>().add(
@@ -117,6 +118,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
                   return Center(child: CircularPro());
                 } else {
                   return RefreshIndicator(
+                    color: AppColors.yellowPro,
                     onRefresh: () async {
                       _refreshCompleter = Completer<void>();
                       context.read<PostAdminBloc>().add(

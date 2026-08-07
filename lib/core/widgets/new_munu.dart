@@ -7,7 +7,6 @@ import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/model/item_munu_modal.dart';
 
-
 class NewMunu extends StatefulWidget {
   final ValueChanged<List<AttachmentItem>>? onSelectionChanged;
 
@@ -165,7 +164,7 @@ class _NewMunuState extends State<NewMunu> {
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         decoration: BoxDecoration(
           color: NewMunu.selectedItems.isNotEmpty
-              ? AppColors.greenPro.withOpacity(0.13)
+              ? Color(0xffdbe2e2)
               : Colors.white,
           borderRadius: BorderRadius.circular(15.r),
           border: Border.all(

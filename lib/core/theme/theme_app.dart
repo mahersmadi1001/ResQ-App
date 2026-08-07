@@ -104,7 +104,7 @@ class AppTheme {
       seedColor: AppColors.greenPro,
       primary: AppColors.yellowPro,
       secondary: AppColors.greenProLight,
-      surface: AppColors.greenProDark,
+      surface: const Color.fromARGB(255, 49, 49, 49),
       onPrimary: AppColors.greenProDark,
       onSecondary: AppColors.whitePro,
       onSurface: AppColors.whitePro,
@@ -181,12 +181,12 @@ class AppTheme {
       extensions: [
         AppContainerTheme(
           primaryCard: BoxDecoration(
-            color: const Color(0xFF152D2D),
+            color: AppColors.greenPro,
             borderRadius: BorderRadius.circular(16.r),
             border: Border.all(color: Colors.white.withOpacity(0.05)),
           ),
           inputSurface: BoxDecoration(
-            color: const Color(0xFF0F2626),
+            color: AppColors.greenPro,
             borderRadius: BorderRadius.circular(12.r),
             border: Border.all(color: AppColors.greenProLight.withOpacity(0.3)),
           ),
@@ -224,4 +224,11 @@ class AppContainerTheme extends ThemeExtension<AppContainerTheme> {
       inputSurface: BoxDecoration.lerp(inputSurface, other.inputSurface, t)!,
     );
   }
+}
+
+extension AppThemeContextX on BuildContext {
+  AppContainerTheme? get containerStyle =>
+      Theme.of(this).extension<AppContainerTheme>();
+
+  ColorScheme get colors => Theme.of(this).colorScheme;
 }

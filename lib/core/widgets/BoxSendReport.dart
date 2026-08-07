@@ -16,7 +16,7 @@ class BoxTextRepot extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16.sp),
         decoration: BoxDecoration(
-          color: AppColors.yellowPro.withOpacity(0.15),
+          color: Color(0xffe8e4da),
           border: Border(
             left: BorderSide(color: AppColors.yellowPro, width: 4.w),
           ),

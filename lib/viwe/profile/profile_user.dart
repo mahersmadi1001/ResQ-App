@@ -11,10 +11,9 @@ class ProfileScreenUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(0),
-        child: AppBar(backgroundColor: Colors.white, elevation: 0),
+        child: AppBar(),
       ),
       body: SizedBox(
         width: double.infinity,

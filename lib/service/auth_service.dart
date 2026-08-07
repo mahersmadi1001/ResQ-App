@@ -21,11 +21,11 @@ class AuthService {
       );
 
       if (response.statusCode == 201) {
-        return "تم تسجيل معلوماتك بنجاح";
+        return "Your information has been successfully recorded";
       }
 
       throw Failure(
-        message: "لم يتم تسجيل طلبك",
+        message: "Your request hasn't been recorded",
         statusCode: response.statusCode,
       );
     } on DioException catch (e) {
@@ -35,7 +35,7 @@ class AuthService {
       );
     } catch (e) {
       throw Failure(
-        message: "حدث خطأ غير متوقع: ${e.toString()}",
+        message: "An unexpected error occurred: ${e.toString()}",
         statusCode: null,
       );
     }
@@ -53,7 +53,7 @@ class AuthService {
       }
 
       throw Failure(
-        message: "فشل في إرسال رمز التحقق",
+        message: "Failed to send the verification code",
         statusCode: response.statusCode,
       );
     } on DioException catch (e) {
@@ -63,7 +63,7 @@ class AuthService {
       );
     } catch (e) {
       throw Failure(
-        message: "حدث خطأ غير متوقع: ${e.toString()}",
+        message: "An unexpected error occurred: ${e.toString()}",
         statusCode: null,
       );
     }
@@ -84,11 +84,11 @@ class AuthService {
 
         await di<CacheService>().saveToken(token);
         await di<CacheService>().saveUser(UserModel.fromJson(userJson));
-        return "تم تسجيل الدخول بنجاح";
+        return "Logged in successfully";
       }
 
       throw Failure(
-        message: "فشل تسجيل الدخول، تأكد من البيانات",
+        message: "Login failed, check your details",
         statusCode: response.statusCode,
       );
     } on DioException catch (e) {
@@ -98,7 +98,7 @@ class AuthService {
       );
     } catch (e) {
       throw Failure(
-        message: "حدث خطأ غير متوقع: ${e.toString()}",
+        message: "An unexpected error occurred: ${e.toString()}",
         statusCode: null,
       );
     }
@@ -107,7 +107,7 @@ class AuthService {
   Future<void> logout() async {
     try {
       String? token = di<CacheService>().getToken();
-      if (token == null) throw Failure(message: "غير مسجل الدخول");
+      if (token == null) throw Failure(message: "Not logged in");
 
       Response response = await dio.delete(
         "${baseurl}logout",
@@ -125,10 +125,7 @@ class AuthService {
         return;
       }
 
-      throw Failure(
-        message: "فشل تسجيل الخروج",
-        statusCode: response.statusCode,
-      );
+      throw Failure(message: "Logout failed", statusCode: response.statusCode);
     } on DioException catch (e) {
       throw Failure(
         message: Failure.fromDioException(e),
@@ -136,7 +133,7 @@ class AuthService {
       );
     } catch (e) {
       throw Failure(
-        message: "حدث خطأ غير متوقع: ${e.toString()}",
+        message: "An unexpected error occurred: ${e.toString()}",
         statusCode: null,
       );
     }
@@ -160,7 +157,7 @@ class AuthService {
       }
 
       throw Failure(
-        message: "فشل في التحقق من الرمز",
+        message: "Failed to verify the code",
         statusCode: response.statusCode,
       );
     } on DioException catch (e) {
@@ -170,7 +167,7 @@ class AuthService {
       );
     } catch (e) {
       throw Failure(
-        message: "حدث خطأ غير متوقع: ${e.toString()}",
+        message: "An unexpected error occurred: ${e.toString()}",
         statusCode: null,
       );
     }

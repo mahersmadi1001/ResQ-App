@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,6 +11,7 @@ import 'package:projct/core/widgets/form_post.dart';
 import 'package:projct/model/post_model%20.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
 import 'package:projct/viwe/map_screen.dart';
+import 'package:projct/viwe/post/filter_addres.dart';
 
 class UsersPostPage extends StatefulWidget {
   const UsersPostPage({super.key});
@@ -42,7 +42,6 @@ class _UsersPostPageState extends State<UsersPostPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       body: BlocConsumer<PostBloc, PostState>(
         listener: (context, state) {
           if (state.postStatus == PostStatus.success ||
@@ -65,6 +64,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
                   );
                 } else {
                   return RefreshIndicator(
+                    color: AppColors.yellowPro,
                     onRefresh: () async {
                       _refreshCompleter = Completer<void>();
                       context.read<PostBloc>().add(
@@ -124,7 +124,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
                 if (state.posts.isEmpty) {
                   return Center(child: CircularPro());
                 } else {
-                  return RefreshIndicator(
+                  return RefreshIndicator( color: AppColors.yellowPro,
                     onRefresh: () async {
                       _refreshCompleter = Completer<void>();
                       context.read<PostBloc>().add(
@@ -184,97 +184,10 @@ class _UsersPostPageState extends State<UsersPostPage> {
           borderRadius: BorderRadius.all(Radius.circular(40.r)),
         ),
         onPressed: () {
-          showModalBottomSheet(
-            isScrollControlled: true,
-            isDismissible: true,
-            backgroundColor: Colors.transparent,
-            context: context,
-            builder: (context) {
-              return Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.vertical(
-                    top: Radius.circular(28.r),
-                  ),
-                ),
-                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: 40.w,
-                      height: 4.h,
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade300,
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                    ),
-                    SizedBox(height: 16.h),
-
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        IconButton(
-                          onPressed: () => Navigator.pop(context),
-                          icon: Icon(
-                            Icons.close,
-                            color: Colors.grey.shade600,
-                            size: 20.sp,
-                          ),
-                        ),
-                      ],
-                    ),
-                    Divider(color: Colors.grey.shade200),
-                    SizedBox(height: 12.h),
-
-                    ConstrainedBox(
-                      constraints: BoxConstraints(maxHeight: 350.h),
-                      child: SingleChildScrollView(
-                        physics: const BouncingScrollPhysics(),
-                        child: const FilterAddressPost(),
-                      ),
-                    ),
-
-                    SizedBox(height: 20.h),
-
-                    SizedBox(
-                      width: double.infinity,
-                      height: 50.h,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          context.read<PostBloc>().add(
-                            GetAllPost(
-                              filterParamtr: FilterAddressPost.optiosSelected,
-                            ),
-                          );
-                          Navigator.pop(context);
-                        },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.yellowPro,
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(16.r),
-                          ),
-                        ),
-                        child: Text(
-                          context.tr("general.confirm_selection"),
-                          style: TextStyle(
-                            color: AppColors.greenPro,
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(height: 10.h),
-                  ],
-                ),
-              );
-            },
-          );
+          filterAddres(context);
         },
         backgroundColor: AppColors.greenPro,
-        child: const Icon(Icons.tune_outlined, color: AppColors.yellowPro),
+        child: const Icon(Icons.tune_outlined, color: AppColors.whitePro),
       ),
     );
   }

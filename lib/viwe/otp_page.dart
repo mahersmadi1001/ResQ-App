@@ -80,12 +80,12 @@ class _OtpScreenState extends State<OtpScreen> {
               ).showSnackBar(SnackBar(content: Text(state.message)));
             } else if (state is SuccessSendOtp) {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("تم إرسال الرمز بنجاح")),
+                const SnackBar(content: Text("The code was sent successfully")),
               );
             } else if (state is OtpIsVerify) {
-              ScaffoldMessenger.of(
-                context,
-              ).showSnackBar(const SnackBar(content: Text("تم التحقق بنجاح")));
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Verified successfully")),
+              );
               context.read<UserSessionBloc>().add(LogingUser());
               String fcmToken = await NotificationsService(
                 cacheService: di<CacheService>(),
@@ -106,7 +106,7 @@ class _OtpScreenState extends State<OtpScreen> {
                       children: [
                         Icon(Icons.key, size: 50.sp, color: AppColors.greenPro),
                         Text(
-                          "تحقق من الرمز",
+                          "Check the code",
                           style: TextStyle(
                             fontSize: 24.sp,
                             fontWeight: FontWeight.bold,
@@ -129,7 +129,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           validator: (value) {
                             return (value != null && value.length == 6)
                                 ? null
-                                : 'الرجاء إدخال الرمز بشكل كامل';
+                                : "Please enter the code in full";
                           },
 
                           hapticFeedbackType: HapticFeedbackType.lightImpact,
@@ -169,7 +169,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                 );
                               },
                               child: Text(
-                                "إعادة إرسال الرمز",
+                                "Resend the code",
                                 style: TextStyle(
                                   fontSize: 16.sp,
                                   color: AppColors.greenPro,

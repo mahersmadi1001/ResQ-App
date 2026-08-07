@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/constens/constens.dart';
+import 'package:projct/core/theme/theme_app.dart';
 import 'package:projct/core/widgets/logout_dialog.dart';
 import 'package:projct/core/widgets/setting_item.dart';
+import 'package:projct/view_model/theme_bloc/theme_bloc.dart';
+import 'package:projct/view_model/theme_bloc/theme_event.dart';
+import 'package:projct/view_model/theme_bloc/theme_state.dart';
 import 'package:projct/viwe/profile/profile_user.dart';
 import 'package:projct/viwe/report/report_screen.dart';
 import 'package:projct/viwe/setting/language_dialog.dart';
@@ -22,7 +27,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfff8f9fa),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -90,7 +94,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Text(
                     "${user?.firstName ?? ""}",
                     style: TextStyle(
-                      color: AppColors.greenPro,
+                      color: AppColors.yellowPro,
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -99,7 +103,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Text(
                     "${user?.lastName ?? ""}",
                     style: TextStyle(
-                      color: AppColors.greenPro,
+                      color: AppColors.yellowPro,
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -111,17 +115,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(24.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(8),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
-                ),
+                decoration: context.containerStyle?.primaryCard,
+
                 child: Column(
                   children: [
                     InkWell(
@@ -153,18 +148,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ontap: () => showLanguageBottomSheet(context),
                     ),
                     const SettingsDivider(),
-                    SettingItem(
-                      icon: Icons.dark_mode_outlined,
-                      text: context.tr("settings_screen.dark_mode"),
-                      switchMode: Switch(
-                        inactiveThumbColor: AppColors.yellowPro,
-                        inactiveTrackColor: AppColors.greenPro,
-                        hoverColor: AppColors.greenPro,
-                        value: false,
-                        onChanged: (value) {},
-                        activeThumbColor: AppColors.greenPro,
-                        activeTrackColor: AppColors.yellowPro,
-                      ),
+                    BlocBuilder<ThemeBloc, ThemeState>(
+                      builder: (context, state) {
+                        final isDarkMode = state is ThemeLoaded
+                            ? state.isDarkMode
+                            : false;
+                        return SettingItem(
+                          icon: isDarkMode ? Icons.dark_mode : Icons.light_mode,
+                          text: context.tr("settings_screen.dark_mode"),
+                          switchMode: Switch(
+                            inactiveThumbColor: AppColors.yellowPro,
+                            inactiveTrackColor: AppColors.greenPro,
+                            hoverColor: AppColors.greenPro,
+                            value: isDarkMode,
+                            onChanged: (value) {
+                              context.read<ThemeBloc>().add(
+                                ThemeChanged(isDarkMode: !isDarkMode),
+                              );
+                            },
+                            activeThumbColor: AppColors.greenPro,
+                            activeTrackColor: AppColors.yellowPro,
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -174,17 +180,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(24.r),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(8),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
-                ),
+                decoration: context.containerStyle?.primaryCard,
                 child: SettingItem(
                   ontap: () {
                     showDialog(

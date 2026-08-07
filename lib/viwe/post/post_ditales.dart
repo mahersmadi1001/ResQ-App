@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/core/theme/theme_app.dart';
 import 'package:projct/core/widgets/form_post.dart';
 import 'package:projct/model/post_admin_model.dart';
 import 'package:projct/model/post_model%20.dart';
@@ -14,7 +15,6 @@ class PostDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
       body: CustomScrollView(
         slivers: [
           PostDetailsAppBar(post: post, index: index),
@@ -160,7 +160,7 @@ class PostTagBadge extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
       decoration: BoxDecoration(
-        color: AppColors.yellowPro.withOpacity(0.15),
+        color: Color(0xffe8e4da),
         borderRadius: BorderRadius.circular(20.r),
         border: Border.all(
           color: AppColors.yellowPro.withOpacity(0.3),
@@ -170,7 +170,7 @@ class PostTagBadge extends StatelessWidget {
       child: Text(
         text,
         style: TextStyle(
-          color: AppColors.greenPro,
+          color: AppColors.greenProLight,
           fontSize: 12.sp,
           fontWeight: FontWeight.w600,
         ),
@@ -189,7 +189,7 @@ class PostTitleText extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        color: AppColors.greenPro,
+        color: AppColors.yellowPro,
         fontSize: 24.sp,
         fontWeight: FontWeight.bold,
         height: 1.3,
@@ -236,24 +236,14 @@ class PostLocationCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16.r),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.03),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-        border: Border.all(color: Colors.grey.shade100, width: 1.w),
-      ),
+      decoration: context.containerStyle?.primaryCard,
+
       child: Row(
         children: [
           Container(
             padding: EdgeInsets.all(10.r),
             decoration: BoxDecoration(
-              color: AppColors.greenPro.withOpacity(0.08),
+              color: AppColors.greenProLight,
               shape: BoxShape.circle,
             ),
             child: Icon(
@@ -270,7 +260,7 @@ class PostLocationCard extends StatelessWidget {
                 Text(
                   address.city,
                   style: TextStyle(
-                    color: AppColors.greenPro,
+                    color: AppColors.greenProLight,
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -321,15 +311,11 @@ class PostBodyText extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(16.r),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: Colors.grey.shade100, width: 1.w),
-      ),
+      decoration: context.containerStyle?.primaryCard,
       child: Text(
         body,
         style: TextStyle(
-          color: Colors.grey.shade800,
+          color: Colors.grey.shade500,
           fontSize: 15.sp,
           height: 1.6,
         ),

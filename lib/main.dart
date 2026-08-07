@@ -8,6 +8,7 @@ import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/localization/localization_bloc/localization_bloc.dart';
 import 'package:projct/core/localization/localization_bloc/localization_event.dart';
 import 'package:projct/core/localization/localization_bloc/localization_state.dart';
+import 'package:projct/core/theme/theme_app.dart';
 import 'package:projct/firebase_options.dart';
 import 'package:projct/service/cache_service.dart';
 import 'package:projct/service/langauge_service.dart';
@@ -18,6 +19,7 @@ import 'package:projct/view_model/map_location_bloc/map_location_bloc.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
 import 'package:projct/view_model/report_input_bloc/report_input_bloc.dart';
 import 'package:projct/view_model/theme_bloc/theme_bloc.dart';
+import 'package:projct/view_model/theme_bloc/theme_state.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/bottom_nav_bar.dart';
 import 'package:projct/viwe/login_screen.dart';
@@ -98,20 +100,31 @@ class MainPage extends StatelessWidget {
             },
             child: BlocBuilder<LocalizationBloc, LocalizationState>(
               builder: (context, state) {
-                return MaterialApp(
-                  navigatorKey: navigatorKey,
-                  debugShowCheckedModeBanner: false,
-                  locale: state is LocalizationSuccessState
-                      ? state.langCode
-                      : const Locale("en"),
-                  supportedLocales: const [Locale('ar'), Locale('en')],
-                  localizationsDelegates: const [
-                    AppLocalizations.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                  ],
-                  home: const SplashScreen(),
+                return BlocBuilder<ThemeBloc, ThemeState>(
+                  builder: (context, themestate) {
+                    return MaterialApp(
+                      themeAnimationDuration: Duration(milliseconds: 150),
+                      themeAnimationCurve: Curves.linear,
+                      theme: themestate is ThemeLoaded
+                          ? (themestate.isDarkMode
+                                ? AppTheme.darkTheme
+                                : AppTheme.lightTheme)
+                          : AppTheme.lightTheme,
+                      navigatorKey: navigatorKey,
+                      debugShowCheckedModeBanner: false,
+                      locale: state is LocalizationSuccessState
+                          ? state.langCode
+                          : const Locale("en"),
+                      supportedLocales: const [Locale('ar'), Locale('en')],
+                      localizationsDelegates: const [
+                        AppLocalizations.delegate,
+                        GlobalMaterialLocalizations.delegate,
+                        GlobalWidgetsLocalizations.delegate,
+                        GlobalCupertinoLocalizations.delegate,
+                      ],
+                      home: const SplashScreen(),
+                    );
+                  },
                 );
               },
             ),

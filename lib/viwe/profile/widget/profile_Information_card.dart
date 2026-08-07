@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/core/theme/theme_app.dart';
 import 'package:projct/viwe/profile/widget/profile_Info_row.dart';
 
 class ProfileInformationCard extends StatelessWidget {
@@ -21,18 +22,14 @@ class ProfileInformationCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.all(24.r),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(color: AppColors.whitePro, width: 1.5.w),
-      ),
+      decoration: context.containerStyle?.primaryCard,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             context.tr("profile_screen.personal_details"),
             style: TextStyle(
-              color: AppColors.greenPro.withOpacity(0.4),
+              color: AppColors.greenProLight,
               fontSize: 11.sp,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,

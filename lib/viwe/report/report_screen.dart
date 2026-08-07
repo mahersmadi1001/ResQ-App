@@ -40,7 +40,6 @@ class _ReportScreenState extends State<ReportScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -127,9 +126,7 @@ class _ReportScreenState extends State<ReportScreen> {
                                             bottomLeft: Radius.circular(35.r),
                                             topLeft: Radius.circular(35.r),
                                           ),
-                                    color: AppColors.yellowPro.withOpacity(
-                                      0.25,
-                                    ),
+                                    color: Color(0xffe8e4da),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.all(10.sp),
