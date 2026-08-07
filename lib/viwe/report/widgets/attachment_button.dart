@@ -32,13 +32,15 @@ class AttachmentButton extends StatelessWidget {
 
         if (selectedMedia != null && selectedMedia.isNotEmpty) {
           if (context.mounted) {
-            context.read<ReportInputBloc>().add(AttachmentsAdded(selectedMedia));
+            context.read<ReportInputBloc>().add(
+              AttachmentsAdded(selectedMedia),
+            );
           }
         }
       },
       icon: Icon(
         Icons.attach_file_outlined,
-        color: ColorsApp.greenPro.withOpacity(0.7),
+        color: AppColors.greenPro.withOpacity(0.7),
         size: 24.sp,
       ),
     );

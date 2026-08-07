@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/localization/app_localizations.dart';
@@ -25,7 +24,7 @@ class ProfileInformationCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24.r),
-        border: Border.all(color: ColorsApp.withePro, width: 1.5.w),
+        border: Border.all(color: AppColors.whitePro, width: 1.5.w),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +32,7 @@ class ProfileInformationCard extends StatelessWidget {
           Text(
             context.tr("profile_screen.personal_details"),
             style: TextStyle(
-              color: ColorsApp.greenPro.withOpacity(0.4),
+              color: AppColors.greenPro.withOpacity(0.4),
               fontSize: 11.sp,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,
@@ -60,4 +59,3 @@ class ProfileInformationCard extends StatelessWidget {
     );
   }
 }
-

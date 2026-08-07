@@ -31,7 +31,7 @@ class NavigatToLogin extends StatelessWidget {
             "Login",
             style: TextStyle(
               shadows: [Shadow(blurRadius: 10, offset: Offset(2, 4))],
-              color: ColorsApp.yalwoPro,
+              color: AppColors.yellowPro,
               fontSize: 17.sp,
               fontWeight: FontWeight.bold,
             ),

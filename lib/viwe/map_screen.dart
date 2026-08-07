@@ -79,7 +79,7 @@ class _MapScreenState extends State<MapScreen> {
             ),
           ),
           centerTitle: true,
-          backgroundColor: ColorsApp.greenPro,
+          backgroundColor: AppColors.greenPro,
           title: Text(
             context.tr("map_screen.map_page"),
             style: TextStyle(
@@ -91,7 +91,7 @@ class _MapScreenState extends State<MapScreen> {
                 ),
               ],
               fontSize: 23.sp,
-              color: ColorsApp.yalwoPro,
+              color: AppColors.yellowPro,
               fontWeight: FontWeight.bold,
             ),
           ),

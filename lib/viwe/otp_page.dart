@@ -4,10 +4,10 @@ import 'package:pinput/pinput.dart';
 import 'package:projct/core/config/di.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/button_auth.dart';
+import 'package:projct/core/widgets/circular_progress.dart';
 import 'package:projct/service/cache_service.dart';
 import 'package:projct/service/notfications_service.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
-import 'package:projct/viwe/bottom_nav_bar.dart';
 import 'package:projct/viwe/login_screen.dart';
 import 'package:projct/viwe/signup/signup_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,22 +42,22 @@ class _OtpScreenState extends State<OtpScreen> {
       height: 56.h,
       textStyle: TextStyle(
         fontSize: 22.sp,
-        color: ColorsApp.greenPro,
+        color: AppColors.greenPro,
         fontWeight: FontWeight.bold,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10.r),
-        border: Border.all(color: ColorsApp.yalwoPro, width: 2),
+        border: Border.all(color: AppColors.yellowPro, width: 2),
       ),
     );
 
     final focusedPinTheme = PinTheme(
-      textStyle: TextStyle(color: ColorsApp.greenPro, fontSize: 25.sp),
+      textStyle: TextStyle(color: AppColors.greenPro, fontSize: 25.sp),
       width: 56.w,
       height: 56.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(22.r),
-        border: Border.all(color: ColorsApp.yalwoPro, width: 3),
+        border: Border.all(color: AppColors.yellowPro, width: 3),
       ),
     );
 
@@ -87,10 +87,6 @@ class _OtpScreenState extends State<OtpScreen> {
                 context,
               ).showSnackBar(const SnackBar(content: Text("تم التحقق بنجاح")));
               context.read<UserSessionBloc>().add(LogingUser());
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => ButtonNavBar()),
-              );
               String fcmToken = await NotificationsService(
                 cacheService: di<CacheService>(),
               ).getFcm();
@@ -108,13 +104,13 @@ class _OtpScreenState extends State<OtpScreen> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.key, size: 50.sp, color: ColorsApp.greenPro),
+                        Icon(Icons.key, size: 50.sp, color: AppColors.greenPro),
                         Text(
                           "تحقق من الرمز",
                           style: TextStyle(
                             fontSize: 24.sp,
                             fontWeight: FontWeight.bold,
-                            color: ColorsApp.greenPro,
+                            color: AppColors.greenPro,
                           ),
                         ),
 
@@ -143,7 +139,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               Container(
                                 height: 2.h,
                                 width: 20.w,
-                                color: ColorsApp.greenPro,
+                                color: AppColors.greenPro,
                               ),
                             ],
                           ),
@@ -176,7 +172,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                 "إعادة إرسال الرمز",
                                 style: TextStyle(
                                   fontSize: 16.sp,
-                                  color: ColorsApp.greenPro,
+                                  color: AppColors.greenPro,
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
@@ -205,7 +201,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               child: Text(
                                 "Login",
                                 style: TextStyle(
-                                  color: ColorsApp.yalwoPro,
+                                  color: AppColors.yellowPro,
                                   fontSize: 22.sp,
                                 ),
                               ),
@@ -224,7 +220,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               child: Text(
                                 "SginUp",
                                 style: TextStyle(
-                                  color: ColorsApp.yalwoPro,
+                                  color: AppColors.yellowPro,
                                   fontSize: 22.sp,
                                 ),
                               ),
@@ -237,8 +233,8 @@ class _OtpScreenState extends State<OtpScreen> {
                 ),
                 if (state is OtpLoadingState)
                   Container(
-                    color: ColorsApp.yalwoPro,
-                    child: const Center(child: CircularProgressIndicator()),
+                    color: AppColors.yellowPro,
+                    child: const Center(child: CircularPro()),
                   ),
               ],
             );

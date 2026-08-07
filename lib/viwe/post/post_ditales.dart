@@ -35,7 +35,7 @@ class PostDetailsAppBar extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: 320.h,
       pinned: true,
-      backgroundColor: ColorsApp.greenPro,
+      backgroundColor: AppColors.greenPro,
       elevation: 0,
       leading: const AppBarBackButton(),
       flexibleSpace: FlexibleSpaceBar(
@@ -160,17 +160,17 @@ class PostTagBadge extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 14.w, vertical: 6.h),
       decoration: BoxDecoration(
-        color: ColorsApp.yalwoPro.withOpacity(0.15),
+        color: AppColors.yellowPro.withOpacity(0.15),
         borderRadius: BorderRadius.circular(20.r),
         border: Border.all(
-          color: ColorsApp.yalwoPro.withOpacity(0.3),
+          color: AppColors.yellowPro.withOpacity(0.3),
           width: 1.w,
         ),
       ),
       child: Text(
         text,
         style: TextStyle(
-          color: ColorsApp.greenPro,
+          color: AppColors.greenPro,
           fontSize: 12.sp,
           fontWeight: FontWeight.w600,
         ),
@@ -189,7 +189,7 @@ class PostTitleText extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        color: ColorsApp.greenPro,
+        color: AppColors.greenPro,
         fontSize: 24.sp,
         fontWeight: FontWeight.bold,
         height: 1.3,
@@ -207,7 +207,11 @@ class PostMetaDateTime extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.access_time_rounded, size: 16.sp, color: ColorsApp.yalwoPro),
+        Icon(
+          Icons.access_time_rounded,
+          size: 16.sp,
+          color: AppColors.yellowPro,
+        ),
         SizedBox(width: 6.w),
         Text(
           "${createdAt.date}  •  ${createdAt.time}",
@@ -249,12 +253,12 @@ class PostLocationCard extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(10.r),
             decoration: BoxDecoration(
-              color: ColorsApp.greenPro.withOpacity(0.08),
+              color: AppColors.greenPro.withOpacity(0.08),
               shape: BoxShape.circle,
             ),
             child: Icon(
               Icons.location_on_rounded,
-              color: ColorsApp.yalwoPro,
+              color: AppColors.yellowPro,
               size: 22.sp,
             ),
           ),
@@ -266,7 +270,7 @@ class PostLocationCard extends StatelessWidget {
                 Text(
                   address.city,
                   style: TextStyle(
-                    color: ColorsApp.greenPro,
+                    color: AppColors.greenPro,
                     fontSize: 15.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -298,7 +302,7 @@ class PostSectionHeading extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        color: ColorsApp.yalwoPro,
+        color: AppColors.yellowPro,
         fontSize: 18.sp,
         fontWeight: FontWeight.bold,
         letterSpacing: 0.5,

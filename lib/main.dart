@@ -17,11 +17,14 @@ import 'package:projct/service/post_service.dart';
 import 'package:projct/view_model/map_location_bloc/map_location_bloc.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
 import 'package:projct/view_model/report_input_bloc/report_input_bloc.dart';
+import 'package:projct/view_model/theme_bloc/theme_bloc.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 import 'package:projct/viwe/bottom_nav_bar.dart';
 import 'package:projct/viwe/login_screen.dart';
 import 'package:projct/viwe/onbording/pagesview.dart';
 import 'package:projct/viwe/splash_screen.dart';
+
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -72,37 +75,46 @@ class MainPage extends StatelessWidget {
                 return di<UserSessionBloc>()..add(UserSessionCheckStatus());
               },
             ),
+            BlocProvider(create: (context) => ThemeBloc()),
           ],
-          child: BlocBuilder<LocalizationBloc, LocalizationState>(
-            builder: (context, state) {
-              return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                locale: state is LocalizationSuccessState
-                    ? state.langCode
-                    : Locale("en"),
-                supportedLocales: const [Locale('ar'), Locale('en')],
-                localizationsDelegates: const [
-                  AppLocalizations.delegate,
-                  GlobalMaterialLocalizations.delegate,
-                  GlobalWidgetsLocalizations.delegate,
-                  GlobalCupertinoLocalizations.delegate,
-                ],
-                home: BlocBuilder<UserSessionBloc, UserSessionState>(
-                  builder: (context, state) {
-                    if (state is UserSessionInitial) {
-                      return SplashScreen();
-                    } else if (state is UserFirstTimeState) {
-                      return OnBordingPageView();
-                    } else if (state is UserAuthenticated) {
-                      return ButtonNavBar();
-                    } else if (state is UserUnAuth) {
-                      return LoginScreen();
-                    }
-                    return SplashScreen();
-                  },
-                ),
-              );
+          child: BlocListener<UserSessionBloc, UserSessionState>(
+            listener: (context, state) {
+              if (state is UserAuthenticated) {
+                navigatorKey.currentState?.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => const ButtonNavBar()),
+                  (route) => false,
+                );
+              } else if (state is UserUnAuth) {
+                navigatorKey.currentState?.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => const LoginScreen()),
+                  (route) => false,
+                );
+              } else if (state is UserFirstTimeState) {
+                navigatorKey.currentState?.pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (_) => OnBordingPageView()),
+                  (route) => false,
+                );
+              }
             },
+            child: BlocBuilder<LocalizationBloc, LocalizationState>(
+              builder: (context, state) {
+                return MaterialApp(
+                  navigatorKey: navigatorKey,
+                  debugShowCheckedModeBanner: false,
+                  locale: state is LocalizationSuccessState
+                      ? state.langCode
+                      : const Locale("en"),
+                  supportedLocales: const [Locale('ar'), Locale('en')],
+                  localizationsDelegates: const [
+                    AppLocalizations.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  home: const SplashScreen(),
+                );
+              },
+            ),
           ),
         );
       },

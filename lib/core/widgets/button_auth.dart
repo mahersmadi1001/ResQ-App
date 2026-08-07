@@ -17,7 +17,7 @@ class ButtonAuth extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialButton(
-      color: ColorsApp.yalwoPro,
+      color: AppColors.yellowPro,
       onPressed: onPressed,
       minWidth: minWidth,
       height: 45.h,

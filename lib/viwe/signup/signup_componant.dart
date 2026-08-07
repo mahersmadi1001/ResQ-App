@@ -39,7 +39,7 @@ class _SignUpComponantState extends State<SignUpComponant> {
             "Sign Up",
             style: TextStyle(
               shadows: [Shadow(blurRadius: 10, offset: Offset(2, 5))],
-              color: ColorsApp.yalwoPro,
+              color: AppColors.yellowPro,
               fontSize: 28.sp,
               fontWeight: FontWeight.bold,
             ),
@@ -86,7 +86,7 @@ class _SignUpComponantState extends State<SignUpComponant> {
                 "Address :",
                 style: TextStyle(
                   shadows: [Shadow(blurRadius: 10, offset: Offset(6, 3))],
-                  color: ColorsApp.yalwoPro,
+                  color: AppColors.yellowPro,
                   fontSize: 18.sp,
                   fontWeight: FontWeight.bold,
                 ),
@@ -94,7 +94,7 @@ class _SignUpComponantState extends State<SignUpComponant> {
               SizedBox(width: 18.w),
               MaterialButton(
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: ColorsApp.yalwoPro, width: 2),
+                  side: BorderSide(color: AppColors.yellowPro, width: 2),
                   borderRadius: BorderRadiusGeometry.all(Radius.circular(16.r)),
                 ),
 
@@ -103,7 +103,7 @@ class _SignUpComponantState extends State<SignUpComponant> {
                 onPressed: () {
                   showModalBottomSheet(
                     isDismissible: true,
-                    backgroundColor: ColorsApp.withePro,
+                    backgroundColor: AppColors.whitePro,
                     context: context,
                     builder: (context) {
                       return SizedBox(
@@ -117,14 +117,14 @@ class _SignUpComponantState extends State<SignUpComponant> {
                   children: [
                     Icon(
                       Icons.location_on,
-                      color: ColorsApp.yalwoPro,
+                      color: AppColors.yellowPro,
                       size: 28.sp,
                     ),
                     SizedBox(width: 10.w),
                     Text(
                       "Specify your Address",
                       style: TextStyle(
-                        color: ColorsApp.yalwoPro,
+                        color: AppColors.yellowPro,
                         fontSize: 16.sp,
                       ),
                     ),

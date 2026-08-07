@@ -49,7 +49,7 @@ class _ReportScreenState extends State<ReportScreen> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: ColorsApp.greenPro,
+        backgroundColor: AppColors.greenPro,
         title: Text(
           context.tr('report_screen.report_page'),
           style: TextStyle(
@@ -61,7 +61,7 @@ class _ReportScreenState extends State<ReportScreen> {
               ),
             ],
             fontSize: 23.sp,
-            color: ColorsApp.yalwoPro,
+            color: AppColors.yellowPro,
             fontWeight: FontWeight.bold,
           ),
         ),
@@ -127,7 +127,9 @@ class _ReportScreenState extends State<ReportScreen> {
                                             bottomLeft: Radius.circular(35.r),
                                             topLeft: Radius.circular(35.r),
                                           ),
-                                    color: ColorsApp.yalwoPro.withOpacity(0.25),
+                                    color: AppColors.yellowPro.withOpacity(
+                                      0.25,
+                                    ),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.all(10.sp),
@@ -139,14 +141,14 @@ class _ReportScreenState extends State<ReportScreen> {
                                           context.tr('report_screen.welcome'),
                                           style: TextStyle(
                                             fontWeight: FontWeight.w500,
-                                            color: ColorsApp.greenPro,
+                                            color: AppColors.greenPro,
                                             fontSize: 20.sp,
                                           ),
                                         ),
                                         Text(
                                           " ${user?.firstName ?? ""}",
                                           style: TextStyle(
-                                            color: ColorsApp.yalwoPro,
+                                            color: AppColors.yellowPro,
                                             fontSize: 24.sp,
                                             fontWeight: FontWeight.w600,
                                           ),
@@ -175,7 +177,7 @@ class _ReportScreenState extends State<ReportScreen> {
                                         style: TextStyle(
                                           fontSize: 16.sp,
                                           fontWeight: FontWeight.bold,
-                                          color: ColorsApp.greenPro,
+                                          color: AppColors.greenPro,
                                         ),
                                       ),
                                       Text(

@@ -16,9 +16,9 @@ class BoxTextRepot extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(16.sp),
         decoration: BoxDecoration(
-          color: ColorsApp.yalwoPro.withOpacity(0.15),
+          color: AppColors.yellowPro.withOpacity(0.15),
           border: Border(
-            left: BorderSide(color: ColorsApp.yalwoPro, width: 4.w),
+            left: BorderSide(color: AppColors.yellowPro, width: 4.w),
           ),
           borderRadius: BorderRadius.circular(12.r),
         ),
@@ -29,14 +29,14 @@ class BoxTextRepot extends StatelessWidget {
               children: [
                 Icon(
                   Icons.info_outline_rounded,
-                  color: ColorsApp.greenPro,
+                  color: AppColors.greenPro,
                   size: 22.sp,
                 ),
                 SizedBox(width: 8.w),
                 Text(
                   context.tr("report_screen.how_to_send_report"),
                   style: TextStyle(
-                    color: ColorsApp.greenPro,
+                    color: AppColors.greenPro,
                     fontSize: 16.sp,
                     fontWeight: FontWeight.bold,
                   ),

@@ -30,11 +30,11 @@ void showSuccessDialog(BuildContext context, Map<String, dynamic> data) {
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            colors: [ColorsApp.greenPro, ColorsApp.greenPro.withOpacity(0.85)],
+            colors: [AppColors.greenPro, AppColors.greenPro.withOpacity(0.85)],
           ),
           boxShadow: [
             BoxShadow(
-              color: ColorsApp.greenPro.withOpacity(0.5),
+              color: AppColors.greenPro.withOpacity(0.5),
               blurRadius: 30,
               offset: const Offset(0, 10),
             ),
@@ -47,7 +47,7 @@ void showSuccessDialog(BuildContext context, Map<String, dynamic> data) {
               width: double.infinity,
               padding: EdgeInsets.symmetric(vertical: 24.h),
               decoration: BoxDecoration(
-                color: ColorsApp.yalwoPro.withOpacity(0.15),
+                color: AppColors.yellowPro.withOpacity(0.15),
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(24.r),
                   topRight: Radius.circular(24.r),
@@ -58,11 +58,11 @@ void showSuccessDialog(BuildContext context, Map<String, dynamic> data) {
                   Container(
                     padding: EdgeInsets.all(14.r),
                     decoration: BoxDecoration(
-                      color: ColorsApp.yalwoPro,
+                      color: AppColors.yellowPro,
                       shape: BoxShape.circle,
                       boxShadow: [
                         BoxShadow(
-                          color: ColorsApp.yalwoPro.withOpacity(0.4),
+                          color: AppColors.yellowPro.withOpacity(0.4),
                           blurRadius: 16,
                           spreadRadius: 2,
                         ),
@@ -70,7 +70,7 @@ void showSuccessDialog(BuildContext context, Map<String, dynamic> data) {
                     ),
                     child: Icon(
                       Icons.check_rounded,
-                      color: ColorsApp.greenPro,
+                      color: AppColors.greenPro,
                       size: 36.sp,
                     ),
                   ),
@@ -91,7 +91,7 @@ void showSuccessDialog(BuildContext context, Map<String, dynamic> data) {
                       children: [
                         Icon(
                           Icons.location_on,
-                          color: ColorsApp.yalwoPro,
+                          color: AppColors.yellowPro,
                           size: 16.sp,
                         ),
                         SizedBox(width: 4.w),
@@ -118,7 +118,7 @@ void showSuccessDialog(BuildContext context, Map<String, dynamic> data) {
                     Text(
                       context.tr("report_screen.safety_instructions"),
                       style: TextStyle(
-                        color: ColorsApp.yalwoPro,
+                        color: AppColors.yellowPro,
                         fontSize: 15.sp,
                         fontWeight: FontWeight.bold,
                       ),
@@ -134,14 +134,14 @@ void showSuccessDialog(BuildContext context, Map<String, dynamic> data) {
                               width: 22.w,
                               height: 22.w,
                               decoration: BoxDecoration(
-                                color: ColorsApp.yalwoPro,
+                                color: AppColors.yellowPro,
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
                                 child: Text(
                                   '${entry.key + 1}',
                                   style: TextStyle(
-                                    color: ColorsApp.greenPro,
+                                    color: AppColors.greenPro,
                                     fontSize: 11.sp,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -174,8 +174,8 @@ void showSuccessDialog(BuildContext context, Map<String, dynamic> data) {
                 child: ElevatedButton(
                   onPressed: () => Navigator.of(context).pop(),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorsApp.yalwoPro,
-                    foregroundColor: ColorsApp.greenPro,
+                    backgroundColor: AppColors.yellowPro,
+                    foregroundColor: AppColors.greenPro,
                     padding: EdgeInsets.symmetric(vertical: 14.h),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14.r),

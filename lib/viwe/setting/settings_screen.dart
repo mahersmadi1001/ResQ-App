@@ -35,11 +35,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     decoration: BoxDecoration(
                       border: BorderDirectional(
                         bottom: BorderSide(
-                          color: ColorsApp.yalwoPro,
+                          color: AppColors.yellowPro,
                           width: 4.w,
                         ),
                       ),
-                      color: ColorsApp.greenPro,
+                      color: AppColors.greenPro,
                       borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(36.r),
                         bottomRight: Radius.circular(36.r),
@@ -52,7 +52,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
-                          color: ColorsApp.yalwoPro,
+                          color: AppColors.yellowPro,
                           width: 4.w,
                         ),
                         boxShadow: [
@@ -65,7 +65,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                       child: CircleAvatar(
                         radius: 75.r,
-                        backgroundColor: ColorsApp.greenPro,
+                        backgroundColor: AppColors.greenPro,
                         child: Padding(
                           padding: EdgeInsets.only(top: 10.h),
                           child: SvgPicture.asset(
@@ -90,7 +90,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Text(
                     "${user?.firstName ?? ""}",
                     style: TextStyle(
-                      color: ColorsApp.greenPro,
+                      color: AppColors.greenPro,
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -99,7 +99,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Text(
                     "${user?.lastName ?? ""}",
                     style: TextStyle(
-                      color: ColorsApp.greenPro,
+                      color: AppColors.greenPro,
                       fontSize: 24.sp,
                       fontWeight: FontWeight.bold,
                     ),
@@ -157,13 +157,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       icon: Icons.dark_mode_outlined,
                       text: context.tr("settings_screen.dark_mode"),
                       switchMode: Switch(
-                        inactiveThumbColor: ColorsApp.yalwoPro,
-                        inactiveTrackColor: ColorsApp.greenPro,
-                        hoverColor: ColorsApp.greenPro,
+                        inactiveThumbColor: AppColors.yellowPro,
+                        inactiveTrackColor: AppColors.greenPro,
+                        hoverColor: AppColors.greenPro,
                         value: false,
                         onChanged: (value) {},
-                        activeThumbColor: ColorsApp.greenPro,
-                        activeTrackColor: ColorsApp.yalwoPro,
+                        activeThumbColor: AppColors.greenPro,
+                        activeTrackColor: AppColors.yellowPro,
                       ),
                     ),
                   ],

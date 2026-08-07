@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/core/widgets/circular_progress.dart';
 import 'package:projct/service/cache_service.dart';
 import 'package:projct/view_model/user_session_bloc/user_session_bloc.dart';
 
@@ -43,7 +44,7 @@ class LogoutDialog extends StatelessWidget {
             backgroundColor: Colors.white,
             content: Text(
               context.tr("settings_screen.logout_confirm_body"),
-              style: TextStyle(color: ColorsApp.yalwoPro, fontSize: 20.sp),
+              style: TextStyle(color: AppColors.yellowPro, fontSize: 20.sp),
             ),
             title: Text(
               context.tr("settings_screen.logout"),
@@ -63,23 +64,21 @@ class LogoutDialog extends StatelessWidget {
                     },
                     child: Text(
                       context.tr("general.cancel"),
-                      style: const TextStyle(color: ColorsApp.yalwoPro),
+                      style: const TextStyle(color: AppColors.yellowPro),
                     ),
                   ),
                   state is LogoutLoadingState
-                      ? const CircularProgressIndicator(
-                          color: ColorsApp.yalwoPro,
-                        )
+                      ? const CircularPro()
                       : ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: ColorsApp.greenPro,
+                            backgroundColor: AppColors.greenPro,
                           ),
                           onPressed: () {
                             context.read<LogoutBloc>().add(SendLogout());
                           },
                           child: Text(
                             context.tr("general.yes"),
-                            style: const TextStyle(color: ColorsApp.yalwoPro),
+                            style: const TextStyle(color: AppColors.yellowPro),
                           ),
                         ),
                 ],

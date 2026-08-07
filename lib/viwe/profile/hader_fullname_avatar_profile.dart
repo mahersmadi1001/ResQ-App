@@ -58,11 +58,11 @@ class ProfilePremiumAvatarPlaceholder extends StatelessWidget {
       padding: EdgeInsets.all(4.r),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        border: Border.all(color: ColorsApp.yalwoPro, width: 3.w),
+        border: Border.all(color: AppColors.yellowPro, width: 3.w),
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [ColorsApp.greenPro, ColorsApp.greenPro.withOpacity(0.85)],
+          colors: [AppColors.greenPro, AppColors.greenPro.withOpacity(0.85)],
         ),
       ),
       child: Container(
@@ -101,7 +101,7 @@ class ProfileUserFullName extends StatelessWidget {
           Text(
             firstName,
             style: TextStyle(
-              color: ColorsApp.greenPro,
+              color: AppColors.greenPro,
               fontSize: 26.sp,
               fontWeight: FontWeight.bold,
             ),
@@ -109,7 +109,7 @@ class ProfileUserFullName extends StatelessWidget {
           Text(
             " $lastName",
             style: TextStyle(
-              color: ColorsApp.yalwoPro,
+              color: AppColors.yellowPro,
               fontSize: 26.sp,
               fontWeight: FontWeight.bold,
             ),

@@ -10,7 +10,7 @@ class ProfileLogoTopBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: ColorsApp.greenPro,
+        color: AppColors.greenPro,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(25.r),
           bottomRight: Radius.circular(25.r),
@@ -31,14 +31,14 @@ class ProfileLogoTopBar extends StatelessWidget {
                   onPressed: () => Navigator.pop(context),
                   icon: Icon(
                     Icons.arrow_back_ios_new_rounded,
-                    color: ColorsApp.withePro,
+                    color: AppColors.whitePro,
                     size: 20.sp,
                   ),
                 ),
                 Text(
                   context.tr("profile_screen.account_profile"),
                   style: TextStyle(
-                    color: ColorsApp.yalwoPro,
+                    color: AppColors.yellowPro,
                     fontSize: 23.sp,
                     fontWeight: FontWeight.bold,
                     letterSpacing: 0.5,

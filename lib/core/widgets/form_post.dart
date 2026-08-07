@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/core/widgets/circular_progress.dart';
 import 'package:projct/model/post_model%20.dart';
 
 class FormPost extends StatelessWidget {
@@ -30,7 +31,7 @@ class FormPost extends StatelessWidget {
       elevation: 7,
       shadowColor: Colors.black.withAlpha(200),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
-      color: ColorsApp.yalwoPro,
+      color: AppColors.yellowPro,
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: ontap,
@@ -52,7 +53,7 @@ class FormPost extends StatelessWidget {
                         child: Text(
                           descration.replaceAll('[', '').replaceAll(']', ''),
                           style: TextStyle(
-                            color: ColorsApp.greenPro,
+                            color: AppColors.greenPro,
                             fontSize: 18.sp,
                             fontWeight: FontWeight.bold,
                             height: 1.2,
@@ -72,14 +73,14 @@ class FormPost extends StatelessWidget {
                       Icon(
                         Icons.location_on_rounded,
                         size: 20.sp,
-                        color: ColorsApp.greenPro,
+                        color: AppColors.greenPro,
                       ),
                       SizedBox(width: 6.w),
                       Expanded(
                         child: Text(
                           '${address.governorate}, ${address.city}, ${address.street}',
                           style: TextStyle(
-                            color: ColorsApp.withePro,
+                            color: AppColors.whitePro,
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
                           ),
@@ -97,13 +98,13 @@ class FormPost extends StatelessWidget {
                       Icon(
                         Icons.calendar_month_rounded,
                         size: 18.sp,
-                        color: ColorsApp.greenPro,
+                        color: AppColors.greenPro,
                       ),
                       SizedBox(width: 6.w),
                       Text(
                         date,
                         style: TextStyle(
-                          color: ColorsApp.withePro,
+                          color: AppColors.whitePro,
                           fontSize: 16.sp,
                         ),
                       ),
@@ -113,13 +114,13 @@ class FormPost extends StatelessWidget {
                       Icon(
                         Icons.access_time_rounded,
                         size: 18.sp,
-                        color: ColorsApp.greenPro,
+                        color: AppColors.greenPro,
                       ),
                       SizedBox(width: 6.w),
                       Text(
                         time,
                         style: TextStyle(
-                          color: ColorsApp.withePro,
+                          color: AppColors.whitePro,
                           fontSize: 16.sp,
                         ),
                       ),
@@ -143,7 +144,7 @@ class FormPost extends StatelessWidget {
         fit: BoxFit.cover,
         placeholder: (context, url) => SizedBox(
           height: 180.h,
-          child: const Center(child: CircularProgressIndicator()),
+          child: const Center(child: CircularPro()),
         ),
         errorWidget: (context, url, error) => _buildErrorImage(),
       );
@@ -172,12 +173,12 @@ class ErorrImage extends StatelessWidget {
           Icon(
             Icons.image_not_supported_rounded,
             size: 45.sp,
-            color: ColorsApp.withePro,
+            color: AppColors.whitePro,
           ),
           SizedBox(height: 8.h),
           Text(
             "الصورة غير متوفرة",
-            style: TextStyle(color: ColorsApp.withePro, fontSize: 14.sp),
+            style: TextStyle(color: AppColors.whitePro, fontSize: 14.sp),
           ),
         ],
       ),
@@ -211,7 +212,7 @@ class FormPostAdmin extends StatelessWidget {
       elevation: 7,
       shadowColor: Colors.black.withAlpha(200),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.r)),
-      color: ColorsApp.yalwoPro,
+      color: AppColors.yellowPro,
       clipBehavior: Clip.antiAlias,
       child: InkWell(
         onTap: ontap,
@@ -233,7 +234,7 @@ class FormPostAdmin extends StatelessWidget {
                         child: Text(
                           descration.replaceAll('[', '').replaceAll(']', ''),
                           style: TextStyle(
-                            color: ColorsApp.greenPro,
+                            color: AppColors.greenPro,
                             fontSize: 18.sp,
                             fontWeight: FontWeight.bold,
                             height: 1.2,
@@ -245,7 +246,7 @@ class FormPostAdmin extends StatelessWidget {
                       SizedBox(width: 8.w),
                       Icon(
                         Icons.admin_panel_settings,
-                        color: ColorsApp.greenPro,
+                        color: AppColors.greenPro,
                         size: 26.sp,
                       ),
                     ],
@@ -258,14 +259,14 @@ class FormPostAdmin extends StatelessWidget {
                       Icon(
                         Icons.location_on_rounded,
                         size: 20.sp,
-                        color: ColorsApp.greenPro,
+                        color: AppColors.greenPro,
                       ),
                       SizedBox(width: 6.w),
                       Expanded(
                         child: Text(
                           '${address.governorate}, ${address.city}, ${address.street}',
                           style: TextStyle(
-                            color: ColorsApp.withePro,
+                            color: AppColors.whitePro,
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w500,
                           ),
@@ -283,13 +284,13 @@ class FormPostAdmin extends StatelessWidget {
                       Icon(
                         Icons.calendar_month_rounded,
                         size: 18.sp,
-                        color: ColorsApp.greenPro,
+                        color: AppColors.greenPro,
                       ),
                       SizedBox(width: 6.w),
                       Text(
                         date,
                         style: TextStyle(
-                          color: ColorsApp.withePro,
+                          color: AppColors.whitePro,
                           fontSize: 16.sp,
                         ),
                       ),
@@ -299,13 +300,13 @@ class FormPostAdmin extends StatelessWidget {
                       Icon(
                         Icons.access_time_rounded,
                         size: 18.sp,
-                        color: ColorsApp.greenPro,
+                        color: AppColors.greenPro,
                       ),
                       SizedBox(width: 6.w),
                       Text(
                         time,
                         style: TextStyle(
-                          color: ColorsApp.withePro,
+                          color: AppColors.whitePro,
                           fontSize: 16.sp,
                         ),
                       ),
@@ -329,7 +330,7 @@ class FormPostAdmin extends StatelessWidget {
         fit: BoxFit.cover,
         placeholder: (context, url) => SizedBox(
           height: 180.h,
-          child: const Center(child: CircularProgressIndicator()),
+          child: const Center(child: CircularPro()),
         ),
         errorWidget: (context, url, error) => _buildErrorImage(),
       );

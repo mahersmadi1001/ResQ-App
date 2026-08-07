@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/config/di.dart';
 import 'package:projct/core/helper/app_validators.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/core/widgets/circular_progress.dart';
 import 'package:projct/model/sign_up_model.dart';
 import 'package:projct/core/widgets/TFF.dart';
 import 'package:projct/core/widgets/button_auth.dart';
@@ -101,7 +102,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
                           });
                         },
                         icon: Icon(
-                          color: ColorsApp.yalwoPro,
+                          color: AppColors.yellowPro,
                           visibility_password
                               ? Icons.visibility_off_rounded
                               : Icons.visibility_outlined,
@@ -127,7 +128,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
                           });
                         },
                         icon: Icon(
-                          color: ColorsApp.yalwoPro,
+                          color: AppColors.yellowPro,
                           visibility_password
                               ? Icons.visibility_off_rounded
                               : Icons.visibility_outlined,
@@ -150,7 +151,7 @@ class _PasswordComponantState extends State<PasswordComponant> {
                           minWidth: 120.w,
                         ),
                         state is LoadingState
-                            ? CircularProgressIndicator()
+                            ? CircularPro()
                             : ButtonAuth(
                                 onPressed: () {
                                   if (form_key.currentState!.validate()) {

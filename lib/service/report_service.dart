@@ -58,6 +58,8 @@ class ReportService {
         '${ApiConstants.baseurl}reports',
         data: formData,
         options: Options(
+          connectTimeout: Duration(seconds: 50),
+          sendTimeout: Duration(seconds: 50),
           headers: {
             'Authorization': 'Bearer $token',
             'Accept': 'application/json',
@@ -87,7 +89,10 @@ class ReportService {
           }
         } catch (_) {}
       }
-      throw Failure(message: errorMessage, statusCode: e.response?.statusCode);
+      throw Failure(
+        message: Failure.fromDioException(e),
+        statusCode: e.response?.statusCode,
+      );
     }
   }
 }

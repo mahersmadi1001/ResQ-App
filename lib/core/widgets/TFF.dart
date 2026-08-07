@@ -1,22 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
-import 'package:projct/core/constens/constens.dart';
-
-class LogoImage extends StatelessWidget {
-  LogoImage({super.key, required this.height, required this.width});
-  double width;
-  double height;
-  @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      ConstensApp.logo,
-      fit: BoxFit.fill,
-      width: width,
-      height: height,
-    );
-  }
-}
 
 class Tff extends StatelessWidget {
   TextEditingController? controller;
@@ -45,6 +29,7 @@ class Tff extends StatelessWidget {
       width: 345.w,
       // height: 45.h,
       child: TextFormField(
+        cursorErrorColor: AppColors.yellowPro,
         controller: controller,
         onChanged: onChanged,
         autovalidateMode: AutovalidateMode.onUserInteractionIfError,
@@ -52,19 +37,19 @@ class Tff extends StatelessWidget {
 
         obscureText: obscureText,
         style: TextStyle(color: Colors.white),
-        cursorColor: ColorsApp.yalwoPro,
+        cursorColor: AppColors.yellowPro,
         validator: validator,
         decoration: InputDecoration(
           labelText: label,
-          labelStyle: TextStyle(color: ColorsApp.yalwoPro, fontSize: 16.sp),
+          labelStyle: TextStyle(color: AppColors.yellowPro, fontSize: 16.sp),
           suffixIcon: suffixIcon,
           prefixIcon: prefixIcon,
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: ColorsApp.yalwoPro, width: 3),
+            borderSide: BorderSide(color: AppColors.yellowPro, width: 3),
             borderRadius: BorderRadius.all(Radius.circular(17.r)),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: ColorsApp.yalwoPro, width: 2),
+            borderSide: BorderSide(color: AppColors.yellowPro, width: 2),
             borderRadius: BorderRadius.all(Radius.circular(17.r)),
           ),
           errorBorder: OutlineInputBorder(

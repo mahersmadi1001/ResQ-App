@@ -4,6 +4,7 @@ import 'package:projct/core/helper/app_validators.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/TFF.dart';
 import 'package:projct/core/widgets/button_auth.dart';
+import 'package:projct/core/widgets/circular_progress.dart';
 import 'package:projct/service/cache_service.dart';
 import 'package:projct/service/langauge_service.dart';
 import 'package:projct/service/notfications_service.dart';
@@ -39,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return BlocProvider(
       create: (context) => LoginBloc(authService: di<AuthService>()),
       child: Scaffold(
-        backgroundColor: ColorsApp.greenPro,
+        backgroundColor: AppColors.greenPro,
         body: BlocConsumer<LoginBloc, LoginState>(
           listener: (context, state) async {
             if (state is LoginErrorState) {
@@ -85,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             shadows: const [
                               Shadow(blurRadius: 10, offset: Offset(2, 5)),
                             ],
-                            color: ColorsApp.yalwoPro,
+                            color: AppColors.yellowPro,
                             fontSize: 28.sp,
                             fontWeight: FontWeight.bold,
                           ),
@@ -121,12 +122,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                 visibility_password = !visibility_password;
                               });
                             },
-                            color: ColorsApp.yalwoPro,
+                            color: AppColors.yellowPro,
                           ),
                         ),
                         SizedBox(height: 30.h),
                         state is LoadingState
-                            ? const CircularProgressIndicator()
+                            ? const CircularPro()
                             : ButtonAuth(
                                 onPressed: () {
                                   if (formLoginKey.currentState!.validate()) {
@@ -171,7 +172,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       offset: Offset(2, 4),
                                     ),
                                   ],
-                                  color: ColorsApp.yalwoPro,
+                                  color: AppColors.yellowPro,
                                   fontSize: 16.sp,
                                   fontWeight: FontWeight.bold,
                                 ),

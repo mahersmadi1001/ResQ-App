@@ -6,8 +6,7 @@ import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/model/item_munu_modal.dart';
-import 'package:projct/view_model/report_input_bloc/report_input_bloc.dart';
-import 'package:projct/view_model/report_input_bloc/report_input_event.dart';
+
 
 class NewMunu extends StatefulWidget {
   final ValueChanged<List<AttachmentItem>>? onSelectionChanged;
@@ -85,18 +84,18 @@ class _NewMunuState extends State<NewMunu> {
                                       shape: BoxShape.circle,
                                       border: Border.all(
                                         color: isSelected
-                                            ? ColorsApp.yalwoPro
+                                            ? AppColors.yellowPro
                                             : Colors.transparent,
                                         width: 2.5.w,
                                       ),
                                     ),
                                     child: CircleAvatar(
                                       radius: 30.r,
-                                      backgroundColor: ColorsApp.greenPro
+                                      backgroundColor: AppColors.greenPro
                                           .withAlpha(240),
                                       child: Icon(
                                         item.icon,
-                                        color: ColorsApp.yalwoPro,
+                                        color: AppColors.yellowPro,
                                         size: 28.sp,
                                       ),
                                     ),
@@ -105,7 +104,7 @@ class _NewMunuState extends State<NewMunu> {
                                   Text(
                                     item.name,
                                     style: TextStyle(
-                                      color: ColorsApp.greenPro,
+                                      color: AppColors.greenPro,
                                       fontSize: 13.sp,
                                       fontWeight: isSelected
                                           ? FontWeight.bold
@@ -132,12 +131,12 @@ class _NewMunuState extends State<NewMunu> {
 
                           setState(() {});
                         },
-                        color: ColorsApp.greenPro,
+                        color: AppColors.greenPro,
                         elevation: 5,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(25.r),
                           side: BorderSide(
-                            color: ColorsApp.yalwoPro,
+                            color: AppColors.yellowPro,
                             width: 2.w,
                           ),
                         ),
@@ -146,7 +145,7 @@ class _NewMunuState extends State<NewMunu> {
                         child: Text(
                           context.tr('general.confirm_selection'),
                           style: TextStyle(
-                            color: ColorsApp.yalwoPro,
+                            color: AppColors.yellowPro,
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
                           ),
@@ -166,12 +165,12 @@ class _NewMunuState extends State<NewMunu> {
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
         decoration: BoxDecoration(
           color: NewMunu.selectedItems.isNotEmpty
-              ? ColorsApp.greenPro.withOpacity(0.13)
+              ? AppColors.greenPro.withOpacity(0.13)
               : Colors.white,
           borderRadius: BorderRadius.circular(15.r),
           border: Border.all(
             color: NewMunu.selectedItems.isNotEmpty
-                ? ColorsApp.greenPro
+                ? AppColors.greenPro
                 : Colors.red.withOpacity(0.5),
             width: 1.5,
           ),
@@ -185,7 +184,7 @@ class _NewMunuState extends State<NewMunu> {
                   : context.tr('report_screen.select_incident_types'),
               style: TextStyle(
                 color: NewMunu.selectedItems.isNotEmpty
-                    ? ColorsApp.greenPro
+                    ? AppColors.greenPro
                     : Colors.grey.shade500,
                 fontSize: 16.sp,
                 fontWeight: NewMunu.selectedItems.isNotEmpty
@@ -198,7 +197,7 @@ class _NewMunuState extends State<NewMunu> {
                   ? Icons.check_circle_rounded
                   : Icons.keyboard_arrow_down_rounded,
               color: NewMunu.selectedItems.isNotEmpty
-                  ? ColorsApp.greenPro
+                  ? AppColors.greenPro
                   : Colors.grey.shade600,
             ),
           ],

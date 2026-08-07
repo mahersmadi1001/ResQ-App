@@ -30,10 +30,7 @@ class MediaTile extends StatelessWidget {
                 return Container(color: Colors.grey[200]);
               }
               if (snapshot.hasData && snapshot.data != null) {
-                return Image.memory(
-                  snapshot.data!,
-                  fit: BoxFit.cover,
-                );
+                return Image.memory(snapshot.data!, fit: BoxFit.cover);
               }
               return Container(color: Colors.grey[300]);
             },
@@ -66,11 +63,8 @@ class MediaTile extends StatelessWidget {
               height: 20.w,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                border: Border.all(
-                  color: Colors.white,
-                  width: 2,
-                ),
-                color: isSelected ? ColorsApp.greenPro : Colors.black26,
+                border: Border.all(color: Colors.white, width: 2),
+                color: isSelected ? AppColors.greenPro : Colors.black26,
               ),
               child: isSelected
                   ? Icon(Icons.check, size: 14.sp, color: Colors.white)

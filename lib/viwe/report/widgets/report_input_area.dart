@@ -57,19 +57,19 @@ class _ReportInputAreaState extends State<ReportInputArea> {
                       vertical: 8.h,
                     ),
                     decoration: BoxDecoration(
-                      color: ColorsApp.greenPro.withOpacity(0.1),
+                      color: AppColors.greenPro.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(20.r),
-                      border: Border.all(color: ColorsApp.greenPro),
+                      border: Border.all(color: AppColors.greenPro),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.mic, color: ColorsApp.greenPro, size: 20.sp),
+                        Icon(Icons.mic, color: AppColors.greenPro, size: 20.sp),
                         SizedBox(width: 8.w),
                         Text(
                           " ${context.tr("report_screen.voice_recording")} (${state.recordedAudioDuration} ${context.tr("report_screen.second")})",
                           style: TextStyle(
-                            color: ColorsApp.greenPro,
+                            color: AppColors.greenPro,
                             fontWeight: FontWeight.bold,
                             fontSize: 14.sp,
                           ),
@@ -127,7 +127,7 @@ class _ReportInputAreaState extends State<ReportInputArea> {
                         context.read<ReportInputBloc>().add(TextChanged(text));
                       },
                       keyboardType: TextInputType.multiline,
-                      cursorColor: ColorsApp.greenPro,
+                      cursorColor: AppColors.greenPro,
                       maxLines: 3,
                       minLines: 1,
                       style: TextStyle(color: Colors.black87, fontSize: 16.sp),

@@ -39,6 +39,8 @@ dependencies:
   flutter_svg: ^2.3.0
   flutter_animate: ^4.5.2
   firebase_messaging: ^16.4.3
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
   flutter_test:

@@ -14,11 +14,11 @@ class BackButtonPage extends StatelessWidget {
         height: 55.h,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: ColorsApp.greenPro,
+          color: AppColors.greenPro,
 
-          border: Border.all(width: 3, color: ColorsApp.yalwoPro),
+          border: Border.all(width: 3, color: AppColors.yellowPro),
         ),
-        child: Icon(Icons.arrow_back, color: ColorsApp.yalwoPro),
+        child: Icon(Icons.arrow_back, color: AppColors.yellowPro),
       ),
     );
   }

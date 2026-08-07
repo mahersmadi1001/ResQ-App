@@ -1,7 +1,5 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dio/dio.dart';
 import 'package:projct/core/erorr/erorr_handling.dart';
-
 import 'package:projct/core/network/api_constants.dart';
 import 'package:projct/model/location_point_model.dart';
 import 'package:projct/service/cache_service.dart';
@@ -26,7 +24,7 @@ class MapLocationService {
         throw Failure(message: 'Failed to load locations');
       }
     } on DioException catch (e) {
-      throw Failure(message: e.message.toString());
+      throw Failure(message: Failure.fromDioException(e));
     }
   }
 }

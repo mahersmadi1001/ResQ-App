@@ -33,11 +33,11 @@ class _ListAddressState extends State<ListAddress> {
             });
             print(ListAddress.selectedAddress);
           },
-          backgroundColor: ColorsApp.greenPro,
-          selectedColor: ColorsApp.yalwoPro,
+          backgroundColor: AppColors.greenPro,
+          selectedColor: AppColors.yellowPro,
           labelStyle: TextStyle(
             fontSize: 16.sp,
-            color: ColorsApp.withePro,
+            color: AppColors.whitePro,
             fontWeight: ListAddress.selectedAddress == district
                 ? FontWeight.bold
                 : FontWeight.normal,
@@ -105,12 +105,12 @@ class _FilterAddressPostState extends State<FilterAddressPost> {
               }
             });
           },
-          selectedColor: ColorsApp.greenPro,
+          selectedColor: AppColors.greenPro,
           backgroundColor: Colors.grey.shade100,
-          checkmarkColor: ColorsApp.yalwoPro,
+          checkmarkColor: AppColors.yellowPro,
           showCheckmark: true,
           side: BorderSide(
-            color: isSelected ? ColorsApp.greenPro : Colors.grey.shade300,
+            color: isSelected ? AppColors.greenPro : Colors.grey.shade300,
             width: 1.w,
           ),
           shape: RoundedRectangleBorder(
@@ -118,7 +118,7 @@ class _FilterAddressPostState extends State<FilterAddressPost> {
           ),
           labelStyle: TextStyle(
             fontSize: 14.sp,
-            color: isSelected ? Colors.white : ColorsApp.greenPro,
+            color: isSelected ? Colors.white : AppColors.greenPro,
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
           ),
           padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
@@ -127,15 +127,3 @@ class _FilterAddressPostState extends State<FilterAddressPost> {
     );
   }
 }
-// SegmentedButton<String>(
-//   segments: const [
-//     ButtonSegment<String>(value: 'en', label: Text('English')),
-//     ButtonSegment<String>(value: 'ar', label: Text('العربية')),
-//   ],
-//   selected: {_selectedLanguageCode}, // القيمة الحالية المخزنة في الكود
-//   onSelectionChanged: (Set<String> newSelection) {
-//     setState(() {
-//       _selectedLanguageCode = newSelection.first; // التعامل مع القيمة مباشرة
-//     });
-//   },
-// )

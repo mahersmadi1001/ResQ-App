@@ -7,6 +7,7 @@ import 'package:maplibre_gl/maplibre_gl.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/chips_address.dart';
+import 'package:projct/core/widgets/circular_progress.dart';
 import 'package:projct/core/widgets/form_post.dart';
 import 'package:projct/model/post_model%20.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
@@ -53,7 +54,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
         builder: (context, state) {
           switch (state.postStatus) {
             case PostStatus.initial:
-              return Center(child: CircularProgressIndicator());
+              return Center(child: CircularPro());
             case PostStatus.success:
               {
                 if (state.posts.isEmpty) {
@@ -81,7 +82,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
                           : state.posts.length + 1,
                       itemBuilder: (context, index) {
                         if (index >= state.posts.length) {
-                          return Center(child: CircularProgressIndicator());
+                          return Center(child: CircularPro());
                         } else {
                           PostModel post = state.posts[index];
                           return InkWell(
@@ -121,7 +122,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
             case PostStatus.loading:
               {
                 if (state.posts.isEmpty) {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(child: CircularPro());
                 } else {
                   return RefreshIndicator(
                     onRefresh: () async {
@@ -142,7 +143,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
                           : state.posts.length + 1,
                       itemBuilder: (context, index) {
                         if (index >= state.posts.length) {
-                          return Center(child: CircularProgressIndicator());
+                          return Center(child: CircularPro());
                         } else {
                           PostModel post = state.posts[index];
                           return InkWell(
@@ -186,8 +187,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
           showModalBottomSheet(
             isScrollControlled: true,
             isDismissible: true,
-            backgroundColor:
-                Colors.transparent,
+            backgroundColor: Colors.transparent,
             context: context,
             builder: (context) {
               return Container(
@@ -214,16 +214,6 @@ class _UsersPostPageState extends State<UsersPostPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        // Text(
-                        //   context.tr(
-                        //     "settings_screen.profile_details",
-                        //   ),
-                        //   style: TextStyle(
-                        //     fontSize: 18.sp,
-                        //     fontWeight: FontWeight.bold,
-                        //     color: ColorsApp.greenPro,
-                        //   ),
-                        // ),
                         IconButton(
                           onPressed: () => Navigator.pop(context),
                           icon: Icon(
@@ -260,7 +250,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
                           Navigator.pop(context);
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorsApp.yalwoPro,
+                          backgroundColor: AppColors.yellowPro,
                           elevation: 2,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16.r),
@@ -269,7 +259,7 @@ class _UsersPostPageState extends State<UsersPostPage> {
                         child: Text(
                           context.tr("general.confirm_selection"),
                           style: TextStyle(
-                            color: ColorsApp.greenPro,
+                            color: AppColors.greenPro,
                             fontSize: 16.sp,
                             fontWeight: FontWeight.bold,
                           ),
@@ -283,8 +273,8 @@ class _UsersPostPageState extends State<UsersPostPage> {
             },
           );
         },
-        backgroundColor: ColorsApp.greenPro,
-        child: const Icon(Icons.tune_outlined, color: ColorsApp.withePro),
+        backgroundColor: AppColors.greenPro,
+        child: const Icon(Icons.tune_outlined, color: AppColors.yellowPro),
       ),
     );
   }

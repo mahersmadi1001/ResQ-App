@@ -52,47 +52,47 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
             }
           });
         },
-        buttonBackgroundColor: ColorsApp.greenPro,
-        buttonBorderColor: ColorsApp.yalwoPro,
-        color: ColorsApp.greenPro,
+        buttonBackgroundColor: AppColors.greenPro,
+        buttonBorderColor: AppColors.yellowPro,
+        color: AppColors.greenPro,
         height: 70.h,
-        backgroundColor: ColorsApp.greenPro,
+        backgroundColor: AppColors.greenPro,
         items: [
           GlazeNavBarItem(
             labelStyle: TextStyle(
-              color: ColorsApp.yalwoPro,
+              color: AppColors.yellowPro,
               fontWeight: FontWeight.w600,
             ),
             child: const Icon(
               Icons.remember_me_outlined,
-              color: ColorsApp.withePro,
+              color: AppColors.whitePro,
             ),
             label: context.tr('general.report'),
           ),
           GlazeNavBarItem(
             labelStyle: TextStyle(
-              color: ColorsApp.yalwoPro,
+              color: AppColors.yellowPro,
               fontWeight: FontWeight.w600,
             ),
-            child: const Icon(Icons.newspaper, color: ColorsApp.withePro),
+            child: const Icon(Icons.newspaper, color: AppColors.whitePro),
             label: context.tr('general.posts'),
           ),
           GlazeNavBarItem(
             labelStyle: TextStyle(
-              color: ColorsApp.yalwoPro,
+              color: AppColors.yellowPro,
               fontWeight: FontWeight.w600,
             ),
-            child: const Icon(Icons.map, color: ColorsApp.withePro),
+            child: const Icon(Icons.map, color: AppColors.whitePro),
             label: context.tr('general.map'),
           ),
           GlazeNavBarItem(
             labelStyle: TextStyle(
-              color: ColorsApp.yalwoPro,
+              color: AppColors.yellowPro,
               fontWeight: FontWeight.w600,
             ),
             child: const Icon(
               Icons.settings_outlined,
-              color: ColorsApp.withePro,
+              color: AppColors.whitePro,
             ),
             label: context.tr('general.settings'),
           ),

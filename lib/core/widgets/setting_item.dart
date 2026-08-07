@@ -32,13 +32,13 @@ class SettingItem extends StatelessWidget {
                   child: Icon(
                     icon,
                     size: 34.sp,
-                    color: colorTextAndIcon ?? ColorsApp.yalwoPro,
+                    color: colorTextAndIcon ?? AppColors.yellowPro,
                   ),
                 ),
                 Text(
                   text,
                   style: TextStyle(
-                    color: colorTextAndIcon ?? ColorsApp.yalwoPro,
+                    color: colorTextAndIcon ?? AppColors.yellowPro,
                     fontSize: 19.sp,
                     fontWeight: FontWeight.w600,
                   ),

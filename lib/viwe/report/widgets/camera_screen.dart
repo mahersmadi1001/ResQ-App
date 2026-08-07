@@ -5,6 +5,7 @@ import 'package:photo_manager/photo_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:projct/core/localization/app_localizations.dart';
+import 'package:projct/core/widgets/circular_progress.dart';
 
 class CameraScreen extends StatefulWidget {
   @override
@@ -119,7 +120,7 @@ class _CameraScreenState extends State<CameraScreen> {
     if (_controller == null || !_controller!.value.isInitialized) {
       return const Scaffold(
         backgroundColor: Colors.black,
-        body: Center(child: CircularProgressIndicator()),
+        body: Center(child: CircularPro()),
       );
     }
     return Scaffold(

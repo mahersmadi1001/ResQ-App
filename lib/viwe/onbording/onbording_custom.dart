@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/theme/colors_app.dart';
@@ -28,7 +27,7 @@ class OnbordingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsApp.withePro,
+      backgroundColor: AppColors.whitePro,
       body: Column(
         children: [
           SizedBox(height: 30.h),
@@ -54,14 +53,14 @@ class OnbordingPage extends StatelessWidget {
                             Text(
                               "Skipe",
                               style: TextStyle(
-                                color: ColorsApp.greenPro,
+                                color: AppColors.greenPro,
                                 fontSize: 14.sp,
                               ),
                             ),
                             Icon(
                               size: 18.sp,
                               Icons.arrow_forward_sharp,
-                              color: ColorsApp.greenPro,
+                              color: AppColors.greenPro,
                             ),
                           ],
                         ),
@@ -77,7 +76,7 @@ class OnbordingPage extends StatelessWidget {
             decoration: BoxDecoration(
               boxShadow: [BoxShadow(blurRadius: 8)],
               borderRadius: BorderRadius.all(Radius.circular(29.r)),
-              border: Border.all(color: ColorsApp.yalwoPro, width: 4),
+              border: Border.all(color: AppColors.yellowPro, width: 4),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.all(Radius.circular(25.r)),
@@ -104,13 +103,13 @@ class OnbordingPage extends StatelessWidget {
                 end: AlignmentGeometry.centerEnd,
                 colors: [
                   Color.fromARGB(255, 255, 243, 221),
-                  ColorsApp.yalwoPro,
+                  AppColors.yellowPro,
                 ],
               ),
             ),
             child: Text(
               style: TextStyle(
-                color: ColorsApp.greenPro,
+                color: AppColors.greenPro,
                 fontWeight: FontWeight.w600,
               ),
               discrabtion,
@@ -128,7 +127,7 @@ class OnbordingPage extends StatelessWidget {
                 activeDotDecoration: DotDecoration(
                   width: 32.w,
                   height: 12.h,
-                  color: ColorsApp.yalwoPro,
+                  color: AppColors.yellowPro,
                   rotationAngle: 180,
                   verticalOffset: -10,
                   borderRadius: BorderRadius.circular(24.r),
@@ -136,7 +135,7 @@ class OnbordingPage extends StatelessWidget {
                 dotDecoration: DotDecoration(
                   width: 24.w,
                   height: 12.h,
-                  color: ColorsApp.greenPro,
+                  color: AppColors.greenPro,
 
                   borderRadius: BorderRadius.circular(16.r),
                   verticalOffset: 0,
@@ -154,16 +153,16 @@ class OnbordingPage extends StatelessWidget {
               MaterialButton(
                 onPressed: ontap,
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: ColorsApp.yalwoPro, width: 3),
+                  side: BorderSide(color: AppColors.yellowPro, width: 3),
                   borderRadius: BorderRadius.all(Radius.circular(25.r)),
                 ),
                 height: 50.h,
-                color: ColorsApp.greenPro,
+                color: AppColors.greenPro,
                 minWidth: 300.w,
                 elevation: 10,
                 child: Text(
                   textButton,
-                  style: TextStyle(color: ColorsApp.yalwoPro, fontSize: 18.sp),
+                  style: TextStyle(color: AppColors.yellowPro, fontSize: 18.sp),
                 ),
               ),
             ],

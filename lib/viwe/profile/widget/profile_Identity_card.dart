@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/localization/app_localizations.dart';
@@ -24,17 +22,17 @@ class ProfileIdentityCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            ColorsApp.greenPro,
+            AppColors.greenPro,
             Color.alphaBlend(
               Colors.black.withOpacity(0.15),
-              ColorsApp.greenPro,
+              AppColors.greenPro,
             ),
           ],
         ),
         borderRadius: BorderRadius.circular(24.r),
         boxShadow: [
           BoxShadow(
-            color: ColorsApp.greenPro.withOpacity(0.15),
+            color: AppColors.greenPro.withOpacity(0.15),
             blurRadius: 15,
             offset: const Offset(0, 8),
           ),
@@ -73,10 +71,10 @@ class ProfileIdentityCard extends StatelessWidget {
                         vertical: 4.h,
                       ),
                       decoration: BoxDecoration(
-                        color: ColorsApp.yalwoPro.withOpacity(0.2),
+                        color: AppColors.yellowPro.withOpacity(0.2),
                         borderRadius: BorderRadius.circular(30.r),
                         border: Border.all(
-                          color: ColorsApp.yalwoPro.withOpacity(0.5),
+                          color: AppColors.yellowPro.withOpacity(0.5),
                           width: 1.w,
                         ),
                       ),
@@ -84,14 +82,14 @@ class ProfileIdentityCard extends StatelessWidget {
                         children: [
                           Icon(
                             Icons.verified_user_rounded,
-                            color: ColorsApp.yalwoPro,
+                            color: AppColors.yellowPro,
                             size: 12.sp,
                           ),
                           SizedBox(width: 4.w),
                           Text(
                             context.tr("profile_screen.secured"),
                             style: TextStyle(
-                              color: ColorsApp.yalwoPro,
+                              color: AppColors.yellowPro,
                               fontSize: 9.sp,
                               fontWeight: FontWeight.bold,
                               letterSpacing: 0.5,
@@ -106,7 +104,7 @@ class ProfileIdentityCard extends StatelessWidget {
                 Text(
                   method.toUpperCase(),
                   style: TextStyle(
-                    color: ColorsApp.yalwoPro,
+                    color: AppColors.yellowPro,
                     fontSize: 14.sp,
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.5,

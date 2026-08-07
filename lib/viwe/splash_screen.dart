@@ -20,8 +20,8 @@ class SplashScreen extends StatelessWidget {
             center: Alignment(0, -0.1),
             radius: 1.1,
             colors: [
-              ColorsApp.greenPro.withOpacity(0.9),
-              ColorsApp.greenPro,
+              AppColors.greenPro.withOpacity(0.9),
+              AppColors.greenPro,
               const Color(0xFF0B2121),
             ],
           ),
@@ -41,7 +41,7 @@ class SplashScreen extends StatelessWidget {
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: ColorsApp.yalwoPro.withOpacity(0.2),
+                        color: AppColors.yellowPro.withOpacity(0.2),
                         blurRadius: 60,
                         spreadRadius: 15,
                       ),
@@ -66,7 +66,7 @@ class SplashScreen extends StatelessWidget {
                     .then(delay: 100.ms)
                     .shimmer(
                       duration: 1200.ms,
-                      color: ColorsApp.yalwoPro.withOpacity(0.4),
+                      color: AppColors.yellowPro.withOpacity(0.4),
                     ),
               ],
             ),
@@ -76,13 +76,13 @@ class SplashScreen extends StatelessWidget {
             Text(
                   "ResQ",
                   style: TextStyle(
-                    color: ColorsApp.yalwoPro,
+                    color: AppColors.yellowPro,
                     fontSize: 38.sp,
                     fontWeight: FontWeight.w800,
                     letterSpacing: 3.w,
                     shadows: [
                       Shadow(
-                        color: ColorsApp.yalwoPro.withOpacity(0.3),
+                        color: AppColors.yellowPro.withOpacity(0.3),
                         blurRadius: 15,
                         offset: const Offset(0, 4),
                       ),
@@ -102,7 +102,7 @@ class SplashScreen extends StatelessWidget {
             Text(
               "EMERGENCY SYSTEM",
               style: TextStyle(
-                color: ColorsApp.withePro.withOpacity(0.6),
+                color: AppColors.whitePro.withOpacity(0.6),
                 fontSize: 11.sp,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 4.w,
@@ -117,9 +117,9 @@ class SplashScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10.r),
                     child: LinearProgressIndicator(
                       minHeight: 4.h,
-                      backgroundColor: ColorsApp.yalwoPro.withOpacity(0.2),
+                      backgroundColor: AppColors.yellowPro.withOpacity(0.2),
                       valueColor: AlwaysStoppedAnimation<Color>(
-                        ColorsApp.yalwoPro,
+                        AppColors.yellowPro,
                       ),
                     ),
                   ),

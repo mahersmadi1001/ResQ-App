@@ -25,7 +25,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorsApp.greenPro,
+      backgroundColor: AppColors.greenPro,
       body: Stack(
         children: [
           Container(
@@ -38,6 +38,7 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
           ),
           PageView.builder(
+            allowImplicitScrolling: false,
             controller: controller_pageviwe,
             itemCount: 2,
             onPageChanged: (index) {

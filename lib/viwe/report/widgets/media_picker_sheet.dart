@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/core/widgets/circular_progress.dart';
 import 'package:projct/view_model/media_picker_bloc/media_picker_bloc.dart';
 import 'package:projct/view_model/media_picker_bloc/media_picker_event.dart';
 import 'package:projct/view_model/media_picker_bloc/media_picker_state.dart';
@@ -87,7 +88,7 @@ class _MediaPickerSheetState extends State<MediaPickerSheet> {
                           child: Text(
                             context.tr("general.done"),
                             style: TextStyle(
-                              color: ColorsApp.greenPro,
+                              color: AppColors.greenPro,
                               fontSize: 16.sp,
                               fontWeight: FontWeight.bold,
                             ),
@@ -155,7 +156,7 @@ class _MediaPickerSheetState extends State<MediaPickerSheet> {
                     },
                   );
                 }
-                return const Center(child: CircularProgressIndicator());
+                return const Center(child: CircularPro());
               },
             ),
           ),

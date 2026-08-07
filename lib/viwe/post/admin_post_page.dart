@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projct/core/localization/app_localizations.dart';
+import 'package:projct/core/widgets/circular_progress.dart';
 
 import 'package:projct/core/widgets/form_post.dart';
 import 'package:projct/model/post_admin_model.dart';
@@ -50,7 +51,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
         builder: (context, state) {
           switch (state.postAdminStatus) {
             case PostAdminStatus.initial:
-              return Center(child: CircularProgressIndicator());
+              return Center(child: CircularPro());
             case PostAdminStatus.success:
               {
                 if (state.postsAdmin.isEmpty) {
@@ -75,7 +76,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
                           : state.postsAdmin.length + 1,
                       itemBuilder: (context, index) {
                         if (index >= state.postsAdmin.length) {
-                          return Center(child: CircularProgressIndicator());
+                          return Center(child: CircularPro());
                         } else {
                           PostAdminModel post = state.postsAdmin[index];
                           return InkWell(
@@ -113,7 +114,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
             case PostAdminStatus.loading:
               {
                 if (state.postsAdmin.isEmpty) {
-                  return Center(child: CircularProgressIndicator());
+                  return Center(child: CircularPro());
                 } else {
                   return RefreshIndicator(
                     onRefresh: () async {
@@ -130,7 +131,7 @@ class _AdminPostPageState extends State<AdminPostPage> {
                           : state.postsAdmin.length + 1,
                       itemBuilder: (context, index) {
                         if (index >= state.postsAdmin.length) {
-                          return Center(child: CircularProgressIndicator());
+                          return Center(child: CircularPro());
                         } else {
                           PostAdminModel post = state.postsAdmin[index];
                           return FormPostAdmin(
