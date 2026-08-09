@@ -89,6 +89,7 @@
     "email_address": "البريد الإلكتروني"
   },
   "api_errors": {
+    "the_picture_is_not_available": "الصورة غير متوفرة",
     "connection_timeout": "انتهت مهلة الاتصال بخادم الـ API",
     "send_timeout": "انتهت مهلة إرسال البيانات إلى السيرفر",
     "receive_timeout": "انتهت مهلة استقبال البيانات من السيرفر",

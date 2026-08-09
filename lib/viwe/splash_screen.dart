@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/theme/colors_app.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final loader = SvgAssetLoader(ConstensApp.logo);
+    svg.cache.putIfAbsent(
+      loader.cacheKey(null),
+      () => loader.loadBytes(null),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +29,9 @@ class SplashScreen extends StatelessWidget {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-
         decoration: BoxDecoration(
           gradient: RadialGradient(
-            center: Alignment(0, -0.1),
+            center: const Alignment(0, -0.1),
             radius: 1.1,
             colors: [
               AppColors.greenPro.withOpacity(0.9),
@@ -56,16 +70,16 @@ class SplashScreen extends StatelessWidget {
                       height: 190.h,
                     )
                     .animate()
-                    .fadeIn(duration: 800.ms, curve: Curves.easeOut)
+                    .fadeIn(duration: 600.ms, curve: Curves.easeOut)
                     .scale(
-                      begin: const Offset(0.5, 0.5),
+                      begin: const Offset(0.6, 0.6),
                       end: const Offset(1.0, 1.0),
-                      duration: 900.ms,
+                      duration: 700.ms,
                       curve: Curves.easeOutBack,
                     )
-                    .then(delay: 100.ms)
+                    .then(delay: 50.ms)
                     .shimmer(
-                      duration: 1200.ms,
+                      duration: 1000.ms,
                       color: AppColors.yellowPro.withOpacity(0.4),
                     ),
               ],
@@ -89,12 +103,12 @@ class SplashScreen extends StatelessWidget {
                     ],
                   ),
                 )
-                .animate(delay: 350.ms)
-                .fadeIn(duration: 600.ms)
+                .animate(delay: 200.ms)
+                .fadeIn(duration: 500.ms)
                 .slideY(
                   begin: 0.3,
                   end: 0,
-                  duration: 600.ms,
+                  duration: 500.ms,
                   curve: Curves.easeOutCubic,
                 ),
 
@@ -107,7 +121,7 @@ class SplashScreen extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 letterSpacing: 4.w,
               ),
-            ).animate(delay: 500.ms).fadeIn(duration: 600.ms),
+            ).animate(delay: 350.ms).fadeIn(duration: 500.ms),
 
             const Spacer(flex: 2),
 
@@ -124,12 +138,12 @@ class SplashScreen extends StatelessWidget {
                     ),
                   ),
                 )
-                .animate(delay: 700.ms)
-                .fadeIn(duration: 500.ms)
+                .animate(delay: 450.ms)
+                .fadeIn(duration: 400.ms)
                 .scaleX(
                   begin: 0.5,
                   end: 1.0,
-                  duration: 600.ms,
+                  duration: 500.ms,
                   curve: Curves.easeOut,
                 ),
 

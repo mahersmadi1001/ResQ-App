@@ -43,7 +43,7 @@ class ConstensApp {
     "damascus_districts.qadam",
   ];
 
-  static List<AttachmentItem> states = [
+  static List<AttachmentItem> get states => [
     AttachmentItem(
       name: AppLocalizations.trNoContext("incident_types.fire"),
       icon: Icons.local_fire_department_outlined,
@@ -92,7 +92,6 @@ class ConstensApp {
       color: AppColors.yellowPro,
       value: "Building Collapsing",
     ),
-
     AttachmentItem(
       name: AppLocalizations.trNoContext("incident_types.kidnapping"),
       icon: Icons.masks_outlined,

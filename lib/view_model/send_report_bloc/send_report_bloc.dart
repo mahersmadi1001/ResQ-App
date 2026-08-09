@@ -12,8 +12,8 @@ class SendReportBloc extends Bloc<SendReportEvent, SendReportState> {
   final ReportService _reportService;
 
   SendReportBloc({ReportService? reportService})
-      : _reportService = reportService ?? ReportService(),
-        super(SendReportInitial()) {
+    : _reportService = reportService ?? ReportService(),
+      super(SendReportInitial()) {
     on<SubmitReportEvent>(_onSubmitReport);
   }
 
@@ -29,12 +29,16 @@ class SendReportBloc extends Bloc<SendReportEvent, SendReportState> {
         permission = await Geolocator.requestPermission();
       }
       if (permission == LocationPermission.deniedForever) {
-        emit(const SendReportFailure(
-            error: 'تم رفض صلاحية الموقع بشكل دائم. يرجى تفعيلها من الإعدادات.'));
+        emit(
+          const SendReportFailure(
+            error: 'تم رفض صلاحية الموقع بشكل دائم. يرجى تفعيلها من الإعدادات.',
+          ),
+        );
         return;
       }
 
       final Position position = await Geolocator.getCurrentPosition(
+        timeLimit: const Duration(seconds: 60),
         locationSettings: const LocationSettings(
           accuracy: LocationAccuracy.high,
           timeLimit: Duration(seconds: 15),
@@ -62,7 +66,9 @@ class SendReportBloc extends Bloc<SendReportEvent, SendReportState> {
         media: mediaFiles,
       );
 
-      final responseData = await _reportService.sendReport(reportModel: reportModel);
+      final responseData = await _reportService.sendReport(
+        reportModel: reportModel,
+      );
 
       emit(SendReportSuccess(responseData: responseData));
     } on Failure catch (e) {
@@ -72,4 +78,3 @@ class SendReportBloc extends Bloc<SendReportEvent, SendReportState> {
     }
   }
 }
-

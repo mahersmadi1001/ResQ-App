@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/core/theme/theme_app.dart';
 import 'package:projct/core/widgets/chips_address.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
 
@@ -14,10 +15,7 @@ Future<dynamic> filterAddres(BuildContext context) {
     context: context,
     builder: (context) {
       return Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(top: Radius.circular(28.r)),
-        ),
+        decoration: context.containerStyle?.inputSurface,
         padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
         child: Column(
           mainAxisSize: MainAxisSize.min,

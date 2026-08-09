@@ -1,16 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/theme/theme_app.dart';
-import 'package:projct/core/widgets/form_post.dart';
+import 'package:projct/viwe/post/form_post.dart';
 import 'package:projct/model/post_admin_model.dart';
 import 'package:projct/model/post_model%20.dart';
 
 class PostDetailsScreen extends StatelessWidget {
   final PostAdminModel post;
-  final int? index;
-  PostDetailsScreen({super.key, required this.post, this.index});
+  final int index;
+  PostDetailsScreen({super.key, required this.post, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class PostDetailsScreen extends StatelessWidget {
 
 class PostDetailsAppBar extends StatelessWidget {
   final PostAdminModel post;
-  final int? index;
+  final int index;
   const PostDetailsAppBar({super.key, required this.post, required this.index});
 
   @override
@@ -35,20 +36,30 @@ class PostDetailsAppBar extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: 320.h,
       pinned: true,
-      backgroundColor: AppColors.greenPro,
+      // backgroundColor: AppColors.greenPro,
       elevation: 0,
       leading: const AppBarBackButton(),
-      flexibleSpace: FlexibleSpaceBar(
-        background: Stack(
-          children: [
-            Positioned.fill(
-              child: post.media != null
-                  ? Image.network(post.media, fit: BoxFit.cover)
-                  : ErorrImage(),
-            ),
-            const PostImageGradientOverlay(),
-          ],
-        ),
+      flexibleSpace: Stack(
+        children: [
+          Positioned.fill(
+            child: post.media != null
+                ? Hero(
+                    transitionOnUserGestures: true,
+                    tag: index,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(30.r),
+                        bottomLeft: Radius.circular(30.r),
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl: post.media,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
+                : ErorrImage(),
+          ),
+        ],
       ),
     );
   }
@@ -70,31 +81,6 @@ class AppBarBackButton extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios_new, color: Colors.white),
           iconSize: 18.sp,
           onPressed: () => Navigator.pop(context),
-        ),
-      ),
-    );
-  }
-}
-
-class PostImageGradientOverlay extends StatelessWidget {
-  const PostImageGradientOverlay({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Positioned.fill(
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Colors.black45,
-              Colors.transparent,
-              Colors.transparent,
-              Colors.grey.shade50,
-            ],
-            stops: const [0.0, 0.2, 0.8, 1.0],
-          ),
         ),
       ),
     );

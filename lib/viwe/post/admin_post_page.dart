@@ -1,12 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/circular_progress.dart';
-
-import 'package:projct/core/widgets/form_post.dart';
+import 'package:projct/viwe/post/form_post.dart';
 import 'package:projct/model/post_admin_model.dart';
 import 'package:projct/view_model/post_admin_bloc/post_admin_bloc.dart';
 import 'package:projct/viwe/post/post_ditales.dart';
@@ -85,12 +83,15 @@ class _AdminPostPageState extends State<AdminPostPage> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) =>
-                                      PostDetailsScreen(post: post),
+                                  builder: (context) => PostDetailsScreen(
+                                    post: post,
+                                    index: index,
+                                  ),
                                 ),
                               );
                             },
-                            child: FormPostAdmin(
+                            child: FormPost(
+                              isAdmin: true,
                               address: post.address,
                               descration: post.types.toString(),
                               date: post.createdAt.date.toString(),
@@ -136,7 +137,8 @@ class _AdminPostPageState extends State<AdminPostPage> {
                           return Center(child: CircularPro());
                         } else {
                           PostAdminModel post = state.postsAdmin[index];
-                          return FormPostAdmin(
+                          return FormPost(
+                            isAdmin: true,
                             index: index,
                             address: post.address,
                             descration: post.types.toString(),

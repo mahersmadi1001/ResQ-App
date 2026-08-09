@@ -89,6 +89,7 @@
     "email_address": "Email Address"
   },
   "api_errors": {
+    "the_picture_is_not_available":"The picture is not available",
     "connection_timeout": "Connection timeout with API server",
     "send_timeout": "Send timeout in connection with server",
     "receive_timeout": "Receive timeout in connection with server",

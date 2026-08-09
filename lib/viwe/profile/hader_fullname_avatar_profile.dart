@@ -74,7 +74,10 @@ class ProfilePremiumAvatarPlaceholder extends StatelessWidget {
         padding: EdgeInsets.all(10.r),
         child: Padding(
           padding: EdgeInsets.only(top: 5.h),
-          child: SvgPicture.asset(ConstensApp.logo, fit: BoxFit.fill),
+          child: Hero(
+            tag: 1,
+            child: SvgPicture.asset(ConstensApp.logo, fit: BoxFit.fill),
+          ),
         ),
       ),
     );

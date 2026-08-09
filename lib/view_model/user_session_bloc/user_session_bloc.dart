@@ -16,7 +16,7 @@ class UserSessionBloc extends Bloc<UserSessionEvent, UserSessionState> {
     required this.cacheService,
   }) : super(UserSessionInitial()) {
     on<UserSessionCheckStatus>((event, emit) async {
-      await Future.delayed(Duration(seconds: 3));
+      await Future.delayed(Duration(seconds: 3, milliseconds: 200));
       if (await userSessionService.isFirstTimeOpen()) {
         emit(UserFirstTimeState());
         print("isFirstTimeOpen");

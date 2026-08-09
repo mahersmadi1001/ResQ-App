@@ -110,7 +110,7 @@ class _FilterAddressPostState extends State<FilterAddressPost> {
           checkmarkColor: AppColors.yellowPro,
           showCheckmark: true,
           side: BorderSide(
-            color: isSelected ? AppColors.greenPro : Colors.grey.shade300,
+            color: isSelected ? AppColors.yellowPro : Colors.grey.shade300,
             width: 1.w,
           ),
           shape: RoundedRectangleBorder(

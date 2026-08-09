@@ -72,11 +72,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         backgroundColor: AppColors.greenPro,
                         child: Padding(
                           padding: EdgeInsets.only(top: 10.h),
-                          child: SvgPicture.asset(
-                            ConstensApp.logo,
-                            fit: BoxFit.fill,
-                            width: 90.w,
-                            height: 90.h,
+                          child: Hero(tag: 1,
+                            child: SvgPicture.asset(
+                              ConstensApp.logo,
+                              fit: BoxFit.fill,
+                              width: 90.w,
+                              height: 90.h,
+                            ),
                           ),
                         ),
                       ),

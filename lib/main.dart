@@ -26,6 +26,9 @@ import 'package:projct/viwe/login_screen.dart';
 import 'package:projct/viwe/onbording/pagesview.dart';
 import 'package:projct/viwe/splash_screen.dart';
 
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:projct/core/constens/constens.dart';
+
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
 void main() async {
@@ -33,8 +36,17 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await setup();
   await NotificationsService(cacheService: di<CacheService>()).getFcm();
-  // await di<CacheService>().deleteToken();
-  // await di<CacheService>().deleteUser();
+  await NotificationsService(cacheService: di<CacheService>()).init();
+  
+  // Pre-cache SVG logo so it renders instantly on frame 1 of SplashScreen
+  try {
+    final loader = SvgAssetLoader(ConstensApp.logo);
+    svg.cache.putIfAbsent(
+      loader.cacheKey(null),
+      () => loader.loadBytes(null),
+    );
+    await loader.loadBytes(null);
+  } catch (_) {}
 
   runApp(const MainPage());
 }

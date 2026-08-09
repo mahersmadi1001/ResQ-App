@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
+import 'package:projct/core/config/di.dart';
 import 'package:projct/core/localization/app_localizations.dart';
 import 'package:projct/core/theme/colors_app.dart';
 import 'package:projct/core/widgets/chips_address.dart';
 import 'package:projct/core/widgets/circular_progress.dart';
-import 'package:projct/core/widgets/form_post.dart';
+import 'package:projct/viwe/post/form_post.dart';
 import 'package:projct/model/post_model%20.dart';
+import 'package:projct/service/cache_service.dart';
+import 'package:projct/service/notfications_service.dart';
 import 'package:projct/view_model/post_bloc/post_bloc.dart';
 import 'package:projct/viwe/map_screen.dart';
 import 'package:projct/viwe/post/filter_addres.dart';
@@ -99,7 +102,8 @@ class _UsersPostPageState extends State<UsersPostPage> {
                                 ),
                               );
                             },
-                            child: FormPost(
+                            child: FormPost(index:index ,
+                              isAdmin: false,
                               address: post.address,
                               descration: post.types.toString(),
                               date: post.createdAt.date.toString(),
@@ -124,7 +128,8 @@ class _UsersPostPageState extends State<UsersPostPage> {
                 if (state.posts.isEmpty) {
                   return Center(child: CircularPro());
                 } else {
-                  return RefreshIndicator( color: AppColors.yellowPro,
+                  return RefreshIndicator(
+                    color: AppColors.yellowPro,
                     onRefresh: () async {
                       _refreshCompleter = Completer<void>();
                       context.read<PostBloc>().add(
@@ -160,7 +165,8 @@ class _UsersPostPageState extends State<UsersPostPage> {
                                 ),
                               );
                             },
-                            child: FormPost(
+                            child: FormPost(index: index,
+                              isAdmin: false,
                               address: post.address,
                               descration: post.types.toString(),
                               date: post.createdAt.date,
@@ -183,7 +189,14 @@ class _UsersPostPageState extends State<UsersPostPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(40.r)),
         ),
-        onPressed: () {
+        onPressed: () async {
+          await NotificationsService(
+            cacheService: di<CacheService>(),
+          ).showInstantNotification(
+            id: 1001,
+            title: "test local notifi",
+            body: "first test local notifi",
+          );
           filterAddres(context);
         },
         backgroundColor: AppColors.greenPro,
