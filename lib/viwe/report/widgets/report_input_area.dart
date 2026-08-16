@@ -127,7 +127,7 @@ class _ReportInputAreaState extends State<ReportInputArea> {
                         context.read<ReportInputBloc>().add(TextChanged(text));
                       },
                       keyboardType: TextInputType.multiline,
-                      cursorColor: AppColors.greenPro,
+                      cursorColor: AppColors.yellowPro,
                       maxLines: 3,
                       minLines: 1,
                       style: TextStyle(color: Colors.black87, fontSize: 16.sp),

@@ -19,6 +19,17 @@ class AppTheme {
       brightness: Brightness.light,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: colorScheme.surface,
+
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: AppColors.greenPro,
+      ),
+
+      inputDecorationTheme: InputDecorationTheme(
+        border: InputBorder.none,
+        hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 16.sp),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      ),
+
       appBarTheme: AppBarTheme(
         backgroundColor: colorScheme.surface,
         elevation: 0,
@@ -68,6 +79,7 @@ class AppTheme {
         linearTrackColor: AppColors.yellowPro.withOpacity(0.2),
         linearMinHeight: 4.h,
       ),
+
       bottomSheetTheme: BottomSheetThemeData(
         backgroundColor: AppColors.whitePro,
         modalBackgroundColor: AppColors.whitePro,
@@ -94,6 +106,21 @@ class AppTheme {
             borderRadius: BorderRadius.circular(12.r),
             border: Border.all(color: Colors.grey.shade300),
           ),
+
+          profileHeaderCard: BoxDecoration(
+            color: AppColors.whitePro,
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(40.r),
+              bottomRight: Radius.circular(40.r),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.02),
+                blurRadius: 20,
+                offset: const Offset(0, 10),
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -116,6 +143,19 @@ class AppTheme {
       brightness: Brightness.dark,
       colorScheme: colorScheme,
       scaffoldBackgroundColor: colorScheme.surface,
+
+      textSelectionTheme: const TextSelectionThemeData(
+        cursorColor: AppColors.yellowPro,
+      ),
+
+      inputDecorationTheme: InputDecorationTheme(
+        border: InputBorder.none,
+        hintStyle: TextStyle(
+          color: AppColors.whitePro.withOpacity(0.35),
+          fontSize: 16.sp,
+        ),
+        contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+      ),
 
       appBarTheme: AppBarTheme(
         backgroundColor: colorScheme.surface,
@@ -181,7 +221,7 @@ class AppTheme {
       extensions: [
         AppContainerTheme(
           primaryCard: BoxDecoration(
-            color: AppColors.greenPro,
+            color: const Color(0xff202020),
             borderRadius: BorderRadius.circular(16.r),
             border: Border.all(color: Colors.white.withOpacity(0.05)),
           ),
@@ -189,6 +229,26 @@ class AppTheme {
             color: AppColors.greenPro,
             borderRadius: BorderRadius.circular(12.r),
             border: Border.all(color: AppColors.greenProLight.withOpacity(0.3)),
+          ),
+
+          profileHeaderCard: BoxDecoration(
+            color: const Color(0xFF1A2A2A),
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(40.r),
+              bottomRight: Radius.circular(40.r),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.4),
+                blurRadius: 25,
+                offset: const Offset(0, 10),
+              ),
+              BoxShadow(
+                color: AppColors.yellowPro.withOpacity(0.03),
+                blurRadius: 1,
+                offset: const Offset(0, 1),
+              ),
+            ],
           ),
         ),
       ],
@@ -199,20 +259,24 @@ class AppTheme {
 class AppContainerTheme extends ThemeExtension<AppContainerTheme> {
   final BoxDecoration primaryCard;
   final BoxDecoration inputSurface;
+  final BoxDecoration profileHeaderCard;
 
   const AppContainerTheme({
     required this.primaryCard,
     required this.inputSurface,
+    required this.profileHeaderCard,
   });
 
   @override
   AppContainerTheme copyWith({
     BoxDecoration? primaryCard,
     BoxDecoration? inputSurface,
+    BoxDecoration? profileHeaderCard,
   }) {
     return AppContainerTheme(
       primaryCard: primaryCard ?? this.primaryCard,
       inputSurface: inputSurface ?? this.inputSurface,
+      profileHeaderCard: profileHeaderCard ?? this.profileHeaderCard,
     );
   }
 
@@ -220,8 +284,14 @@ class AppContainerTheme extends ThemeExtension<AppContainerTheme> {
   AppContainerTheme lerp(ThemeExtension<AppContainerTheme>? other, double t) {
     if (other is! AppContainerTheme) return this;
     return AppContainerTheme(
-      primaryCard: BoxDecoration.lerp(primaryCard, other.primaryCard, t)!,
-      inputSurface: BoxDecoration.lerp(inputSurface, other.inputSurface, t)!,
+      primaryCard:
+          BoxDecoration.lerp(primaryCard, other.primaryCard, t) ?? primaryCard,
+      inputSurface:
+          BoxDecoration.lerp(inputSurface, other.inputSurface, t) ??
+          inputSurface,
+      profileHeaderCard:
+          BoxDecoration.lerp(profileHeaderCard, other.profileHeaderCard, t) ??
+          profileHeaderCard,
     );
   }
 }

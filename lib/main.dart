@@ -25,7 +25,6 @@ import 'package:projct/viwe/bottom_nav_bar.dart';
 import 'package:projct/viwe/login_screen.dart';
 import 'package:projct/viwe/onbording/pagesview.dart';
 import 'package:projct/viwe/splash_screen.dart';
-
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:projct/core/constens/constens.dart';
 
@@ -37,17 +36,18 @@ void main() async {
   await setup();
   await NotificationsService(cacheService: di<CacheService>()).getFcm();
   await NotificationsService(cacheService: di<CacheService>()).init();
-  
-  // Pre-cache SVG logo so it renders instantly on frame 1 of SplashScreen
+
   try {
     final loader = SvgAssetLoader(ConstensApp.logo);
-    svg.cache.putIfAbsent(
-      loader.cacheKey(null),
-      () => loader.loadBytes(null),
-    );
+    svg.cache.putIfAbsent(loader.cacheKey(null), () => loader.loadBytes(null));
     await loader.loadBytes(null);
   } catch (_) {}
 
+  FlutterError.onError = (FlutterErrorDetails details) {
+    debugPrint('=== MAP/UI ERROR ===');
+    debugPrint(details.exceptionAsString());
+    debugPrint(details.stack.toString());
+  };
   runApp(const MainPage());
 }
 
@@ -115,7 +115,7 @@ class MainPage extends StatelessWidget {
                 return BlocBuilder<ThemeBloc, ThemeState>(
                   builder: (context, themestate) {
                     return MaterialApp(
-                      themeAnimationDuration: Duration(milliseconds: 150),
+                      themeAnimationDuration: Duration(milliseconds: 500),
                       themeAnimationCurve: Curves.linear,
                       theme: themestate is ThemeLoaded
                           ? (themestate.isDarkMode

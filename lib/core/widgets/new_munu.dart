@@ -55,13 +55,14 @@ class _NewMunuState extends State<NewMunu> {
                         alignment: WrapAlignment.center,
                         children: ConstensApp.states.map((item) {
                           final bool isSelected = NewMunu.selectedItems
-                              .contains(item);
+                              .any((element) => element.value == item.value);
 
                           return GestureDetector(
                             onTap: () {
                               setModalState(() {
                                 if (isSelected) {
-                                  NewMunu.selectedItems.remove(item);
+                                  NewMunu.selectedItems.removeWhere(
+                                      (element) => element.value == item.value);
                                 } else {
                                   NewMunu.selectedItems.add(item);
                                 }

@@ -38,6 +38,8 @@ class _SignupScreenState extends State<SignupScreen> {
             ),
           ),
           PageView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+
             allowImplicitScrolling: false,
             controller: controller_pageviwe,
             itemCount: 2,

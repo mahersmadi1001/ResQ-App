@@ -29,7 +29,7 @@ class PostScreen extends StatelessWidget {
             bottom: TabBar(
               overlayColor: WidgetStateColor.transparent,
               indicatorColor: AppColors.yellowPro,
-              dividerColor: AppColors.yellowPro,
+              // dividerColor: AppColors.yellowPro,
               indicatorPadding: EdgeInsets.all(8.sp),
               unselectedLabelColor: AppColors.whitePro,
               labelStyle: TextStyle(color: AppColors.yellowPro),

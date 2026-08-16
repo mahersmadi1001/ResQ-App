@@ -41,6 +41,7 @@ class _ButtonNavBarState extends State<ButtonNavBar> {
         }),
       ),
       bottomNavigationBar: GlazeNavBar(
+        animationDuration: Duration(milliseconds: 100),
         index: selectedpage,
         key: ValueKey(Localizations.localeOf(context).languageCode),
 

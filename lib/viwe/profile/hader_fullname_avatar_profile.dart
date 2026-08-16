@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:projct/core/constens/constens.dart';
 import 'package:projct/core/theme/colors_app.dart';
+import 'package:projct/core/theme/theme_app.dart';
 import 'package:projct/viwe/profile/widget/profile_logo.dart';
 
 class ProfileHeaderSection extends StatelessWidget {
@@ -19,20 +20,7 @@ class ProfileHeaderSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(40.r),
-          bottomRight: Radius.circular(40.r),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.02),
-            blurRadius: 20,
-            offset: const Offset(0, 10),
-          ),
-        ],
-      ),
+      decoration: context.containerStyle?.profileHeaderCard,
       child: Column(
         children: [
           const ProfileLogoTopBar(),

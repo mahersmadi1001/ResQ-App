@@ -71,6 +71,7 @@ class _MapScreenState extends State<MapScreen> {
         }
       },
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -96,25 +97,24 @@ class _MapScreenState extends State<MapScreen> {
             ),
           ),
         ),
-        body: Positioned.fill(
-          child: StaticMapWidget(
-            initLocation: widget.initLocation,
-            onMapCreated: (controller) {
-              _mapController = controller;
-            },
-            onStyleLoaded: () {
-              _isStyleLoaded = true;
-              if (_pendingLocations.isNotEmpty) {
-                _drawMarkers(_pendingLocations);
-                _pendingLocations = [];
-              } else {
-                final currentState = context.read<MapLocationBloc>().state;
-                if (currentState is MapLocationLoaded) {
-                  _drawMarkers(currentState.locations);
-                }
+
+        body: StaticMapWidget(
+          initLocation: widget.initLocation,
+          onMapCreated: (controller) {
+            _mapController = controller;
+          },
+          onStyleLoaded: () {
+            _isStyleLoaded = true;
+            if (_pendingLocations.isNotEmpty) {
+              _drawMarkers(_pendingLocations);
+              _pendingLocations = [];
+            } else {
+              final currentState = context.read<MapLocationBloc>().state;
+              if (currentState is MapLocationLoaded) {
+                _drawMarkers(currentState.locations);
               }
-            },
-          ),
+            }
+          },
         ),
       ),
     );
@@ -148,7 +148,7 @@ class StaticMapWidget extends StatelessWidget {
         "type": "raster",
         "source": "google-satellite",
         "minzoom": 0,
-        "maxzoom": 27,
+        "maxzoom": 23,
       },
     ],
   });
